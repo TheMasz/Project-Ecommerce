@@ -2,8 +2,9 @@ import React from 'react'
 
 export default function LoadingBox() {
     return (
-        <div>
-            Loading...
+        <div className="loadingBox">
+            <i class="fa fa-spinner fa-spin py-3"></i>
+            <h1 className="text-bold">Loading...</h1>
         </div>
     )
 }

@@ -31,7 +31,7 @@ export default function HomeScreen() {
         {loading ? (
           <LoadingBox />
         ) : error ? (
-          <MessageBox>{error}</MessageBox>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
             <Title title="Hot Sell" />

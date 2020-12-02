@@ -2,6 +2,7 @@
 @import "carousel";
 @import "card";
 @import "productScreen";
+@import "Loading";
 
 html {
   font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
@@ -84,6 +85,26 @@ img.medium {
 }
 .container {
   margin: 0 auto;
+}
+.alert{
+  padding:  1rem;
+  border: 0.1rem solid transparent;
+  border: 0.5rem;
+  margin: 10px 0;
+}
+.error{
+  color: #a02020;
+}
+.success{
+  color: #20a020;
+}
+.alert-info{
+  color: #2020a0;
+  background-color: #e0e0ff;
+}
+.alert-danger{
+  color: #a02020;
+  background-color: #ffe0e0e0;
 }
 @media (min-width: 576px) {
   .container {
