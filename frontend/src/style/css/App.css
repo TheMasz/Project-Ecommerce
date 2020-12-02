@@ -1,0 +1,273 @@
+/* line 1, ../sass/header.scss */
+header {
+  height: auto;
+  box-shadow: 0 0 8px 0 lightgray; }
+
+/* line 5, ../sass/header.scss */
+.nav-main {
+  padding: 10px 50px; }
+
+/* line 1, ../sass/carousel.scss */
+.carousel {
+  margin: 0 auto;
+  height: 333px;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden; }
+
+/* line 8, ../sass/carousel.scss */
+.carousel_item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+/* line 17, ../sass/carousel.scss */
+.slide_img {
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.25s ease-in-out; }
+
+/* line 22, ../sass/carousel.scss */
+.left {
+  position: absolute;
+  left: 0;
+  width: 5%;
+  height: 100%;
+  background-color: #7b7b7b;
+  opacity: 30%;
+  transition: all 0.2s ease-in-out; }
+
+/* line 31, ../sass/carousel.scss */
+.right {
+  position: absolute;
+  right: 0;
+  width: 5%;
+  height: 100%;
+  background-color: #7b7b7b;
+  opacity: 30%;
+  transition: all 0.2s ease-in-out; }
+
+/* line 40, ../sass/carousel.scss */
+.right:hover,
+.left:hover {
+  opacity: unset;
+  background-color: black; }
+
+/* line 45, ../sass/carousel.scss */
+.next,
+.prev {
+  background-color: unset;
+  border: unset;
+  outline: none; }
+
+/* line 1, ../sass/card.scss */
+.card {
+  border-radius: 20px;
+  background-color: #fefefe;
+  box-shadow: 0 0 10px 0 lightgray;
+  width: 350px; }
+
+/* line 7, ../sass/card.scss */
+.card_img {
+  width: 100%;
+  height: 200px; }
+
+/* line 12, ../sass/card.scss */
+.card_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px; }
+
+/* line 19, ../sass/card.scss */
+.card_body {
+  padding: 10px; }
+
+/* line 22, ../sass/card.scss */
+.line {
+  width: 280px;
+  height: 2px;
+  background-color: #707070;
+  margin: 0 auto; }
+
+/* line 28, ../sass/card.scss */
+.price {
+  font-size: 2.5rem;
+  color: #FFC107; }
+
+/* line 32, ../sass/card.scss */
+.text-blue {
+  color: #0090FF;
+  font-size: 2rem;
+  text-decoration: underline; }
+
+/* line 37, ../sass/card.scss */
+.card:hover .text-title {
+  color: #0090FF; }
+
+/* line 1, ../sass/productScreen.scss */
+.box-small {
+  max-width: 10rem;
+  height: 10rem;
+  width: 100%;
+  background-color: #fefefe;
+  box-shadow: 0 0 8px 0 lightgray; }
+
+/* line 8, ../sass/productScreen.scss */
+.text-description {
+  color: #7a7575;
+  font-size: 2.5rem; }
+
+/* line 12, ../sass/productScreen.scss */
+button {
+  cursor: pointer; }
+
+/* line 15, ../sass/productScreen.scss */
+button.block {
+  width: 100%; }
+
+/* line 18, ../sass/productScreen.scss */
+button.primary {
+  background-color: #043E6B;
+  color: white;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  border-radius: 20px; }
+
+/* line 26, ../sass/productScreen.scss */
+.selector {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  outline: none; }
+
+/* line 6, ../sass/App.scss */
+html {
+  font-size: 62.5%;
+  /* 16px x 62.5 = 10px = 1rem */ }
+
+/* line 9, ../sass/App.scss */
+body {
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: myriad-arabic, sans-serif;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* line 17, ../sass/App.scss */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+/* line 22, ../sass/App.scss */
+li {
+  list-style: none;
+  padding: 0 20px; }
+
+/* line 26, ../sass/App.scss */
+li a {
+  text-decoration: none; }
+
+/* line 29, ../sass/App.scss */
+a {
+  text-decoration: none; }
+
+/* line 32, ../sass/App.scss */
+.text-title {
+  color: #333;
+  font-size: 3rem; }
+
+/* line 36, ../sass/App.scss */
+.small_img {
+  width: 30px; }
+
+/* line 39, ../sass/App.scss */
+.p-2 {
+  padding: 20px; }
+
+/* line 42, ../sass/App.scss */
+.py-1 {
+  padding: 10px 0; }
+
+/* line 45, ../sass/App.scss */
+.py-3 {
+  padding: 30px 0; }
+
+/* line 48, ../sass/App.scss */
+.py-5 {
+  padding: 50px 0; }
+
+/* line 51, ../sass/App.scss */
+.pt-3 {
+  padding-top: 30px; }
+
+/* line 54, ../sass/App.scss */
+.my-2 {
+  margin: 20px 0; }
+
+/* line 57, ../sass/App.scss */
+.text-bold {
+  font-weight: bolder; }
+
+/* line 60, ../sass/App.scss */
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  flex-wrap: wrap; }
+
+/* line 67, ../sass/App.scss */
+.col-1 {
+  flex: 1 1 25rem; }
+
+/* line 70, ../sass/App.scss */
+.col-2 {
+  flex: 2 1 50rem; }
+
+/* line 73, ../sass/App.scss */
+.text-center {
+  text-align: center; }
+
+/* line 76, ../sass/App.scss */
+.space-evenly {
+  justify-content: space-evenly; }
+
+/* line 79, ../sass/App.scss */
+.center {
+  justify-content: center; }
+
+/* line 82, ../sass/App.scss */
+img.medium {
+  width: 50%; }
+
+/* line 85, ../sass/App.scss */
+.container {
+  margin: 0 auto; }
+
+@media (min-width: 576px) {
+  /* line 89, ../sass/App.scss */
+  .container {
+    max-width: 100%; } }
+@media (min-width: 768px) {
+  /* line 95, ../sass/App.scss */
+  .container {
+    max-width: 720px; } }
+@media (min-width: 992px) {
+  /* line 101, ../sass/App.scss */
+  .container {
+    max-width: 960px; } }
+@media (min-width: 1200px) {
+  /* line 107, ../sass/App.scss */
+  .container {
+    max-width: 1280px; } }
+
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,39 @@
+.card{
+    border-radius: 20px;
+    background-color: #fefefe;
+    box-shadow: 0 0 10px 0 lightgray;
+    width: 350px;
+  }
+  .card_img{
+    width: 100%;
+    height: 200px;
+  
+  }
+  .card_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+  .card_body{
+    padding: 10px;
+  }
+  .line{
+    width: 280px;
+    height: 2px;
+    background-color: #707070;
+    margin: 0 auto;
+  }
+  .price{
+    font-size: 2.5rem;
+    color: #FFC107;
+  }
+  .text-blue{
+    color: #0090FF;
+    font-size: 2rem;
+    text-decoration: underline;
+  }
+  .card:hover .text-title{
+    color: #0090FF;
+  }

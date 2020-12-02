@@ -1,0 +1,25 @@
+{
+  "name": "restore",
+  "proxy": "http://127.0.0.1:5000",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheMasz/Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheMasz/Project/issues"
+  },
+  "homepage": "https://github.com/TheMasz/Project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
