@@ -1,29 +1,19 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import {useDispatch, useSelector} from 'react-redux';
 import Carousel from "../components/Carousel";
 import Product from "../components/Product";
 import Title from "../components/Title";
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { listProduct } from "../actions/productActions";
 
 export default function HomeScreen() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+  const productList = useSelector(state => state.productList);
+  const {loading, error, products} = productList;
   useEffect(() => {
-    const fecthData = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get("/api/products");
-        setLoading(false);
-        setProducts(data);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fecthData();
-  }, []);
+      dispatch(listProduct());
+  }, [dispatch]);
   return (
     <>
       <Carousel />
@@ -34,10 +24,16 @@ export default function HomeScreen() {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
-            <Title title="Hot Sell" />
+            <Title title="Hot Sell" seeAll="Hot_Sell"/>
             <div className="row py-3 space-evenly">
-              {products.map((product) => (
-                <Product key={product._id} product={product} />
+              {products.filter(product=>product.showList=="Hot Sell").slice(0, 3).map(hotProduct=>(
+                <Product key={hotProduct._id} product={hotProduct}/>
+              ))}
+            </div>
+            <Title title="In New" seeAll="In_New"/>
+            <div className="row py-3 space-evenly">
+              {products.filter(product=>product.showList=='In New').slice(0, 3).map(newProduct=>(
+                <Product key={newProduct._id} product={newProduct} />
               ))}
             </div>
           </>

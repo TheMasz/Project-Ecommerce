@@ -145,7 +145,8 @@ button.primary {
   border-left: none;
   border-right: none;
   width: 100%;
-  outline: none; }
+  outline: none;
+  background-color: transparent; }
 
 /* line 1, ../sass/Loading.scss */
 .loadingBox {

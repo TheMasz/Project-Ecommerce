@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Link, Route } from "react-router-dom";
+import AllProductScreen from "./screens/AllProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 
@@ -31,6 +32,7 @@ function App() {
         </div>
       </header>
       <main>
+      <Route path="/products/:showList" component={AllProductScreen}/>
         <Route path="/product/:id" component={ProductScreen}/>
         <Route path="/" component={HomeScreen} exact />
       </main>
