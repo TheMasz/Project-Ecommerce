@@ -24,15 +24,15 @@ export default function HomeScreen() {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
-            <Title title="Hot Sell" seeAll="Hot_Sell"/>
+            <Title title="Hot Sell" showList="HotSell"/>
             <div className="row py-3 space-evenly">
-              {products.filter(product=>product.showList=="Hot Sell").slice(0, 3).map(hotProduct=>(
+              {products.filter(product=>product.showList=="HotSell").slice(0, 3).map(hotProduct=>(
                 <Product key={hotProduct._id} product={hotProduct}/>
               ))}
             </div>
-            <Title title="In New" seeAll="In_New"/>
+            <Title title="In New" showList="InNew"/>
             <div className="row py-3 space-evenly">
-              {products.filter(product=>product.showList=='In New').slice(0, 3).map(newProduct=>(
+              {products.filter(product=>product.showList=='InNew').slice(0, 3).map(newProduct=>(
                 <Product key={newProduct._id} product={newProduct} />
               ))}
             </div>

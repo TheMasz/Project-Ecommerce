@@ -34,6 +34,22 @@ a {
   color: #333;
   font-size: 3rem;
 }
+.text-center {
+  text-align: center;
+}
+.text-capitalize{
+  text-transform: capitalize;
+}
+.text-blue{
+  color: #0090FF;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+.text-underline{
+  text-decoration: underline;
+  text-decoration-color: #0090FF;
+  text-underline-position: under;
+}
 .small_img {
   width: 30px;
 }
@@ -62,7 +78,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 .col-1 {
@@ -71,9 +87,7 @@ a {
 .col-2 {
   flex: 2 1 50rem;
 }
-.text-center {
-  text-align: center;
-}
+
 .space-evenly {
   justify-content: space-evenly;
 }

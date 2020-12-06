@@ -8,7 +8,7 @@ const data = {
         price: 120,
         countInStock: 0,
         brand: 'Nike',
-        showList:'Hot Sell',
+        showList:'HotSell',
         description: `Contrary to popular belief, Lorem Ipsum is not simply random 
         text. It has roots in a piece of classical Latin literature from 45 
         BC, making it over 2000 years old. Richard McClintock, a Latin 
@@ -28,7 +28,7 @@ const data = {
         price: 100,
         countInStock: 20,
         brand: 'Adidas',
-        showList:'Hot Sell',
+        showList:'HotSell',
         description: `Contrary to popular belief, Lorem Ipsum is not simply random 
         text. It has roots in a piece of classical Latin literature from 45 
         BC, making it over 2000 years old. Richard McClintock, a Latin 
@@ -48,7 +48,7 @@ const data = {
         price: 220,
         countInStock: 0,
         brand: 'Lacoste',
-        showList:'Hot Sell',
+        showList:'HotSell',
         description: `Contrary to popular belief, Lorem Ipsum is not simply random 
         text. It has roots in a piece of classical Latin literature from 45 
         BC, making it over 2000 years old. Richard McClintock, a Latin 
@@ -68,8 +68,17 @@ const data = {
         price: 78,
         countInStock: 15,
         brand: 'Nike',
-        showList:'In New',
-        description: 'high quality product',
+        showList:'InNew',
+        description: `Contrary to popular belief, Lorem Ipsum is not simply random 
+        text. It has roots in a piece of classical Latin literature from 45 
+        BC, making it over 2000 years old. Richard McClintock, a Latin 
+        professor at Hampden-Sydney College in Virginia, looked up one 
+        of the more obscure Latin words, consectetur, from a Lorem 
+        Ipsum passage, and going through the cites of the word in 
+        classical literature, discovered the undoubtable source. Lorem 
+        Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
+        Bonorum et Malorum"
+        `,
       },
       {
         _id: '5',
@@ -79,8 +88,17 @@ const data = {
         price: 65,
         countInStock: 5,
         brand: 'Puma',
-        showList:'In New',
-        description: 'high quality product',
+        showList:'InNew',
+        description: `Contrary to popular belief, Lorem Ipsum is not simply random 
+        text. It has roots in a piece of classical Latin literature from 45 
+        BC, making it over 2000 years old. Richard McClintock, a Latin 
+        professor at Hampden-Sydney College in Virginia, looked up one 
+        of the more obscure Latin words, consectetur, from a Lorem 
+        Ipsum passage, and going through the cites of the word in 
+        classical literature, discovered the undoubtable source. Lorem 
+        Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
+        Bonorum et Malorum"
+        `,
       },
       {
         _id: '6',
@@ -90,8 +108,97 @@ const data = {
         price: 139,
         countInStock: 12,
         brand: 'Adidas',
-        showList:'In New',
-        description: 'high quality product',
+        showList:'InNew',
+        description: `Contrary to popular belief, Lorem Ipsum is not simply random 
+        text. It has roots in a piece of classical Latin literature from 45 
+        BC, making it over 2000 years old. Richard McClintock, a Latin 
+        professor at Hampden-Sydney College in Virginia, looked up one 
+        of the more obscure Latin words, consectetur, from a Lorem 
+        Ipsum passage, and going through the cites of the word in 
+        classical literature, discovered the undoubtable source. Lorem 
+        Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
+        Bonorum et Malorum"
+        `,
+      },
+      {
+        _id: '7',
+        name: 'Adidas Fit Pant',
+        category: 'Pants',
+        image: '/assets/images/p1.jpg',
+        price: 139,
+        countInStock: 12,
+        brand: 'Adidas',
+        showList:'HotSell',
+        description: `Contrary to popular belief, Lorem Ipsum is not simply random 
+        text. It has roots in a piece of classical Latin literature from 45 
+        BC, making it over 2000 years old. Richard McClintock, a Latin 
+        professor at Hampden-Sydney College in Virginia, looked up one 
+        of the more obscure Latin words, consectetur, from a Lorem 
+        Ipsum passage, and going through the cites of the word in 
+        classical literature, discovered the undoubtable source. Lorem 
+        Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
+        Bonorum et Malorum"
+        `,
+      },
+      {
+        _id: '8',
+        name: 'Adidas Fit Pant',
+        category: 'Pants',
+        image: '/assets/images/p2.jpg',
+        price: 139,
+        countInStock: 12,
+        brand: 'Adidas',
+        showList:'HotSell',
+        description: `Contrary to popular belief, Lorem Ipsum is not simply random 
+        text. It has roots in a piece of classical Latin literature from 45 
+        BC, making it over 2000 years old. Richard McClintock, a Latin 
+        professor at Hampden-Sydney College in Virginia, looked up one 
+        of the more obscure Latin words, consectetur, from a Lorem 
+        Ipsum passage, and going through the cites of the word in 
+        classical literature, discovered the undoubtable source. Lorem 
+        Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
+        Bonorum et Malorum"
+        `,
+      },
+      {
+        _id: '9',
+        name: 'Adidas Fit Pant',
+        category: 'Pants',
+        image: '/assets/images/p3.jpg',
+        price: 139,
+        countInStock: 12,
+        brand: 'Adidas',
+        showList:'InNew',
+        description: `Contrary to popular belief, Lorem Ipsum is not simply random 
+        text. It has roots in a piece of classical Latin literature from 45 
+        BC, making it over 2000 years old. Richard McClintock, a Latin 
+        professor at Hampden-Sydney College in Virginia, looked up one 
+        of the more obscure Latin words, consectetur, from a Lorem 
+        Ipsum passage, and going through the cites of the word in 
+        classical literature, discovered the undoubtable source. Lorem 
+        Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
+        Bonorum et Malorum"
+        `,
+      },
+      {
+        _id: '10',
+        name: 'Adidas Fit Pant',
+        category: 'Pants',
+        image: '/assets/images/p4.jpg',
+        price: 139,
+        countInStock: 12,
+        brand: 'Adidas',
+        showList:'InNew',
+        description: `Contrary to popular belief, Lorem Ipsum is not simply random 
+        text. It has roots in a piece of classical Latin literature from 45 
+        BC, making it over 2000 years old. Richard McClintock, a Latin 
+        professor at Hampden-Sydney College in Virginia, looked up one 
+        of the more obscure Latin words, consectetur, from a Lorem 
+        Ipsum passage, and going through the cites of the word in 
+        classical literature, discovered the undoubtable source. Lorem 
+        Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
+        Bonorum et Malorum"
+        `,
       },
     ],
   };

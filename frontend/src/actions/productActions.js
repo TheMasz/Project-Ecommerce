@@ -1,5 +1,8 @@
 import Axios from "axios";
 import {
+  ALL_PRODUCT_LIST_FAIL,
+  ALL_PRODUCT_LIST_REQUEST,
+  ALL_PRODUCT_LIST_SUCCESS,
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
@@ -23,11 +26,27 @@ export const listProduct = () => async (dispatch) => {
 export const detailsProduct = (productId) => async (dispatch) => {
   dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
   try {
-    const { data } = await Axios.get(`/api/products/${productId}`);
+    const { data } = await Axios.get(`/api/product/${productId}`);
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const allListProduct = (showList) => async (dispatch) => {
+  dispatch({ type: ALL_PRODUCT_LIST_REQUEST, payload: showList });
+  try {
+    const { data } = await Axios.get(`/api/products/${showList}`);
+    dispatch({ type: ALL_PRODUCT_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ALL_PRODUCT_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
