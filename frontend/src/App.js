@@ -4,8 +4,9 @@ import ListProductScreen from "./screens/ListProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import LinkCategory from "./components/LinkCategory";
+import CategoryScreen from "./screens/CategoryScreen";
 
-function App(props) {
+function App() {
   const [isToggler, setToggler] = useState(false);
   const [isSticky, setSticky] = useState(false);
   const btnToggler = (e) => {
@@ -78,13 +79,13 @@ function App(props) {
 
       <div className={`category_container ${isToggler ? "active" : ""} `}>
         <h1 className="text-capitalize text-title py-3 text-underline">category</h1>
-        <LinkCategory category="adidas" />
-        <LinkCategory category="nike" />
-        <LinkCategory category="van" />
-        <LinkCategory category="supream" />
+        <LinkCategory category="Adidas" />
+        <LinkCategory category="Nike" />
+        <LinkCategory category="Van" />
+        <LinkCategory category="Supream" />
       </div>
-
       <main>
+        <Route path="/products/category/:category" component={CategoryScreen} />
         <Route path="/products/:showList" component={ListProductScreen} />
         <Route path="/product/:id" component={ProductScreen} />
         <Route path="/" component={HomeScreen} exact />

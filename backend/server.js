@@ -23,6 +23,17 @@ app.get("/api/products/:showList", (req, res) => {
   }
 });
 
+app.get("/api/products/category/:category", (req, res) => {
+  const product = data.products.filter(
+    (x) => x.brand === req.params.category
+  );
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: "Product not Found" });
+  }
+});
+
 app.get("/", (req, res) => {
   res.send("server ready");
 });

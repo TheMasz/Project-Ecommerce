@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allListProduct } from "../actions/productActions";
+import { showListProduct } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Product from "../components/Product";
@@ -8,10 +8,10 @@ import Product from "../components/Product";
 export default function ListProductScreen(props) {
   const dispatch = useDispatch();
   const showList = props.match.params.showList;
-  const AllProductList = useSelector((state) => state.allProductList);
-  const { loading, error, products } = AllProductList;
+  const ProductShowList = useSelector((state) => state.productShowList);
+  const { loading, error, products } = ProductShowList;
   useEffect(() => {
-    dispatch(allListProduct(showList));
+    dispatch(showListProduct(showList));
   }, [dispatch, showList]);
 
   return (
