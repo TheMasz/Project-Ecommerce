@@ -25,7 +25,7 @@ app.get("/api/products/:showList", (req, res) => {
 
 app.get("/api/products/category/:category", (req, res) => {
   const product = data.products.filter(
-    (x) => x.brand === req.params.category
+    (x) => x.category === req.params.category
   );
   if (product) {
     res.send(product);
