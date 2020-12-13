@@ -1,0 +1,23 @@
+.cart-page,
+.cart-page-checkout {
+  box-shadow: 0 0 8px 0 lightgray;
+  padding: 30px;
+  border-radius: 10px;
+}
+.cart-item-overview__thumbnail {
+  background-position: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 8rem;
+  height: 8rem;
+}
+.cart-page-header {
+  border-bottom: 1px solid lightgray;
+}
+.cart-page-section__image {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 8rem;
+  height: 8rem;
+}

@@ -27,7 +27,7 @@ export default function HomeScreen() {
             <Title title="Hot Sell" showList="HotSell" />
             <div className="row py-3 space-evenly">
               {products
-                .filter((product) => product.showList == "HotSell")
+                .filter((product) => product.showList === "HotSell")
                 .slice(0, 3)
                 .map((hotProduct) => (
                   <Product key={hotProduct._id} product={hotProduct} />
@@ -36,7 +36,7 @@ export default function HomeScreen() {
             <Title title="In New" showList="InNew" />
             <div className="row py-3 space-evenly">
               {products
-                .filter((product) => product.showList == "InNew")
+                .filter((product) => product.showList === "InNew")
                 .slice(0, 3)
                 .map((newProduct) => (
                   <Product key={newProduct._id} product={newProduct} />

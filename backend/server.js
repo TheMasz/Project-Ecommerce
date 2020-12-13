@@ -1,45 +1,31 @@
 import express from "express";
-import data from "./data.js";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import productRouter from "./routes/productRouter.js";
+import userRouter from "./routes/userRouter.js";
+
+dotenv.config();
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/api/product/:id", (req, res) => {
-  const product = data.products.find((x) => x._id === req.params.id);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "Product not Found" });
-  }
+const mongoAtlasUri = "mongodb://localhost/E_Commerce";
+mongoose.connect(mongoAtlasUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
-app.get("/api/products/:showList", (req, res) => {
-  const product = data.products.filter(
-    (x) => x.showList === req.params.showList
-  );
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "Product not Found" });
-  }
-});
+app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
 
-app.get("/api/products/category/:category", (req, res) => {
-  const product = data.products.filter(
-    (x) => x.category === req.params.category
-  );
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: "Product not Found" });
-  }
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
 });
 
 app.get("/", (req, res) => {
   res.send("server ready");
-});
-
-app.get("/api/products", (req, res) => {
-  res.send(data.products);
 });
 
 const port = process.env.PORT || 5000;

@@ -5,7 +5,7 @@ export default function Title(props) {
   return (
     <div className="text-center pt-3">
       <h1 className="text-bold text-title py-1">{props.title}</h1>
-      <Link to={`/products/${props.showList}`} className="text-blue">See All</Link>
+      <Link to={`/products/showList/${props.showList}`} className="text-blue">See All</Link>
     </div>
   );
 }

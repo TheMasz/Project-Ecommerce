@@ -6,15 +6,29 @@ import ProductScreen from "./screens/ProductScreen";
 import LinkCategory from "./components/LinkCategory";
 import CategoryScreen from "./screens/CategoryScreen";
 import { useDispatch, useSelector } from "react-redux";
+import CartScreen from "./screens/CartScreen";
+import SigninScreen from "./screens/SigninScreen";
+import { signout } from "./actions/userActions";
+import SignupScreen from "./screens/SignupScreen";
 
 function App() {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
   const productList = useSelector((state) => state.productList);
   const { products, error, loading } = productList;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
   const [isToggler, setToggler] = useState(false);
+  const [isDropdown, setDropdown] = useState(false);
   const [isSticky, setSticky] = useState(false);
   const btnToggler = (e) => {
     e.preventDefault();
     setToggler(!isToggler);
+  };
+  const btnDropdonw = (e) => {
+    e.preventDefault();
+    setDropdown(!isDropdown);
   };
   const handleScroll = (e) => {
     e.preventDefault();
@@ -25,6 +39,9 @@ function App() {
       setSticky(false);
     }
   };
+  const signoutHandler = (e) => {
+    dispatch(signout());
+  };
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -32,8 +49,8 @@ function App() {
     };
   }, []);
   const getUnique = (items, value) => {
-    return [...new Set(items.map((item)=>item[value]))]
-  }
+    return [...new Set(items.map((item) => item[value]))];
+  };
   return (
     <BrowserRouter>
       <header className={`${isSticky ? "sticky" : ""}`}>
@@ -61,22 +78,48 @@ function App() {
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/cart">
                 <img
                   src="/assets/icons/cart.svg"
                   alt="cart"
                   className="small_img"
                 />
+                {cartItems.length > 0 && (
+                  <span className="badge">{cartItems.length}</span>
+                )}
               </Link>
             </li>
             <li>
-              <Link to="/">
-                <img
-                  src="/assets/icons/user.svg"
-                  alt="user"
-                  className="small_img"
-                />
-              </Link>
+              {userInfo ? (
+                <div className="dropdown" onClick={btnDropdonw}>
+                  <Link to="#" className="text-sub-signin-form">
+                    {userInfo.name} <i className="fa fa-caret-down p-1"></i>
+                  </Link>
+                  <ul
+                    className={`${
+                      isDropdown
+                        ? "dropdown-content-active"
+                        : "dropdown-content"
+                    }`}
+                  >
+                    <Link
+                      to="#signout"
+                      className="text-sub-signin-form"
+                      onClick={signoutHandler}
+                    >
+                      Sign Out
+                    </Link>
+                  </ul>
+                </div>
+              ) : (
+                <Link to="/signin">
+                  <img
+                    src="/assets/icons/user.svg"
+                    alt="user"
+                    className="small_img"
+                  />
+                </Link>
+              )}
             </li>
           </ul>
         </div>
@@ -92,21 +135,22 @@ function App() {
           <h1>error</h1>
         ) : (
           <>
-              {getUnique(products, 'category').map((item, index)=>(
-                <li>{item}</li>
-              ))} 
+            {getUnique(products, "category").map((item, index) => (
+              <LinkCategory key={index} category={item} />
+            ))}
           </>
         )}
-        {/* <Link to="/products/all" className="text-title text-capitalize links-category">All</Link>
-        <LinkCategory category="Shirts" />
-        <LinkCategory category="Pants" />
-        <LinkCategory category="Sneaker" />
-        <LinkCategory category="Belt" /> */}
       </div>
       <main>
+       <Route path="/signup" component={SignupScreen} />
+        <Route path="/signin" component={SigninScreen} />
+        <Route path="/cart/:id?" component={CartScreen} />
         <Route path="/products/category/:category" component={CategoryScreen} />
-        <Route path="/products/:showList" component={ListProductScreen} />
-        <Route path="/product/:id" component={ProductScreen} />
+        <Route
+          path="/products/showList/:showList"
+          component={ListProductScreen}
+        />
+        <Route path="/products/product/:id" component={ProductScreen} />
         <Route path="/" component={HomeScreen} exact />
       </main>
     </BrowserRouter>

@@ -1,9 +1,8 @@
 .box-small{
     max-width: 10rem;
-    height: 10rem;
     width: 100%;
-    background-color: #fefefe;
     box-shadow: 0 0 8px 0 lightgray;
+    object-fit: contain;
 }
 .text-description{
     color: #7a7575;
@@ -16,12 +15,13 @@ button.block{
     width: 100%;
 }
 button.primary{
-    background-color: #043E6B;
+    background-color: #008CF8;
     color: white;
     padding: 10px 0;
-    border: none;
-    outline: none;
     border-radius: 20px;
+}
+button.primary:hover{
+    filter: brightness(110%);
 }
 .selector{
     border-top: none;
@@ -30,4 +30,19 @@ button.primary{
     width: 100%;
     outline: none;
     background-color: transparent;
+}
+.AddToCart{
+    animation: wriggly 0.3s;
+}
+@keyframes wriggly{
+    0%{
+        transform: rotate(45deg);
+    }
+    50%{
+        transform: rotate(90deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+
 }

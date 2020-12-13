@@ -1,0 +1,26 @@
+.signin-page-section{
+    transition: all 0.2s ease-in-out;
+}
+.signin-form-section{
+    background-color: white;
+    padding: 50px;
+    box-shadow: 0 0 8px 0 lightgray;
+    border-radius: 20px;
+    width: 500px;
+
+}
+.input_form{
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #707070;
+    outline: none;
+    width: 100%;
+}
+.text-title-signin-form{
+    font-size: 4rem;
+    color: #00D1EC;
+}
+.text-sub-signin-form{
+    font-size: 1.8rem;
+    color: #686868;
+}
