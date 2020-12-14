@@ -1,0 +1,25 @@
+.seller-page-section{
+    box-shadow: 0 0 8px 0 lightgray;
+    border-radius: 10px;
+}
+.seller-page-section__header{
+    border-bottom: 1px solid lightgray;
+}
+.input_wrap{
+    border: 1px solid #008CF8;
+    border-radius: 10px;
+    flex: 1;
+    margin-left: 10px;
+    padding: 15px;
+    font-size: 1.8rem;
+    flex-wrap: nowrap;
+}
+.input_wrap input{
+    border: none;
+    outline: none;
+    width: 95%;
+}
+.input__suffix{
+    padding-left: 8px;
+    border-left: 1px solid lightgray;
+}

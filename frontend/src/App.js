@@ -10,6 +10,7 @@ import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 import { signout } from "./actions/userActions";
 import SignupScreen from "./screens/SignupScreen";
+import CategoriesScreen from "./screens/AddProducts/CategoriesScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -103,6 +104,12 @@ function App() {
                     }`}
                   >
                     <Link
+                      to="/portal/product/categories"
+                      className="text-sub-signin-form"
+                    >
+                      Seller
+                    </Link>
+                    <Link
                       to="#signout"
                       className="text-sub-signin-form"
                       onClick={signoutHandler}
@@ -142,6 +149,7 @@ function App() {
         )}
       </div>
       <main>
+      <Route path="/portal/product/categories" component={CategoriesScreen} />
        <Route path="/signup" component={SignupScreen} />
         <Route path="/signin" component={SigninScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
