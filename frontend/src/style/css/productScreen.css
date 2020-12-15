@@ -1,35 +1,28 @@
-/* line 1, ../sass/productScreen.scss */
 .box-small {
   max-width: 10rem;
   width: 100%;
   box-shadow: 0 0 8px 0 lightgray;
   object-fit: contain; }
 
-/* line 7, ../sass/productScreen.scss */
 .text-description {
   color: #7a7575;
   font-size: 2.5rem; }
 
-/* line 11, ../sass/productScreen.scss */
 button {
   cursor: pointer; }
 
-/* line 14, ../sass/productScreen.scss */
 button.block {
   width: 100%; }
 
-/* line 17, ../sass/productScreen.scss */
 button.primary {
   background-color: #008CF8;
   color: white;
   padding: 10px 0;
   border-radius: 20px; }
 
-/* line 23, ../sass/productScreen.scss */
 button.primary:hover {
   filter: brightness(110%); }
 
-/* line 26, ../sass/productScreen.scss */
 .selector {
   border-top: none;
   border-left: none;
@@ -38,7 +31,6 @@ button.primary:hover {
   outline: none;
   background-color: transparent; }
 
-/* line 34, ../sass/productScreen.scss */
 .AddToCart {
   animation: wriggly 0.3s; }
 

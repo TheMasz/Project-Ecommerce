@@ -1,10 +1,10 @@
 .seller-page-section {
   box-shadow: 0 0 8px 0 lightgray;
-  border-radius: 10px;
-}
+  border-radius: 10px; }
+
 .seller-page-section__header {
-  border-bottom: 1px solid lightgray;
-}
+  border-bottom: 1px solid lightgray; }
+
 .input_wrap {
   border: 1px solid #008cf8;
   border-radius: 10px;
@@ -12,37 +12,34 @@
   margin-left: 10px;
   padding: 15px;
   font-size: 1.8rem;
-  flex-wrap: nowrap;
-}
+  flex-wrap: nowrap; }
+
 .input_wrap input {
   border: none;
   outline: none;
-  width: 95%;
-}
+  width: 95%; }
+
 .input__suffix {
   padding-left: 8px;
-  border-left: 1px solid lightgray;
-}
+  border-left: 1px solid lightgray; }
+
 .seller-page-categories__selector {
-  background-color: #e8e8e8;
-  
-  .scroll-item {
+  background-color: #e8e8e8; }
+  .seller-page-categories__selector .scroll-item {
     background-color: white;
     flex: 1;
     height: 320px;
     overflow: scroll;
-    box-shadow: 0 0 4px 0 darkgray;
-  }
-  .input_wrap-normal {
+    box-shadow: 0 0 4px 0 darkgray; }
+  .seller-page-categories__selector .input_wrap-normal {
     width: 358px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 4px 0 darkgray;
-    input {
+    box-shadow: 0 0 4px 0 darkgray; }
+    .seller-page-categories__selector .input_wrap-normal input {
       border: none;
       outline: none;
       background-color: none;
-      width: 90%;
-    }
-  }
-}
+      width: 90%; }
+
+/*# sourceMappingURL=sellerScreen.css.map */

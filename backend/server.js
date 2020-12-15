@@ -10,12 +10,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const mongoAtlasUri = "mongodb://localhost/E_Commerce";
-mongoose.connect(mongoAtlasUri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+const uri = 'mongodb+srv://TheMasz:T7hTTCcJECDZAu1U@db.ca2ih.mongodb.net/E_Commerce?retryWrites=true&w=majority';
+mongoose
+     .connect( uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+     .then(() => console.log( 'Database Connected' ))
+     .catch(err => console.log( err ));
+
+
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
