@@ -33,8 +33,8 @@ export default function SignupScreen(props) {
     <div className="row signin-page-section space-evenly py-3">
       <div className="signin-form-section">
         <form onSubmit={submitHandler}>
-          <h1 className="text-title-signin-form">Sign Up</h1>
-          <p className="py-2 text-sub-signin-form">
+          <h1 className="text-title-form">Sign Up</h1>
+          <p className="py-2 text-sub-form">
             Already have an account?{" "}
             <Link to={`/signin?redirect=${redirect}`} className="text-blue">
               Sign In
@@ -42,7 +42,7 @@ export default function SignupScreen(props) {
           </p>
           {error && <MessageBox variant="danger">{error}</MessageBox>}
           <div>
-            <p className="py-2 text-sub-signin-form">Name</p>
+            <p className="py-2 text-sub-form">Name</p>
             <input
               type="text"
               className="input_form"
@@ -53,7 +53,7 @@ export default function SignupScreen(props) {
             />
           </div>
           <div>
-            <p className="py-2 text-sub-signin-form">Email Address</p>
+            <p className="py-2 text-sub-form">Email Address</p>
             <input
               type="email"
               className="input_form"
@@ -64,7 +64,7 @@ export default function SignupScreen(props) {
             />
           </div>
           <div>
-            <p className="py-2 text-sub-signin-form">Password</p>
+            <p className="py-2 text-sub-form">Password</p>
             <input
               type="password"
               className="input_form"
@@ -75,7 +75,7 @@ export default function SignupScreen(props) {
             />
           </div>
           <div>
-            <p className="py-2 text-sub-signin-form">Confirm Password</p>
+            <p className="py-2 text-sub-form">Confirm Password</p>
             <input
               type="password"
               className="input_form"

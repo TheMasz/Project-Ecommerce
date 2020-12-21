@@ -25,24 +25,39 @@
 }
 .seller-page-categories__selector {
   background-color: #e8e8e8;
-  
-  .scroll-item {
-    background-color: white;
-    flex: 1;
-    height: 320px;
-    overflow: scroll;
-    box-shadow: 0 0 4px 0 darkgray;
+  box-shadow: 0 0 8px 0 darkgray;
+}
+.scroll-item {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 320px;
+  overflow-y: scroll;
+  background-color: whitesmoke; 
+  box-shadow: 0 0 4px 0 darkgray;
+
+}
+.input_wrap-normal {
+  width: 30%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 0 darkgray;
+  input {
+    border: none;
+    outline: none;
+    background-color: none;
+    width: 90%;
   }
-  .input_wrap-normal {
-    width: 358px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 4px 0 darkgray;
-    input {
-      border: none;
-      outline: none;
-      background-color: none;
-      width: 90%;
-    }
+}
+.scroll-item li{
+  cursor: pointer;
+  flex: 1;
+}
+.scroll-item li:hover{
+  background-color: lightgray;
+}
+@media screen and (max-width:1200px){
+  .input_wrap-normal{
+    width: 100%;
   }
 }

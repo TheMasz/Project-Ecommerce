@@ -10,12 +10,16 @@ export default function ProductScreen(props) {
   const productId = props.match.params.id;
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
+  const [image, setImage] = useState(0);
   useEffect(() => {
     dispatch(detailsProduct(productId));
   }, [dispatch, productId]);
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
+  };
+
+  const handleClick = (i) => {
+    setImage(i);
   };
   return (
     <div className="container">
@@ -27,7 +31,7 @@ export default function ProductScreen(props) {
         <div className="row py-5">
           <div className="col-2 text-center">
             <img
-              src={product.images[0].url}
+              src={product.images[image].url}
               alt={product.name}
               className="medium"
             />
@@ -38,6 +42,7 @@ export default function ProductScreen(props) {
                   src={image.url}
                   alt={index}
                   className="box-small"
+                  onClick={() => handleClick(index)}
                 />
               ))}
               {/* // <div className="box-small"></div>

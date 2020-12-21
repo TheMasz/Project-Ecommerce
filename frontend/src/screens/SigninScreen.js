@@ -26,8 +26,8 @@ export default function SigninScreen(props) {
     <div className="row signin-page-section space-evenly py-3">
       <div className="signin-form-section">
         <form onSubmit={submitHandler}>
-          <h1 className="text-title-signin-form">Sign In</h1>
-          <p className="py-2 text-sub-signin-form">
+          <h1 className="text-title-form">Sign In</h1>
+          <p className="py-2 text-sub-form">
             Doesn't have an account yet?{" "}
             <Link to={`/signup?redirect=${redirect}`} className="text-blue">
               Sign Up
@@ -35,7 +35,7 @@ export default function SigninScreen(props) {
           </p>
           {error&&<MessageBox variant="danger">{error}</MessageBox>}
           <div>
-            <p className="py-2 text-sub-signin-form">Email Address</p>
+            <p className="py-2 text-sub-form">Email Address</p>
             <input
               type="email"
               className="input_form"
@@ -46,7 +46,7 @@ export default function SigninScreen(props) {
             />
           </div>
           <div>
-            <p className="py-2 text-sub-signin-form">Password</p>
+            <p className="py-2 text-sub-form">Password</p>
             <input
               type="password"
               className="input_form"

@@ -11,6 +11,9 @@ import SigninScreen from "./screens/SigninScreen";
 import { signout } from "./actions/userActions";
 import SignupScreen from "./screens/SignupScreen";
 import CategoriesScreen from "./screens/AddProducts/CategoriesScreen";
+import AddressScreen from "./screens/Shipping/AddressScreen";
+import PaymentScreen from "./screens/Shipping/PaymentScreen";
+import PlaceOrderScreen from "./screens/Shipping/PlaceOrderScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -93,7 +96,7 @@ function App() {
             <li>
               {userInfo ? (
                 <div className="dropdown" onClick={btnDropdonw}>
-                  <Link to="#" className="text-sub-signin-form">
+                  <Link to="#" className="text-sub-form">
                     {userInfo.name} <i className="fa fa-caret-down p-1"></i>
                   </Link>
                   <ul
@@ -105,13 +108,13 @@ function App() {
                   >
                     <Link
                       to="/portal/product/categories"
-                      className="text-sub-signin-form"
+                      className="text-sub-form"
                     >
                       Seller
                     </Link>
                     <Link
                       to="#signout"
-                      className="text-sub-signin-form"
+                      className="text-sub-form"
                       onClick={signoutHandler}
                     >
                       Sign Out
@@ -149,8 +152,11 @@ function App() {
         )}
       </div>
       <main>
-      <Route path="/portal/product/categories" component={CategoriesScreen} />
-       <Route path="/signup" component={SignupScreen} />
+      <Route path="/placeorder" component={PlaceOrderScreen} />
+        <Route path="/payment" component={PaymentScreen} />
+        <Route path="/shipping" component={AddressScreen} />
+        <Route path="/portal/product/categories" component={CategoriesScreen} />
+        <Route path="/signup" component={SignupScreen} />
         <Route path="/signin" component={SigninScreen} />
         <Route path="/cart/:id?" component={CartScreen} />
         <Route path="/products/category/:category" component={CategoryScreen} />

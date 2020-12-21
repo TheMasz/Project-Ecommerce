@@ -1,22 +1,21 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 const data = {
-  users:[
+  users: [
     {
-      name: 'Masz',
-      email: 'admin@example.com',
-      password: bcrypt.hashSync('1234', 8),
+      name: "Masz",
+      email: "admin@example.com",
+      password: bcrypt.hashSync("1234", 8),
       isAdmin: true,
     },
     {
-      name: 'Poly',
-      email: 'user@example.com',
-      password: bcrypt.hashSync('1234', 8),
+      name: "Poly",
+      email: "user@example.com",
+      password: bcrypt.hashSync("1234", 8),
       isAdmin: false,
-    }
+    },
   ],
   products: [
     {
-     
       name: "Nike Slim Shirt",
       category: "Shirts",
       images: [
@@ -46,7 +45,6 @@ const data = {
         `,
     },
     {
-      
       name: "Adidas Fit Shirt",
       category: "Shirts",
       images: [
@@ -76,7 +74,6 @@ const data = {
         `,
     },
     {
-      
       name: "Lacoste Free Shirt",
       category: "Shirts",
       images: [
@@ -106,7 +103,6 @@ const data = {
         `,
     },
     {
-      
       name: "Nike Slim Pant",
       category: "Pants",
       images: [
@@ -136,7 +132,6 @@ const data = {
         `,
     },
     {
-      
       name: "Puma Slim Pant",
       category: "Pants",
       images: [
@@ -166,7 +161,6 @@ const data = {
         `,
     },
     {
-      
       name: "Adidas Fit Pant",
       category: "Pants",
       images: [
@@ -196,7 +190,6 @@ const data = {
         `,
     },
     {
-      
       name: "Adidas Fit Pant",
       category: "Pants",
       images: [
@@ -226,7 +219,6 @@ const data = {
         `,
     },
     {
-      
       name: "Adidas Fit Pant",
       category: "Pants",
       images: [
@@ -256,7 +248,6 @@ const data = {
         `,
     },
     {
-      
       name: "Adidas Fit Pant",
       category: "Pants",
       images: [
@@ -286,7 +277,6 @@ const data = {
         `,
     },
     {
-      
       name: "Adidas Fit Pant",
       category: "Pants",
       images: [
@@ -314,6 +304,56 @@ const data = {
         Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus 
         Bonorum et Malorum"
         `,
+    },
+  ],
+  categories: [
+    {
+      category: "เสื้อผ้าแฟชั่นผู้ชาย",
+      nodes: [
+        {
+          category: "เสื้อเชิ้ต",
+          nodes: [
+          {category:"เสื้อเชิ้ตสีพื้น"},
+            {category:"เสื้อเชิ้ตลาย"},
+            {category:"เสื้อเชิ้ตลายสก็อต"},
+            {category:"เสื้อเชิ้ตอื่นๆ"},
+          ],
+        },
+        {
+          category: "เสื้อยืด",
+          nodes: [
+            {category:"เสื้อยืดสีพื้น"},
+            {category:"เสื้อยืดลาย"},
+            {category:"เสื้อยืดลายทาง"},
+            {category:"เสื้อยืดสกีนตัวหนังสือ"},
+            {category:"เสื้อยืดลายการ์ตูน"},
+            {category:"เสื้อแขนกุด"},
+            {category:"เสื้อยืดอื่นๆ"},
+          ],
+        },
+      ],
+    },
+    {
+      category: "เสื้อผ้าแฟชั่นผู้หญิง",
+      nodes: [
+        {
+          category: "เสื้อ",
+        },
+        {
+          category: "เดรส",
+        },
+      ],
+    },
+    {
+      category: "มือถือและอุปกรณ์เสริม",
+      nodes: [
+        {
+          category: "โทรศัพท์มือถือ",
+        },
+        {
+          category: "แท็บเล็ต",
+        },
+      ],
     },
   ],
 };

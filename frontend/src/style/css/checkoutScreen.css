@@ -1,0 +1,14 @@
+/* line 1, ../sass/checkoutScreen.scss */
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem; }
+
+/* line 7, ../sass/checkoutScreen.scss */
+.checkout-steps > div.active {
+  border-top-color: #008CF8;
+  color: #008CF8;
+  font-weight: bold; }
+
+/*# sourceMappingURL=checkoutScreen.css.map */

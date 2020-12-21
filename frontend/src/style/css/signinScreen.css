@@ -1,6 +1,8 @@
+/* line 1, ../sass/signinScreen.scss */
 .signin-page-section {
   transition: all 0.2s ease-in-out; }
 
+/* line 4, ../sass/signinScreen.scss */
 .signin-form-section {
   background-color: white;
   padding: 50px;
@@ -8,6 +10,7 @@
   border-radius: 20px;
   width: 500px; }
 
+/* line 12, ../sass/signinScreen.scss */
 .input_form {
   padding: 15px;
   border-radius: 10px;
@@ -15,11 +18,13 @@
   outline: none;
   width: 100%; }
 
-.text-title-signin-form {
+/* line 19, ../sass/signinScreen.scss */
+.text-title-form {
   font-size: 4rem;
   color: #00D1EC; }
 
-.text-sub-signin-form {
+/* line 23, ../sass/signinScreen.scss */
+.text-sub-form {
   font-size: 1.8rem;
   color: #686868; }
 

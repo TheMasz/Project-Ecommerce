@@ -1,10 +1,13 @@
+/* line 1, ../sass/sellerScreen.scss */
 .seller-page-section {
   box-shadow: 0 0 8px 0 lightgray;
   border-radius: 10px; }
 
+/* line 5, ../sass/sellerScreen.scss */
 .seller-page-section__header {
   border-bottom: 1px solid lightgray; }
 
+/* line 8, ../sass/sellerScreen.scss */
 .input_wrap {
   border: 1px solid #008cf8;
   border-radius: 10px;
@@ -14,32 +17,57 @@
   font-size: 1.8rem;
   flex-wrap: nowrap; }
 
+/* line 17, ../sass/sellerScreen.scss */
 .input_wrap input {
   border: none;
   outline: none;
   width: 95%; }
 
+/* line 22, ../sass/sellerScreen.scss */
 .input__suffix {
   padding-left: 8px;
   border-left: 1px solid lightgray; }
 
+/* line 26, ../sass/sellerScreen.scss */
 .seller-page-categories__selector {
-  background-color: #e8e8e8; }
-  .seller-page-categories__selector .scroll-item {
-    background-color: white;
-    flex: 1;
-    height: 320px;
-    overflow: scroll;
-    box-shadow: 0 0 4px 0 darkgray; }
-  .seller-page-categories__selector .input_wrap-normal {
-    width: 358px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 4px 0 darkgray; }
-    .seller-page-categories__selector .input_wrap-normal input {
-      border: none;
-      outline: none;
-      background-color: none;
-      width: 90%; }
+  background-color: #e8e8e8;
+  box-shadow: 0 0 8px 0 darkgray; }
+
+/* line 30, ../sass/sellerScreen.scss */
+.scroll-item {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 320px;
+  overflow-y: scroll;
+  background-color: whitesmoke;
+  box-shadow: 0 0 4px 0 darkgray; }
+
+/* line 40, ../sass/sellerScreen.scss */
+.input_wrap-normal {
+  width: 30%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 0 darkgray; }
+  /* line 45, ../sass/sellerScreen.scss */
+  .input_wrap-normal input {
+    border: none;
+    outline: none;
+    background-color: none;
+    width: 90%; }
+
+/* line 52, ../sass/sellerScreen.scss */
+.scroll-item li {
+  cursor: pointer;
+  flex: 1; }
+
+/* line 56, ../sass/sellerScreen.scss */
+.scroll-item li:hover {
+  background-color: lightgray; }
+
+@media screen and (max-width: 1200px) {
+  /* line 60, ../sass/sellerScreen.scss */
+  .input_wrap-normal {
+    width: 100%; } }
 
 /*# sourceMappingURL=sellerScreen.css.map */

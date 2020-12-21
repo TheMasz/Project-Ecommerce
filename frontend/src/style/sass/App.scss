@@ -6,6 +6,7 @@
 @import "cartScreen";
 @import "signinScreen";
 @import "sellerScreen";
+@import "checkoutScreen";
 
 html {
   font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
@@ -90,6 +91,7 @@ a {
 .my-1{
   margin: 10px 0;
 }
+
 .mt-1{
   margin-top: 10px;
 }
@@ -114,6 +116,7 @@ a {
 }
 .flex-start{
   justify-content: flex-start;
+  align-items: flex-start;
 }
 .space-evenly {
   justify-content: space-evenly;
@@ -162,6 +165,8 @@ button{
 }
 .bg-white{
   background-color: white;
+  box-shadow: 0 0 8px 0 lightgray;
+  border-radius: 10px;
 }
 @media (min-width: 576px) {
   .container {

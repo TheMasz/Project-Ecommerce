@@ -1,0 +1,55 @@
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import CheckoutSteps from "../../components/CheckoutSteps";
+
+export default function PlaceOrderScreen(props) {
+  const cart = useSelector((state) => state.cart);
+  if (!cart.paymentMethod) {
+    props.history.push("/payment");
+  }
+  return (
+    <div className="container">
+      <div className="order-page-section bg-white p-3 mt-4">
+        <CheckoutSteps step1 step2 step3 step4 />
+        <div className="order-page-section__address p-3 my-2">
+          ที่อยู่ในการจัดส่ง
+          <p>
+            <strong>{cart.shippingAddress.fullName}</strong> {"  "}
+            {cart.shippingAddress.address} {cart.shippingAddress.country}{"  "}
+            {cart.shippingAddress.postalCode}
+          </p>
+        </div>
+        <div className="order-page-section__order p-3 my-2">
+          สั่งซื้อสินค้าแล้ว
+          <ul>
+            {cart.cartItems.map((item) => (
+              <li key={item.product}>
+                <div className="cart-page-section__item row space-evenly py-3">
+                  <div
+                    className="cart-page-section__image"
+                    style={{ backgroundImage: `url(${item.image})` }}
+                  ></div>
+                  <div className="cart-page-section__description">
+                    <p>{item.category}</p>
+                    <Link to={`/product/${item.product}`}>{item.name}</Link>
+                  </div>
+
+                  <div className="cart-page-section__price">
+                    ${item.price} x {item.qty} = ${item.price * item.qty}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="order-page-section__payment p-3 my-2">
+        <div className="row">
+            <p>วิธีชำระเงิน</p>
+            <p>{cart.paymentMethod}</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  );
+}

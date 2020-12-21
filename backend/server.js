@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import productRouter from "./routes/productRouter.js";
 import userRouter from "./routes/userRouter.js";
+import categoryRouter from "./routes/categoriesRouter.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ mongoose
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/categories", categoryRouter)
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
