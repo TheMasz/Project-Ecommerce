@@ -19,6 +19,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f6f6;
+
 }
 * {
   margin: 0;
@@ -114,9 +115,15 @@ a {
 .col-2 {
   flex: 2 1 50rem;
 }
+.d-flex{
+  display: flex;
+}
 .flex-start{
   justify-content: flex-start;
   align-items: flex-start;
+}
+.flex-end{
+  justify-content: flex-end;
 }
 .space-evenly {
   justify-content: space-evenly;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listCategories } from "../../actions/addProductActions";
 import LoadingBox from "../../components/LoadingBox";
@@ -7,12 +7,14 @@ import Tree from "../../components/Tree";
 
 export default function CategoriesScreen() {
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const cart = useSelector((state) => state.cart);
   const categoriesList = useSelector((state) => state.categories);
   const { loading, error, categories } = categoriesList;
   useEffect(() => {
     dispatch(listCategories());
   }, [dispatch]);
-
+ 
   return (
     <div className="container py-5">
       {loading ? (
@@ -37,9 +39,10 @@ export default function CategoriesScreen() {
                   maxLength="120"
                   placeholder="ใส่ค่า"
                   required
+                  onChange={e=>setName(e.target.value)}
                 />
                 <div className="input__suffix">
-                  <span className="input__suffix-spilit">0/120</span>
+                  <span className="input__suffix-spilit">{name.length}/120</span>
                 </div>
               </div>
             </div>
@@ -57,6 +60,7 @@ export default function CategoriesScreen() {
             </div>
            <div className="category-list row space-evenly p-2">
              <Tree data={categories} />
+            
               {/* <ul className="scroll-item">
                 {categories.map((item, index) => (
                   <li key={index} className="p-2" >{item.category}</li>
@@ -70,9 +74,8 @@ export default function CategoriesScreen() {
               </ul> */}
             </div> 
        
-            <div className="row flex-start my-1">
-              <p>ที่เลือกในปัจจุบัน:</p>
-              <p>test</p>
+            <div className=" my-1">
+              <p>ที่เลือกในปัจจุบัน: {cart.selectCategory}</p>
             </div>
             <button type="button" className="primary block">
               ต่อไป
@@ -83,4 +86,3 @@ export default function CategoriesScreen() {
     </div>
   );
 }
-

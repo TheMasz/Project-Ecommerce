@@ -3,6 +3,7 @@ import {
   CATEGORY_LIST_FAIL,
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
+  SELECT_CATEGORY,
 } from "../constants/addProductContants";
 
 export const listCategories = () => async (dispatch) => {
@@ -14,3 +15,7 @@ export const listCategories = () => async (dispatch) => {
     dispatch({ type: CATEGORY_LIST_FAIL, payload: error.message });
   }
 };
+
+export const selectCategory = (data) => (dispatch) => {
+    dispatch({type: SELECT_CATEGORY, payload:data})
+}

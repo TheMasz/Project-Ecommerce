@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { selectCategory } from "../actions/addProductActions";
 
 function Tree({ data = [] }) {
   return (
@@ -16,12 +18,14 @@ function Tree({ data = [] }) {
 
 
 const TreeNode = ({ node }) => {
+  const dispatch = useDispatch();
   const [childVisible, setChildVisibility] = useState(false);
   const hasChild = node.nodes ? true : false;
-  const [status, setStatus] = useState("");
+
   const clickHandler = (category) =>{
     setChildVisibility((v) => !v);
-    setStatus(category);
+    dispatch(selectCategory(category));
+   
   }
 
   return (

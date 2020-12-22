@@ -16,7 +16,8 @@ export default function PlaceOrderScreen(props) {
           ที่อยู่ในการจัดส่ง
           <p>
             <strong>{cart.shippingAddress.fullName}</strong> {"  "}
-            {cart.shippingAddress.address} {cart.shippingAddress.country}{"  "}
+            {cart.shippingAddress.address} {cart.shippingAddress.country}
+            {"  "}
             {cart.shippingAddress.postalCode}
           </p>
         </div>
@@ -44,10 +45,25 @@ export default function PlaceOrderScreen(props) {
           </ul>
         </div>
         <div className="order-page-section__payment p-3 my-2">
-        <div className="row">
+          <div className="row order-page-section__payment__header">
             <p>วิธีชำระเงิน</p>
             <p>{cart.paymentMethod}</p>
-        </div>
+          </div>
+
+          <div className="d-flex flex-end ">
+            <div className="py-2">
+              <p className="py-1">
+                ราคารวมสินค้า:{" "}
+                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+              </p>
+              <p className="py-1">ค่าจัดส่ง: 40</p>
+              <p className="py-1">
+                ราคารวมสินค้า:{" "}
+                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0) + 40}
+              </p>
+              <button className="primary block py-1">ยืนยันสั่งสินค้า</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
