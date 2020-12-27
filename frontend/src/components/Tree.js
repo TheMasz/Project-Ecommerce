@@ -30,7 +30,7 @@ const TreeNode = ({ node }) => {
 
   return (
 
-    <div className="row flex-start">
+    <div className="row flex-start align-start">
       <li onClick={()=>clickHandler(node.category)} className="p-1">
         <p>{node.category}</p>
       </li>

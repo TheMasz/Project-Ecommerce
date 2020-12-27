@@ -14,13 +14,14 @@
 .cart-page-header {
   border-bottom: 1px solid lightgray;
 }
-.cart-page-section__image {
+.image__content {
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: contain;
   width: 8rem;
   height: 8rem;
 }
+.order-page-section__status,
 .order-page-section__address,
 .order-page-section__order,
 .order-page-section__payment {
@@ -29,4 +30,12 @@
 .order-page-section__payment__header{
   border-bottom: 1px dashed lightgray;
   padding-bottom: 20px;
+}
+.payment-form-section{
+  margin: 0 auto;
+  background-color: white;
+  padding: 50px;
+  box-shadow: 0 0 8px 0 lightgray;
+  border-radius: 20px;
+  width: 500px;
 }

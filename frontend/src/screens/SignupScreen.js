@@ -30,8 +30,8 @@ export default function SignupScreen(props) {
   }, [props.history, redirect, userInfo]);
 
   return (
-    <div className="row signin-page-section space-evenly py-3">
-      <div className="signin-form-section">
+    <div className="row signup-page-section space-evenly py-3">
+      <div className="signup-form-section">
         <form onSubmit={submitHandler}>
           <h1 className="text-title-form">Sign Up</h1>
           <p className="py-2 text-sub-form">

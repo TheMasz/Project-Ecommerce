@@ -19,7 +19,7 @@ export default function AddressScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({ fullName, address, postalCode, country }));
-    props.history.push("/payment");
+    props.history.push("/payments");
   };
   return (
     <div className="container">

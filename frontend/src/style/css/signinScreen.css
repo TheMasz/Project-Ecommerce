@@ -1,9 +1,9 @@
 /* line 1, ../sass/signinScreen.scss */
-.signin-page-section {
+.signin-page-section, .signup-page-section {
   transition: all 0.2s ease-in-out; }
 
 /* line 4, ../sass/signinScreen.scss */
-.signin-form-section {
+.signin-form-section, .signup-form-section {
   background-color: white;
   padding: 50px;
   box-shadow: 0 0 8px 0 lightgray;

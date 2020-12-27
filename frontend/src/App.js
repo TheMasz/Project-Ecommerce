@@ -15,6 +15,10 @@ import AddressScreen from "./screens/Shipping/AddressScreen";
 import PaymentScreen from "./screens/Shipping/PaymentScreen";
 import PlaceOrderScreen from "./screens/Shipping/PlaceOrderScreen";
 
+import OrderHistoryScreen from "./screens/Shipping/OrderHistoryScreen";
+import OrderScreen from "./screens/Shipping/OrderScreen";
+import PaymentBankScreen from "./screens/Shipping/PaymentBankScreen";
+
 function App() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -37,7 +41,7 @@ function App() {
   const handleScroll = (e) => {
     e.preventDefault();
     const offset = window.scrollY;
-    if (offset >= 10) {
+    if (offset >= 100) {
       setSticky(true);
     } else {
       setSticky(false);
@@ -113,6 +117,12 @@ function App() {
                       Seller
                     </Link>
                     <Link
+                      to="/orderhistory"
+                      className="text-sub-form"
+                    >
+                      Orders
+                    </Link>
+                    <Link
                       to="#signout"
                       className="text-sub-form"
                       onClick={signoutHandler}
@@ -152,13 +162,16 @@ function App() {
         )}
       </div>
       <main>
-      <Route path="/placeorder" component={PlaceOrderScreen} />
-        <Route path="/payment" component={PaymentScreen} />
+      <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
+      <Route path="/orderhistory" component={OrderHistoryScreen} />
+        <Route path="/order/:id" component={OrderScreen} exact/>
+        <Route path="/placeorder" component={PlaceOrderScreen} />
+        <Route path="/payments" component={PaymentScreen} />
         <Route path="/shipping" component={AddressScreen} />
         <Route path="/portal/product/categories" component={CategoriesScreen} />
         <Route path="/signup" component={SignupScreen} />
         <Route path="/signin" component={SigninScreen} />
-        <Route path="/cart/:id?" component={CartScreen} />
+        <Route path="/cart/:id?" component={CartScreen} exact/>
         <Route path="/products/category/:category" component={CategoryScreen} />
         <Route
           path="/products/showList/:showList"

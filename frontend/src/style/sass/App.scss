@@ -86,13 +86,18 @@ a {
 .pt-3 {
   padding-top: 30px;
 }
+.pl-2{
+  padding-left: 20px;
+}
+.pr-2{
+  padding-right: 20px;
+}
 .my-2 {
   margin: 20px 0;
 }
 .my-1{
   margin: 10px 0;
 }
-
 .mt-1{
   margin-top: 10px;
 }
@@ -118,12 +123,14 @@ a {
 .d-flex{
   display: flex;
 }
-.flex-start{
-  justify-content: flex-start;
-  align-items: flex-start;
-}
 .flex-end{
   justify-content: flex-end;
+}
+.flex-start{
+  justify-content: flex-start;
+}
+.align-start{
+  align-items: flex-start;
 }
 .space-evenly {
   justify-content: space-evenly;
@@ -174,6 +181,9 @@ button{
   background-color: white;
   box-shadow: 0 0 8px 0 lightgray;
   border-radius: 10px;
+}
+.pointer{
+  cursor: pointer;
 }
 @media (min-width: 576px) {
   .container {

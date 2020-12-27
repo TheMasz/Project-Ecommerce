@@ -9,6 +9,8 @@ import {
 } from "./reducers/productReducers";
 import { userSigninReducer, userSignupReducer } from "./reducers/userReducers";
 import { categoriesReducer } from "./reducers/addProductReducers";
+import { orderCreateReducer, orderDetailsReducer, orderMineListReducer, orderPayReducer } from "./reducers/orderReducers";
+import {uploadReducer} from './reducers/uploadReducers';
 const initialState = {
   userSignin: {
     userInfo: localStorage.getItem("userInfo")
@@ -22,8 +24,9 @@ const initialState = {
     shippingAddress: localStorage.getItem("shippingAddress")
       ? JSON.parse(localStorage.getItem("shippingAddress"))
       : {},
-    paymentMethod: "โอน/ชำระเงินผ่านธนาคาร",
-    selectCategory: "",
+    paymentMethod: localStorage.getItem("payment")
+    ? JSON.parse(localStorage.getItem("payment"))
+    : {},
   },
 };
 
@@ -36,6 +39,12 @@ const reducer = combineReducers({
   userSignin: userSigninReducer,
   userSignup: userSignupReducer,
   categories: categoriesReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderMineList: orderMineListReducer,
+  orderPay: orderPayReducer,
+  upload: uploadReducer,
+
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

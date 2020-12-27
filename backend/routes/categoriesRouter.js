@@ -15,7 +15,7 @@ categoryRouter.get(
 );
 
 categoryRouter.get("/seed", async (req, res) => {
-  await Catgories.remove({});
+  // await Catgories.remove({});
   const createdCategories = await Catgories.insertMany(data.categories);
   res.send({ createdCategories });
 });
