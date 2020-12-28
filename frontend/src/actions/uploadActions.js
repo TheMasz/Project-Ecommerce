@@ -5,13 +5,14 @@ import {
   UPLOAD_SUCCESS,
 } from "../constants/uploadConstants";
 
-export const upload = (image) => async (dispatch, getState) => {
-  dispatch({ type: UPLOAD_REQUEST, payload: image });
+export const upload = (file) => async (dispatch, getState) => {
+  dispatch({ type: UPLOAD_REQUEST, payload: file });
+
   try {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.post("/api/uploads", image, {
+    const { data } = await Axios.post("/api/uploads", file, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },

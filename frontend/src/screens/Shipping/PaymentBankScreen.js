@@ -1,3 +1,4 @@
+import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { detailsOrder, payOrder } from "../../actions/orderActions";
@@ -15,11 +16,13 @@ export default function PaymentBankScreen(props) {
   const [img, setImg] = useState();
   const submitHandler = (e) => {
     e.preventDefault();
-    const img_name = img.name;
-    const paymentResult = { fourCode, date, img_name };
-    // dispatch(payOrder( order, paymentResult ));
-    dispatch(upload(img))
- 
+    const data = new FormData();
+    data.append("file", img);
+    data.append("orderId", orderId)
+    // const img_name = img.name;
+    // const paymentResult = { fourCode, date, img_name };
+    // // dispatch(payOrder( order, paymentResult ));
+    dispatch(upload(data))
   };
   useEffect(() => {
     dispatch(detailsOrder(orderId));
@@ -63,7 +66,7 @@ export default function PaymentBankScreen(props) {
             <input
               type="file"
               className="input_form"
-              name="image"
+              name="img"
               onChange={(e) => setImg(e.target.files[0])}
               required
             />
