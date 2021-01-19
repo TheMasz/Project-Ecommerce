@@ -9,7 +9,7 @@ import {
   ORDER_DETAILS_SUCCESS,
   ORDER_MINE_LIST_FAIL,
   ORDER_MINE_LIST_REQUEST,
-  ORDER_MINE_LIST_SUCCESS,
+ORDER_MINE_LIST_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
@@ -84,15 +84,20 @@ export const payOrder = (order, paymentResult) => async (
   dispatch,
   getState
 ) => {
+  console.log(order._id);
   dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
   const {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.put(`/api/orders/${order._id}/pay`, paymentResult, {
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    });
-    dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
+    const { data } = await Axios.put(
+      `/api/orders/${order._id}/pay`,
+      paymentResult,
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
+     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
   } catch (error) {
     const message =
       error.response && error.response.data.message

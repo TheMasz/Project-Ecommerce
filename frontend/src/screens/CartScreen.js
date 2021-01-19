@@ -47,7 +47,7 @@ export default function CartScreen(props) {
                     <div className="cart-page-section__item row space-evenly py-3">
                       <div
                         className="cart-page-section__image image__content"
-                        style={{ backgroundImage: `url(${item.image})` }}
+                        style={{ background: `url('/uploads/products/${item.product}/${item.image}')` }}
                       ></div>
                       <div className="cart-page-section__description">
                         <p>{item.category}</p>

@@ -10,9 +10,11 @@ export default function OrderScreen(props) {
   const orderId = props.match.params.id;
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+
   useEffect(() => {
     dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId]);
+  }, [dispatch, orderId, props.history]);
+
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -38,11 +40,15 @@ export default function OrderScreen(props) {
                 <div className="cart-page-section__item row space-evenly py-3">
                   <div
                     className="cart-page-section__image image__content"
-                    style={{ backgroundImage: `url(${item.image})` }}
+                    style={{
+                      background: `url('/uploads/products/${item.product}/${item.image}')`,
+                    }}
                   ></div>
                   <div className="cart-page-section__description">
                     <p>{item.category}</p>
-                    <Link to={`/products/product/${item.product}`}>{item.name}</Link>
+                    <Link to={`/products/product/${item.product}`}>
+                      {item.name}
+                    </Link>
                   </div>
 
                   <div className="cart-page-section__price">
@@ -71,7 +77,13 @@ export default function OrderScreen(props) {
         </div>
         {order.paymentMethod === "โอน/ชำระเงินผ่านธนาคาร" && (
           <div>
-            <button className="block primary " onClick={e=>props.history.push(`/order/${order._id}/pay`)}>หลักฐานการโอน</button>
+            <button
+              className="block primary "
+              onClick={(e) => props.history.push(`/order/${order._id}/pay`)}
+              disabled={order.paymentImg}
+            >
+              {order.paymentImg ? "ชำระเรียบร้อย" : "หลักฐานการชำระเงิน"}
+            </button>
           </div>
         )}
       </div>

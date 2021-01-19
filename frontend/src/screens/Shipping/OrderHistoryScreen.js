@@ -20,8 +20,8 @@ export default function OrderHistoryScreen(props) {
       {orders.map((order, index) => (
         <div
           className="order-page-section__order p-3 my-2 bg-white text-sub-form pointer"
-          onClick={e=>props.history.push(`/order/${order._id}`)}
-          key={index}
+          onClick={(e) => props.history.push(`/order/${order._id}`)}
+          key={order._id}
         >
           {order.orderItems.map((item) => (
             <div className="order-content__item__product row py-1">
@@ -29,7 +29,9 @@ export default function OrderHistoryScreen(props) {
                 <div className="order-content__item__image">
                   <div
                     className="image__content"
-                    style={{ backgroundImage: `url(${item.image})` }}
+                    style={{
+                      background: `url('/uploads/products/${item.product}/${item.image}')`,
+                    }}
                   ></div>
                 </div>
                 <div className="order-content__item__detail-content">

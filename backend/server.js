@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import upload from 'express-fileupload';
 import productRouter from "./routes/productRouter.js";
 import userRouter from "./routes/userRouter.js";
 import categoryRouter from "./routes/categoriesRouter.js";
@@ -10,6 +11,8 @@ import uploadRouter from "./routes/uploadRouter.js";
 dotenv.config();
 
 const app = express();
+
+app.use(upload());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

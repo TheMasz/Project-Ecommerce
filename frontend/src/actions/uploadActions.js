@@ -12,7 +12,7 @@ export const upload = (file) => async (dispatch, getState) => {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await Axios.post("/api/uploads", file, {
+    const { data } = await Axios.post("/api/uploads/pay", file, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },

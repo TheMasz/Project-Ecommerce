@@ -1,38 +1,47 @@
-import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { detailsOrder, payOrder } from "../../actions/orderActions";
-import { upload } from "../../actions/uploadActions";
+import {  payOrder } from "../../actions/orderActions";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
+import { ORDER_PAY_RESET } from "../../constants/orderConstants";
 
 export default function PaymentBankScreen(props) {
   const dispatch = useDispatch();
   const orderId = props.match.params.id;
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
+  const { success } = useSelector((state) => state.orderPay);
   const [fourCode, setFourCode] = useState("");
   const [date, setDate] = useState();
   const [img, setImg] = useState();
+
+  // if (order.paymentImg) {
+  //   props.history.push(`/order/${orderId}`);
+  // }
   const submitHandler = (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append("file", img);
-    data.append("orderId", orderId)
-    // const img_name = img.name;
-    // const paymentResult = { fourCode, date, img_name };
-    // // dispatch(payOrder( order, paymentResult ));
-    dispatch(upload(data))
+    data.append("fourCode", fourCode);
+    data.append("date", date);
+    data.append("orderId", orderId);
+    dispatch(payOrder(order, data));
   };
   useEffect(() => {
-    dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId]);
+    if (success) {
+      props.history.push(`/order/${orderId}`);
+      dispatch({ type: ORDER_PAY_RESET });
+    }
+  }, [dispatch, orderId, props.history, success]);
+
   return loading ? (
     <LoadingBox />
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div className="container">
+      {order.paymentImg ? props.history.push(`/order/${orderId}`) : ""}
+
       <div className="payment-form-section mt-4">
         <form onSubmit={submitHandler}>
           <div className="text-center">

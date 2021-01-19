@@ -1,40 +1,43 @@
-import multer from "multer";
 import express from "express";
 import { isAuth } from "../utils.js";
-import expressAsyncHandler from "express-async-handler";
-import fs from "fs";
+
+
+import Order from "../models/orderModel.js";
+
 
 const uploadRouter = express.Router();
 
-// const storage = multer.diskStorage({
-//   destination(req, file, cb){
-//     cb(null, '../../uploads/')
-//   },
-//   filename(req, file, cb){
-//     cb(null, Date.now())
-//   }
-// })
-
-const upload = multer();
-
-uploadRouter.post(
-  "/",
-  isAuth,
-  upload.single("file"),
-   (req, res, next) => {
-    const img = req.file;
-    const orderId = req.body.orderId;
-    const encode_image = img.toString('base64')
-    console.log(orderId);
-    // const {
-    //   file,
-    //   body: { name },
-    // } = req;
-    // const fileName = Date.now() + "." + file.mimetype.split("/")[1];
-    // await file.stream, fs.createWriteStream(`./uploads/${fileName}`);
-
-    // res.send("file uploaded as" + fileName);
+uploadRouter.post("/pay", isAuth, async (req, res, next) => {
+  const orderId = req.body.orderId;
+  const order = await Order.findById(orderId);
+  const file = req.files.file;
+  const fileName =
+    orderId + "-" + Date.now() + "." + file.mimetype.split("/")[1];
+  if (order) {
+    if (
+      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/tiff" ||
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/gif"
+    ) {
+      file.mv(`./uploads/pays/${fileName}`, (err) => {
+        if (err) {
+          res.status(400).send({ message: err });
+        } else {
+          order.paymentImg = {
+            name: fileName,
+            contentType: file.mimetype,
+          }
+          const updatedOrder = order.save();
+          res.send({ message: "Order Paid"});
+        }
+      });
+    } else {
+      res.status(404).send({ message: "File is not support" });
+    }
+  } else {
+    res.status(404).send({ message: "Order Not Found" });
   }
-);
+});
 
 export default uploadRouter;

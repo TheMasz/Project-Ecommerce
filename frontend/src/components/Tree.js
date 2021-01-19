@@ -20,7 +20,7 @@ function Tree({ data = [] }) {
 const TreeNode = ({ node }) => {
   const dispatch = useDispatch();
   const [childVisible, setChildVisibility] = useState(false);
-  const hasChild = node.nodes ? true : false;
+  const hasChild = node.children ? true : false;
 
   const clickHandler = (category) =>{
     setChildVisibility((v) => !v);
@@ -31,10 +31,10 @@ const TreeNode = ({ node }) => {
   return (
 
     <div className="row flex-start align-start">
-      <li onClick={()=>clickHandler(node.category)} className="p-1">
-        <p>{node.category}</p>
+      <li onClick={()=>clickHandler(node.path)} className="p-1">
+        <p>{node.name}</p>
       </li>
-      {hasChild && childVisible && <Tree data={node.nodes} />}
+      {hasChild && childVisible && <Tree data={node.children} />}
     </div>
 
 

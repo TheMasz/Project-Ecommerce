@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
+  
   {
     orderItems: [
       {
@@ -25,7 +26,10 @@ const orderSchema = new mongoose.Schema(
     paymentResult: {
       update_time: { type: String },
       fourCode: { type: String },
-      image: { type: String },
+    },
+    paymentImg:{
+      name: {type: String},
+      contentType: {type: String},
     },
     itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },

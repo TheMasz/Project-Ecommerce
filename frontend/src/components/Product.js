@@ -12,19 +12,20 @@ export default function Product(props) {
     setClick("click");
   };
   return (
-    <div key={product._id} className="card my-2">
+    <div key={product._id} className="card mx-2">
       <Link to={`/products/product/${product._id}`}>
         <div className="card_img">
-          <img src={product.images[0].url} alt={product.name} />
+          <img src={`/uploads/products/${product._id}/${product.images[0].url}`} alt={product.name}/>
+ 
         </div>
       </Link>
       <div className="card_body">
         <Link to={`/products/product/${product._id}`}>
-          <h1 className="text-center text-title py-1">{product.name}</h1>
+          <div className="text-overflow product-name p-1">{product.name}</div>
         </Link>
         <div className="line"></div>
         <div className="row p-2">
-          <p className="price">${product.price}</p>
+          <p className="price">{product.price} ฿</p>
           <button
             type="button"
             onClick={addToCartHandler}

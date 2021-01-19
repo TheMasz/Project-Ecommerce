@@ -1,9 +1,11 @@
+
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
 import { isAuth } from "../utils.js";
 
 const orderRouter = express.Router();
+
 orderRouter.post(
   "/",
   isAuth,
@@ -51,19 +53,38 @@ orderRouter.put(
   "/:id/pay",
   isAuth,
   expressAsyncHandler(async (req, res) => {
-    const order = await Order.findById(req.params.id);
+    const orderId = req.params.id;
+    const order = await Order.findById(orderId);
+    const file = req.files.file;
+    const fileName =
+      orderId + "-" + Date.now() + "." + file.mimetype.split("/")[1];
     if (order) {
-      order.paidAt = Date.now();
-      order.paymentResult = {
-        update_time: req.body.date,
-        fourCode: req.body.fourCode,
-        image: req.body.img_name,
-      };
-      const updatedOrder = await order.save();
-      res.send({ message: "Order Paid", order: updatedOrder });
-    } else {
-      res.status(404).send({ message: "Order Not Found" });
+      if (
+        file.mimetype === "image/jpeg" ||
+        file.mimetype === "image/tiff" ||
+        file.mimetype === "image/png" ||
+        file.mimetype === "image/gif"
+      ) {
+        file.mv(`./frontend/public/uploads/pays/${fileName}`, (err) => {});
+        order.paymentImg = {
+          name: fileName,
+          contentType: file.mimetype,
+        };
+        order.paidAt = Date.now();
+        order.paymentResult = {
+          update_time: req.body.date,
+          fourCode: req.body.fourCode,
+        };
+        const updatedOrder = order.save();
+      
+      } else {
+        res.status(400).send({ message: "File is not supported." });
+      }
+    }else{
+      res.status(400).send({ message: "Order not found." });
     }
+    res.status(201).send({ message: "Order Paid"  });
+    
   })
 );
 export default orderRouter;

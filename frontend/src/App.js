@@ -3,14 +3,11 @@ import { BrowserRouter, Link, Route } from "react-router-dom";
 import ListProductScreen from "./screens/ListProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
-import LinkCategory from "./components/LinkCategory";
-import CategoryScreen from "./screens/CategoryScreen";
 import { useDispatch, useSelector } from "react-redux";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 import { signout } from "./actions/userActions";
 import SignupScreen from "./screens/SignupScreen";
-import CategoriesScreen from "./screens/AddProducts/CategoriesScreen";
 import AddressScreen from "./screens/Shipping/AddressScreen";
 import PaymentScreen from "./screens/Shipping/PaymentScreen";
 import PlaceOrderScreen from "./screens/Shipping/PlaceOrderScreen";
@@ -19,12 +16,20 @@ import OrderHistoryScreen from "./screens/Shipping/OrderHistoryScreen";
 import OrderScreen from "./screens/Shipping/OrderScreen";
 import PaymentBankScreen from "./screens/Shipping/PaymentBankScreen";
 
+import SellerScreen from "./screens/Seller/SellerScreen";
+
+
+import NewProduct from "./screens/Seller/AddProducts/NewProduct";
+import CategoryScreen from "./screens/CategoryScreen";
+import CategoriesScreen from "./screens/Seller/AddProducts/CategoriesScreen";
+import MyProductsScreen from "./screens/Seller/AddProducts/MyProductsScreen";
+import EditProduct from "./screens/Seller/AddProducts/EditProduct";
+
 function App() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  const productList = useSelector((state) => state.productList);
-  const { products, error, loading } = productList;
+
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const [isToggler, setToggler] = useState(false);
@@ -61,9 +66,9 @@ function App() {
   };
   return (
     <BrowserRouter>
-      <header className={`${isSticky ? "sticky" : ""}`}>
+      <header className={`${isSticky ? "sticky" : ""} `}>
         <div className="nav-main row">
-          <div className="row">
+          <div className={`row ${isToggler ? "left-active" : ""}`}>
             <button className="btn_toggler" onClick={btnToggler}>
               <img
                 src="/assets/icons/menu1.svg"
@@ -110,16 +115,10 @@ function App() {
                         : "dropdown-content"
                     }`}
                   >
-                    <Link
-                      to="/portal/product/categories"
-                      className="text-sub-form"
-                    >
+                    <Link to="/seller" className="text-sub-form">
                       Seller
                     </Link>
-                    <Link
-                      to="/orderhistory"
-                      className="text-sub-form"
-                    >
+                    <Link to="/orderhistory" className="text-sub-form">
                       Orders
                     </Link>
                     <Link
@@ -145,39 +144,33 @@ function App() {
         </div>
       </header>
 
-      <div className={`category_container ${isToggler ? "active" : ""} `}>
-        <h1 className="text-capitalize text-title py-3 text-underline">
-          category
-        </h1>
-        {loading ? (
-          <h1>Loading</h1>
-        ) : error ? (
-          <h1>error</h1>
-        ) : (
-          <>
-            {getUnique(products, "category").map((item, index) => (
-              <LinkCategory key={index} category={item} />
-            ))}
-          </>
-        )}
-      </div>
+      <div className={`category_container ${isToggler ? "active" : ""} `}></div>
       <main>
-      <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
-      <Route path="/orderhistory" component={OrderHistoryScreen} />
-        <Route path="/order/:id" component={OrderScreen} exact/>
+  
+        <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
+        <Route path="/orderhistory" component={OrderHistoryScreen} />
+        <Route path="/order/:id" component={OrderScreen} exact />
         <Route path="/placeorder" component={PlaceOrderScreen} />
         <Route path="/payments" component={PaymentScreen} />
         <Route path="/shipping" component={AddressScreen} />
-        <Route path="/portal/product/categories" component={CategoriesScreen} />
+        <Route path="/seller" component={SellerScreen} />
+        <Route
+          path="/portal/product/categories"
+          component={CategoriesScreen}
+          exact
+        />
+        <Route path="/portal/product/new" component={NewProduct} exact />
+        <Route path="/portal/product/:id/edit" component={EditProduct}  exact/>
+        <Route path="/portal/product/list" component={MyProductsScreen} exact />
         <Route path="/signup" component={SignupScreen} />
         <Route path="/signin" component={SigninScreen} />
-        <Route path="/cart/:id?" component={CartScreen} exact/>
+        <Route path="/cart/:id?" component={CartScreen} exact />
         <Route path="/products/category/:category" component={CategoryScreen} />
         <Route
           path="/products/showList/:showList"
           component={ListProductScreen}
         />
-        <Route path="/products/product/:id" component={ProductScreen} />
+        <Route path="/products/product/:id" component={ProductScreen} exact/>
         <Route path="/" component={HomeScreen} exact />
       </main>
     </BrowserRouter>

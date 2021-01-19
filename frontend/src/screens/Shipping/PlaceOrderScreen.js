@@ -15,7 +15,7 @@ export default function PlaceOrderScreen(props) {
   }
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
-  const toPrice = (num) => Number(num.toFixed(2)); 
+  const toPrice = (num) => Number(num.toFixed(2));
   cart.itemsPrice = toPrice(
     cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
   );
@@ -50,7 +50,9 @@ export default function PlaceOrderScreen(props) {
                 <div className="cart-page-section__item row space-evenly py-3">
                   <div
                     className="cart-page-section__image image__content"
-                    style={{ backgroundImage: `url(${item.image})` }}
+                    style={{
+                      background: `url('/uploads/products/${item.product}/${item.image}')`,
+                    }}
                   ></div>
                   <div className="cart-page-section__description">
                     <p>{item.category}</p>
@@ -78,11 +80,10 @@ export default function PlaceOrderScreen(props) {
                 ราคารวมสินค้า:{" "}
                 {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </p>
-              <p className="py-1">ค่าจัดส่ง: {cart.paymentMethod.shippingPrice}</p>
               <p className="py-1">
-                ราคารวมสินค้า:{" "}
-                {cart.totalPrice}
+                ค่าจัดส่ง: {cart.paymentMethod.shippingPrice}
               </p>
+              <p className="py-1">ราคารวมสินค้า: {cart.totalPrice}</p>
               <button
                 className="primary block py-1"
                 disabled={cart.cartItems.length === 0}

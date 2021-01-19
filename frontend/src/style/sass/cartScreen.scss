@@ -15,9 +15,9 @@
   border-bottom: 1px solid lightgray;
 }
 .image__content {
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
   width: 8rem;
   height: 8rem;
 }

@@ -1,28 +1,35 @@
+/* line 1, ../sass/productScreen.scss */
 .box-small {
   max-width: 10rem;
   width: 100%;
   box-shadow: 0 0 8px 0 lightgray;
   object-fit: contain; }
 
+/* line 7, ../sass/productScreen.scss */
 .text-description {
   color: #7a7575;
   font-size: 2.5rem; }
 
+/* line 11, ../sass/productScreen.scss */
 button {
   cursor: pointer; }
 
+/* line 14, ../sass/productScreen.scss */
 button.block {
   width: 100%; }
 
+/* line 17, ../sass/productScreen.scss */
 button.primary {
   background-color: #008CF8;
   color: white;
   padding: 10px 0;
   border-radius: 20px; }
 
+/* line 23, ../sass/productScreen.scss */
 button.primary:hover {
   filter: brightness(110%); }
 
+/* line 26, ../sass/productScreen.scss */
 .selector {
   border-top: none;
   border-left: none;
@@ -31,6 +38,7 @@ button.primary:hover {
   outline: none;
   background-color: transparent; }
 
+/* line 34, ../sass/productScreen.scss */
 .AddToCart {
   animation: wriggly 0.3s; }
 
@@ -41,5 +49,35 @@ button.primary:hover {
     transform: rotate(90deg); }
   100% {
     transform: rotate(0deg); } }
+/* line 49, ../sass/productScreen.scss */
+.product-image__large {
+  width: 70%;
+  height: 450px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center; }
+  /* line 57, ../sass/productScreen.scss */
+  .product-image__large .product-image__large-inner {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    background-position: center !important; }
+
+/* line 65, ../sass/productScreen.scss */
+.product-image__small {
+  width: 20%;
+  height: 100px;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0 0 4px 0 lightgray; }
+  /* line 71, ../sass/productScreen.scss */
+  .product-image__small .product-image__small-inner {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    background-position: center !important; }
 
 /*# sourceMappingURL=productScreen.css.map */

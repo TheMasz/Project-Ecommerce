@@ -1,13 +1,14 @@
-/* line 1, ../sass/sellerScreen.scss */
+/*Add Page*/
+/* line 2, ../sass/sellerScreen.scss */
 .seller-page-section {
   box-shadow: 0 0 8px 0 lightgray;
   border-radius: 10px; }
 
-/* line 5, ../sass/sellerScreen.scss */
+/* line 6, ../sass/sellerScreen.scss */
 .seller-page-section__header {
   border-bottom: 1px solid lightgray; }
 
-/* line 8, ../sass/sellerScreen.scss */
+/* line 9, ../sass/sellerScreen.scss */
 .input_wrap {
   border: 1px solid #008cf8;
   border-radius: 10px;
@@ -15,25 +16,26 @@
   margin-left: 10px;
   padding: 15px;
   font-size: 1.8rem;
-  flex-wrap: nowrap; }
+  flex-wrap: nowrap;
+  background-color: white; }
 
-/* line 17, ../sass/sellerScreen.scss */
+/* line 19, ../sass/sellerScreen.scss */
 .input_wrap input {
   border: none;
   outline: none;
   width: 95%; }
 
-/* line 22, ../sass/sellerScreen.scss */
+/* line 24, ../sass/sellerScreen.scss */
 .input__suffix {
   padding-left: 8px;
   border-left: 1px solid lightgray; }
 
-/* line 26, ../sass/sellerScreen.scss */
+/* line 28, ../sass/sellerScreen.scss */
 .seller-page-categories__selector {
   background-color: #e8e8e8;
   box-shadow: 0 0 8px 0 darkgray; }
 
-/* line 30, ../sass/sellerScreen.scss */
+/* line 32, ../sass/sellerScreen.scss */
 .scroll-item {
   -webkit-box-flex: 1;
   -ms-flex: 1;
@@ -43,31 +45,236 @@
   background-color: whitesmoke;
   box-shadow: 0 0 4px 0 darkgray; }
 
-/* line 40, ../sass/sellerScreen.scss */
+/* line 41, ../sass/sellerScreen.scss */
 .input_wrap-normal {
   width: 30%;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 4px 0 darkgray; }
-  /* line 45, ../sass/sellerScreen.scss */
+  /* line 46, ../sass/sellerScreen.scss */
   .input_wrap-normal input {
     border: none;
     outline: none;
     background-color: none;
     width: 90%; }
 
-/* line 52, ../sass/sellerScreen.scss */
+/* line 53, ../sass/sellerScreen.scss */
 .scroll-item li {
   cursor: pointer;
   flex: 1; }
 
-/* line 56, ../sass/sellerScreen.scss */
+/* line 57, ../sass/sellerScreen.scss */
 .scroll-item li:hover {
   background-color: lightgray; }
 
 @media screen and (max-width: 1200px) {
-  /* line 60, ../sass/sellerScreen.scss */
+  /* line 61, ../sass/sellerScreen.scss */
   .input_wrap-normal {
     width: 100%; } }
+/* line 66, ../sass/sellerScreen.scss */
+.input-wrap {
+  position: relative;
+  line-height: 0;
+  flex-basis: 1000px;
+  width: 1000px;
+  max-width: 1000px; }
+  /* line 73, ../sass/sellerScreen.scss */
+  .input-wrap .input-wrap_inner-large {
+    position: relative;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 0 12px;
+    width: 100%; }
+  /* line 81, ../sass/sellerScreen.scss */
+  .input-wrap .input-wrap_input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    color: #666;
+    transition: border 0.2s ease-in-out; }
+
+/* line 91, ../sass/sellerScreen.scss */
+.text-wrap {
+  flex-basis: 166px;
+  width: 166px;
+  max-width: 166px; }
+
+/* line 97, ../sass/sellerScreen.scss */
+.textarea-wrap_inner-large {
+  padding: 12px;
+  width: 100%;
+  overflow: auto;
+  font-size: 14px;
+  vertical-align: top;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  min-height: 124px;
+  height: 198px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px; }
+  /* line 110, ../sass/sellerScreen.scss */
+  .textarea-wrap_inner-large .input-wrap_textarea {
+    resize: none;
+    color: #666;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none; }
+
+/* line 119, ../sass/sellerScreen.scss */
+.select-wrap_inner-large {
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  height: 40px; }
+  /* line 124, ../sass/sellerScreen.scss */
+  .select-wrap_inner-large .input-wrap_select {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    color: #666; }
+
+/* line 132, ../sass/sellerScreen.scss */
+.input_img::-webkit-file-upload-button {
+  visibility: hidden; }
+
+/* line 135, ../sass/sellerScreen.scss */
+.image_input-wrap {
+  position: relative;
+  border: 1px dotted #008cf8;
+  width: 115px;
+  height: 115px;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important; }
+  /* line 143, ../sass/sellerScreen.scss */
+  .image_input-wrap .image_input-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #008cf8; }
+  /* line 150, ../sass/sellerScreen.scss */
+  .image_input-wrap .input_img {
+    opacity: 0;
+    width: 100%;
+    height: 100%; }
+
+/*Seller Page*/
+/* line 157, ../sass/sellerScreen.scss */
+.sidebar-container {
+  position: relative;
+  width: 220px;
+  height: 94vh;
+  background-color: white;
+  z-index: 900;
+  box-shadow: 0 0 0 1px lightgray; }
+  /* line 164, ../sass/sellerScreen.scss */
+  .sidebar-container .sidebar {
+    position: fixed;
+    left: 0;
+    top: 6vh;
+    overflow: hidden;
+    min-height: calc(100vh - 56px);
+    width: inherit; }
+    /* line 172, ../sass/sellerScreen.scss */
+    .sidebar-container .sidebar .sidebar-menu {
+      padding: 16px 16px 0; }
+      /* line 174, ../sass/sellerScreen.scss */
+      .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box {
+        margin-bottom: 20px;
+        height: auto; }
+        /* line 177, ../sass/sellerScreen.scss */
+        .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-menu-item {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: horizontal;
+          -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+          flex-direction: row;
+          -webkit-box-align: start;
+          -ms-flex-align: start;
+          justify-content: space-between;
+          align-items: flex-start;
+          color: #999;
+          cursor: pointer;
+          padding: 5px 0; }
+        /* line 193, ../sass/sellerScreen.scss */
+        .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-submenu {
+          margin-top: 10px;
+          padding-left: 32px;
+          overflow: hidden;
+          -webkit-transition: height 0.2s ease;
+          transition: height 0.2s ease;
+          height: 0; }
+          /* line 201, ../sass/sellerScreen.scss */
+          .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-submenu .sidebar-submenu-item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            color: #333;
+            font-size: 13px;
+            line-height: 18px;
+            padding: 5px 0; }
+            /* line 216, ../sass/sellerScreen.scss */
+            .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-submenu .sidebar-submenu-item .sidebar-submenu-item-link {
+              color: inherit;
+              width: 100%; }
+
+/* line 226, ../sass/sellerScreen.scss */
+.submenu-active {
+  height: 10rem !important; }
+
+/*Mine Products*/
+/* line 231, ../sass/sellerScreen.scss */
+.product-list-main {
+  position: relative;
+  width: 100%; }
+
+/* line 235, ../sass/sellerScreen.scss */
+.product-grid-container {
+  position: relative; }
+
+/* line 238, ../sass/sellerScreen.scss */
+.product-card-item {
+  position: relative;
+  width: 162px;
+  height: 289px;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 0 0 0 1px #e5e5e5;
+  color: #404040; }
+
+/* line 247, ../sass/sellerScreen.scss */
+.app-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row; }
+  /* line 256, ../sass/sellerScreen.scss */
+  .app-container .page-container {
+    width: 100%; }
+
+/* line 260, ../sass/sellerScreen.scss */
+.product-actions {
+  color: #404040; }
+  /* line 262, ../sass/sellerScreen.scss */
+  .product-actions a {
+    color: inherit; }
 
 /*# sourceMappingURL=sellerScreen.css.map */

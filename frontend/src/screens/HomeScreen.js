@@ -24,7 +24,7 @@ export default function HomeScreen() {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
-            <Title title="Hot Sell" showList="HotSell" />
+            {/* <Title title="Hot Sell" showList="HotSell" />
             <div className="row py-3 space-evenly">
               {products
                 .filter((product) => product.showList === "HotSell")
@@ -32,20 +32,16 @@ export default function HomeScreen() {
                 .map((hotProduct) => (
                   <Product key={hotProduct._id} product={hotProduct} />
                 ))}
-            </div>
-            <Title title="In New" showList="InNew" />
+            </div> */}
+            <Title title="ALL" />
             <div className="row py-3 space-evenly">
-              {products
-                .filter((product) => product.showList === "InNew")
-                .slice(0, 3)
-                .map((newProduct) => (
-                  <Product key={newProduct._id} product={newProduct} />
-                ))}
+              {products.map((newProduct) => (
+                <Product key={newProduct._id} product={newProduct} />
+              ))}
             </div>
           </>
         )}
       </div>
-      
     </>
   );
 }

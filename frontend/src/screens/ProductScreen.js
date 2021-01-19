@@ -28,33 +28,51 @@ export default function ProductScreen(props) {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <div className="row py-5">
-          <div className="col-2 text-center">
-            <img
-              src={product.images[image].url}
-              alt={product.name}
-              className="medium"
-            />
+        <div className="row py-5" key={productId}>
+          <div className="col-2 ">
+            <div className="d-flex center align-center w-100">
+              <div className="product-image__large ">
+                <div
+                  className="product-image__large-inner"
+                  style={
+                    product.images
+                      ? {
+                          background: `url('/uploads/products/${productId}/${product.images[image].url}')`,
+                        }
+                      : null
+                  }
+                  alt={product.name}
+                ></div>
+              </div>
+            </div>
+
             <div className="row space-evenly py-3">
-              {product.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image.url}
-                  alt={index}
-                  className="box-small"
-                  onClick={() => handleClick(index)}
-                />
-              ))}
-              {/* // <div className="box-small"></div>
-              // <div className="box-small"></div>
-              // <div className="box-small"></div>
-              // <div className="box-small"></div> */}
+              {product.images
+                ? product.images.map((image, index) => {
+                    return (
+                      <div className="product-image__small" key={index}>
+                        <div
+                          className="product-image__small-inner"
+                          style={
+                            product.images
+                              ? {
+                                  background: `url('/uploads/products/${productId}/${image.url}')`,
+                                }
+                              : null
+                          }
+                          alt={index}
+                          onClick={() => handleClick(index)}
+                        ></div>
+                      </div>
+                    );
+                  })
+                : ""}
             </div>
           </div>
           <div className="col-2 center">
             <div className="p-2">
               <h1>{product.name}</h1>
-              <h1 className="price py-1">${product.price}</h1>
+              <h1 className="price py-1">{product.price} ฿</h1>
               <p className="text-description">{product.description}</p>
               <div>
                 <p className="text-bold text-title py-1">Status:</p>
