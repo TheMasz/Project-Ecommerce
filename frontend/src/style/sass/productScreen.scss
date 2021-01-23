@@ -17,11 +17,22 @@ button.block{
 button.primary{
     background-color: #008CF8;
     color: white;
-    padding: 10px 0;
-    border-radius: 20px;
+    padding: 10px ;
+    border-radius: 10px;
+
+}
+button.normal{
+    background-color: #fff;
+    color: #404040;
+    padding: 10px ;
+    border-radius: 10px;
+    border: 1px solid lightgray;
 }
 button.primary:hover{
     filter: brightness(110%);
+}
+button.normal:hover{
+    filter: brightness(90%);
 }
 .selector{
     border-top: none;

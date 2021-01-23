@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../../actions/addProductActions";
 import MessageBox from "../../../components/MessageBox";
-
-
+import { CREATE_PRODUCT_RESET } from "../../../constants/addProductContants";
 
 export default function NewProduct(props) {
   const productCreate = useSelector((state) => state.productCreate);
@@ -29,29 +28,29 @@ export default function NewProduct(props) {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview1(render.result);
-      setImg1(file);
     };
+    setImg1(file);
   };
   const ChangeHandler2 = (file) => {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview2(render.result);
-      setImg2(file);
     };
+    setImg2(file);
   };
   const ChangeHandler3 = (file) => {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview3(render.result);
-      setImg3(file);
     };
+    setImg3(file);
   };
   const ChangeHandler4 = (file) => {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview4(render.result);
-      setImg4(file);
     };
+    setImg4(file);
   };
 
   const submitHandler = (e) => {
@@ -63,17 +62,16 @@ export default function NewProduct(props) {
     data.append("brand", brand);
     data.append("countInStock", countInStock);
     data.append("price", price);
-
     data.append("img1", img1);
     data.append("img2", img2);
     data.append("img3", img3);
     data.append("img4", img4);
-
     dispatch(createProduct(data));
   };
   useEffect(() => {
-    if(success){
-      props.history.push('/portal/product/list')
+    if (success) {
+      props.history.push("/portal/product/list");
+      dispatch({ type: CREATE_PRODUCT_RESET });
     }
   }, [dispatch, product, success, props.history]);
 

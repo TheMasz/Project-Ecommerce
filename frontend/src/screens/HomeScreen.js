@@ -34,7 +34,7 @@ export default function HomeScreen() {
                 ))}
             </div> */}
             <Title title="ALL" />
-            <div className="row py-3 space-evenly">
+            <div className="row py-3  flex-start">
               {products.map((newProduct) => (
                 <Product key={newProduct._id} product={newProduct} />
               ))}

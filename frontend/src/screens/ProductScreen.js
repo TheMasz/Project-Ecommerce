@@ -37,7 +37,7 @@ export default function ProductScreen(props) {
                   style={
                     product.images
                       ? {
-                          background: `url('/uploads/products/${productId}/${product.images[image].url}')`,
+                          background: `url('/uploads/products/${productId}/${product.images[image]}')`,
                         }
                       : null
                   }
@@ -56,7 +56,7 @@ export default function ProductScreen(props) {
                           style={
                             product.images
                               ? {
-                                  background: `url('/uploads/products/${productId}/${image.url}')`,
+                                  background: `url('/uploads/products/${productId}/${image}')`,
                                 }
                               : null
                           }

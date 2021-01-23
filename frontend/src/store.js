@@ -8,7 +8,7 @@ import {
   productCategoryReducer,
 } from "./reducers/productReducers";
 import { userSigninReducer, userSignupReducer } from "./reducers/userReducers";
-import { categoriesReducer, mineProductReducer, productCreateReducer, productUpdateReducer } from "./reducers/addProductReducers";
+import { categoriesReducer, mineProductReducer, productCreateReducer, productDeleteReducer, productUpdateReducer } from "./reducers/addProductReducers";
 import { orderCreateReducer, orderDetailsReducer, orderMineListReducer, orderPayReducer } from "./reducers/orderReducers";
 import {uploadReducer} from './reducers/uploadReducers';
 const initialState = {
@@ -46,6 +46,7 @@ const reducer = combineReducers({
   upload: uploadReducer,
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,
+  productDelete: productDeleteReducer,
   mineProduct: mineProductReducer,
 
 });

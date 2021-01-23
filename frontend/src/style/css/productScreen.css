@@ -22,14 +22,26 @@ button.block {
 button.primary {
   background-color: #008CF8;
   color: white;
-  padding: 10px 0;
-  border-radius: 20px; }
+  padding: 10px;
+  border-radius: 10px; }
 
-/* line 23, ../sass/productScreen.scss */
+/* line 24, ../sass/productScreen.scss */
+button.normal {
+  background-color: #fff;
+  color: #404040;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid lightgray; }
+
+/* line 31, ../sass/productScreen.scss */
 button.primary:hover {
   filter: brightness(110%); }
 
-/* line 26, ../sass/productScreen.scss */
+/* line 34, ../sass/productScreen.scss */
+button.normal:hover {
+  filter: brightness(90%); }
+
+/* line 37, ../sass/productScreen.scss */
 .selector {
   border-top: none;
   border-left: none;
@@ -38,7 +50,7 @@ button.primary:hover {
   outline: none;
   background-color: transparent; }
 
-/* line 34, ../sass/productScreen.scss */
+/* line 45, ../sass/productScreen.scss */
 .AddToCart {
   animation: wriggly 0.3s; }
 
@@ -49,7 +61,7 @@ button.primary:hover {
     transform: rotate(90deg); }
   100% {
     transform: rotate(0deg); } }
-/* line 49, ../sass/productScreen.scss */
+/* line 60, ../sass/productScreen.scss */
 .product-image__large {
   width: 70%;
   height: 450px;
@@ -57,7 +69,7 @@ button.primary:hover {
   background-color: white;
   border-radius: 10px;
   text-align: center; }
-  /* line 57, ../sass/productScreen.scss */
+  /* line 68, ../sass/productScreen.scss */
   .product-image__large .product-image__large-inner {
     width: 100%;
     height: 100%;
@@ -65,14 +77,14 @@ button.primary:hover {
     background-size: contain !important;
     background-position: center !important; }
 
-/* line 65, ../sass/productScreen.scss */
+/* line 76, ../sass/productScreen.scss */
 .product-image__small {
   width: 20%;
   height: 100px;
   padding: 5px;
   background-color: white;
   box-shadow: 0 0 4px 0 lightgray; }
-  /* line 71, ../sass/productScreen.scss */
+  /* line 82, ../sass/productScreen.scss */
   .product-image__small .product-image__small-inner {
     width: 100%;
     height: 100%;

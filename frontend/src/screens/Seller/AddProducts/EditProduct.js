@@ -12,22 +12,12 @@ export default function EditProduct(props) {
   const productId = props.match.params.id;
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
-  useEffect(() => {
-    if (!product || product._id !== productId ) {
-      dispatch({ type: PRODUCT_UPDATE_RESET });
-      dispatch(detailsProduct(productId));
-    } else {
-      setName(product.name);
-      setPrice(product.price);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setBrand(product.brand);
-      setDescription(product.description);
-    }
-
-  }, [dispatch, productId, product]);
-
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
   const [name, setName] = useState();
   const [description, setDescription] = useState();
   const [category, setCategory] = useState();
@@ -46,9 +36,34 @@ export default function EditProduct(props) {
   const [deleteImg2, setDeleteImg2] = useState(false);
   const [deleteImg3, setDeleteImg3] = useState(false);
   const [deleteImg4, setDeleteImg4] = useState(false);
+  const arr = [img1,img2,img3,img4];
+ 
+  useEffect(() => {
+    if (!product || product._id !== productId) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+      dispatch(detailsProduct(productId));
+    } else {
+      setName(product.name);
+      setPrice(product.price);
+      setCategory(product.category);
+      setCountInStock(product.countInStock);
+      setBrand(product.brand);
+      setDescription(product.description);
+      product.images[0] && setImg1(product.images[0]);
+      product.images[1] && setImg2(product.images[1]);
+      product.images[2] && setImg3(product.images[2]);
+      product.images[3] && setImg4(product.images[3]);
+    }
+    if (successUpdate) {
+      props.history.push("/portal/product/list");
+      dispatch({ type: PRODUCT_UPDATE_RESET });
+    }
+  }, [dispatch, productId, product, successUpdate, props.history]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+  
+    console.log(arr);
     const data = new FormData();
     data.append("name", name);
     data.append("description", description);
@@ -56,45 +71,46 @@ export default function EditProduct(props) {
     data.append("brand", brand);
     data.append("countInStock", countInStock);
     data.append("price", price);
-
     data.append("img1", img1);
     data.append("img2", img2);
     data.append("img3", img3);
     data.append("img4", img4);
-
-    dispatch(updateProduct(productId,data));
+    data.append("images", JSON.stringify(arr));
+    dispatch(updateProduct(productId, data));
   };
 
   const ChangeHandler1 = (file) => {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview1(render.result);
-      setImg1(file);
     };
+    setImg1(file);
     setDeleteImg1(false);
   };
   const ChangeHandler2 = (file) => {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview2(render.result);
-      setImg2(file);
     };
+    setImg2(file);
+    setDeleteImg2(false);
   };
   const ChangeHandler3 = (file) => {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview3(render.result);
-      setImg3(file);
     };
+    setImg3(file);
+    setDeleteImg3(false);
   };
   const ChangeHandler4 = (file) => {
     render.readAsDataURL(file);
     render.onload = () => {
       setPreview4(render.result);
-      setImg4(file);
     };
+    setImg4(file);
+    setDeleteImg4(false);
   };
-
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -114,7 +130,7 @@ export default function EditProduct(props) {
                   type="text"
                   className="input-wrap_input"
                   required
-                  value={name}
+                  value={name || ""}
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -129,7 +145,7 @@ export default function EditProduct(props) {
                 <textarea
                   className="input-wrap_textarea"
                   required
-                  value={description}
+                  value={description || ""}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>
@@ -145,7 +161,7 @@ export default function EditProduct(props) {
                   type="text"
                   className="input-wrap_input"
                   required
-                  value={category}
+                  value={category || ""}
                   onChange={(e) => setCategory(e.target.value)}
                 />
               </div>
@@ -161,7 +177,7 @@ export default function EditProduct(props) {
                   type="text"
                   className="input-wrap_input"
                   required
-                  value={brand}
+                  value={brand || ""}
                   onChange={(e) => setBrand(e.target.value)}
                 />
               </div>
@@ -180,7 +196,7 @@ export default function EditProduct(props) {
                   type="number"
                   className="input-wrap_input"
                   required
-                  value={countInStock}
+                  value={countInStock || ""}
                   onChange={(e) => setCountInStock(e.target.value)}
                 />
               </div>
@@ -196,7 +212,7 @@ export default function EditProduct(props) {
                 <input
                   type="number"
                   className="input-wrap_input"
-                  value={price}
+                  value={price || ""}
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
@@ -215,9 +231,11 @@ export default function EditProduct(props) {
                         ? { background: "" }
                         : preview1
                         ? { background: `url(${preview1})` }
-                        : {
-                            background: `url('/uploads/products/${productId}/${product.images[0].url}')`,
+                        : product.images[0]
+                        ? {
+                            background: `url('/uploads/products/${productId}/${product.images[0]}')`,
                           }
+                        : { background: "" }
                     }
                   >
                     <div className="image_input-inner">
@@ -233,9 +251,9 @@ export default function EditProduct(props) {
                   <button
                     onClick={() => {
                       setDeleteImg1(true);
-                      setPreview1();
-                      setImg1();
+                      setPreview1("");
                     }}
+                    type="button"
                   >
                     Delete
                   </button>
@@ -253,9 +271,11 @@ export default function EditProduct(props) {
                         ? { background: "" }
                         : preview2
                         ? { background: `url(${preview2})` }
-                        : {
-                            background: `url('/uploads/products/${productId}/${product.images[1].url}')`,
+                        : product.images[1]
+                        ? {
+                            background: `url('/uploads/products/${productId}/${product.images[1]}')`,
                           }
+                        : { background: "" }
                     }
                   >
                     <div className="image_input-inner">
@@ -271,9 +291,9 @@ export default function EditProduct(props) {
                   <button
                     onClick={() => {
                       setDeleteImg2(true);
-                      setPreview2();
-                      setImg2();
+                      setPreview2("");
                     }}
+                    type="button"
                   >
                     Delete
                   </button>
@@ -291,9 +311,11 @@ export default function EditProduct(props) {
                         ? { background: "" }
                         : preview3
                         ? { background: `url(${preview3})` }
-                        : {
-                            background: `url('/uploads/products/${productId}/${product.images[2].url}')`,
+                        : product.images[2]
+                        ? {
+                            background: `url('/uploads/products/${productId}/${product.images[2]}')`,
                           }
+                        : { background: "" }
                     }
                   >
                     <div className="image_input-inner">
@@ -309,9 +331,9 @@ export default function EditProduct(props) {
                   <button
                     onClick={() => {
                       setDeleteImg3(true);
-                      setPreview3();
-                      setImg3();
+                      setPreview3("");
                     }}
+                    type="button"
                   >
                     Delete
                   </button>
@@ -329,9 +351,11 @@ export default function EditProduct(props) {
                         ? { background: "" }
                         : preview4
                         ? { background: `url(${preview4})` }
-                        : {
-                            background: `url('/uploads/products/${productId}/${product.images[3].url}')`,
+                        : product.images[3]
+                        ? {
+                            background: `url('/uploads/products/${productId}/${product.images[3]}')`,
                           }
+                        : { background: "" }
                     }
                   >
                     <div className="image_input-inner">
@@ -347,9 +371,9 @@ export default function EditProduct(props) {
                   <button
                     onClick={() => {
                       setDeleteImg4(true);
-                      setPreview4();
-                      setImg4();
+                      setPreview4("");
                     }}
+                    type="button"
                   >
                     Delete
                   </button>
@@ -375,15 +399,15 @@ export default function EditProduct(props) {
           </div>
         </div>
         <div>
-          {/* {success ? (
-            <MessageBox variant="success">Create Product Success</MessageBox>
-          ) : error ? (
+          {successUpdate ? (
+            <MessageBox variant="success">Update Succested</MessageBox>
+          ) : errorUpdate ? (
             <MessageBox variant="danger">{error}</MessageBox>
-          ) : loading ? (
+          ) : loadingUpdate ? (
             <MessageBox variant="loading">Loading...</MessageBox>
           ) : (
             ""
-          )} */}
+          )}
           <button type="submit" className="primary block">
             บันทึกและเผยแพร่
           </button>

@@ -64,50 +64,46 @@ productRouter.post(
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const file = req.files;
-    for(let test in file)
+    const arr = [];
+    for (let index in file) {
+      arr.push(file[index].name);
+    }
+    if (file) {
+      const product = new Product({
+        name: req.body.name,
+        seller: req.user._id,
+        images: arr,
+        brand: req.body.brand,
+        category: req.body.category,
+        description: req.body.description,
+        price: req.body.price,
+        countInStock: req.body.countInStock,
+      });
+      const createProduct = await product.save();
 
-      if (file) {
-        const product = new Product({
-          name: req.body.name,
-          seller: req.user._id,
-          images: [
-            file.img1 ? { url: file.img1.name } : { url: "" },
-            file.img2 ? { url: file.img2.name } : { url: "" },
-            file.img3 ? { url: file.img3.name } : { url: "" },
-            file.img4 ? { url: file.img4.name } : { url: "" },
-          ],
-
-          brand: req.body.brand,
-          category: req.body.category,
-          description: req.body.description,
-          price: req.body.price,
-          countInStock: req.body.countInStock,
-        });
-        const createProduct = await product.save();
-
-        fs.mkdir(
-          `./frontend/public/uploads/products/${createProduct._id}`,
-          { recursive: true },
+      fs.mkdir(
+        `./frontend/public/uploads/products/${createProduct._id}`,
+        { recursive: true },
+        (err) => {}
+      );
+      for (let i in file) {
+        // const fileName =
+        //   createProduct._id +
+        //   "-" +
+        //   i +
+        //   Date.now() +
+        //   "." +
+        //   file[i].mimetype.split("/")[1];
+        await file[
+          i
+        ].mv(
+          `./frontend/public/uploads/products/${createProduct._id}/${file[i].name}`,
           (err) => {}
         );
-        for (var i in file) {
-          // const fileName =
-          //   createProduct._id +
-          //   "-" +
-          //   i +
-          //   Date.now() +
-          //   "." +
-          //   file[i].mimetype.split("/")[1];
-          await file[
-            i
-          ].mv(
-            `./frontend/public/uploads/products/${createProduct._id}/${file[i].name}`,
-            (err) => {}
-          );
-        }
-      } else {
-        res.status(400).send({ message: "Please select your file." });
       }
+    } else {
+      res.status(400).send({ message: "Please select your file." });
+    }
     return res.status(201).send({ message: "New Product Created" });
   })
 );
@@ -127,18 +123,62 @@ productRouter.put(
   expressAsyncHandler(async (req, res) => {
     const productId = req.params.id;
     const file = req.files;
-    const product = await Product.findById(productId);
+    const arr = [];
+     const images = JSON.parse(req.body.images);
+  
+    console.log(images);
+    
+    // if(file===null ){
+    //   for(let index in images){
+    //     arr.push(images[index])
+    //   }
+    // }else if(file && images){
+    //   for (let index in file) {
+    //     arr.push(file[index].name);
+    //   }
+    //   for(let index in images){
+    //     arr.push(images[index]);
+    //   }  
+    // }else{
+    //   return arr;
+    // }
+  
+
+    // const product = await Product.findById(productId);
+    // if (product) {
+    //   product.name = req.body.name;
+    //   product.price = req.body.price;
+    //   product.images = arr;
+    //   product.category = req.body.category;
+    //   product.brand = req.body.brand;
+    //   product.countInStock = req.body.countInStock;
+    //   product.description = req.body.description;
+    //   const updatedProduct = await product.save();
+    //   for (let i in file) {
+    //     await file[
+    //       i
+    //     ].mv(
+    //       `./frontend/public/uploads/products/${productId}/${file[i].name}`,
+    //       (err) => {}
+    //     );
+    //   }
+    // } else {
+    //   res.status(404).send({ message: "Product Not Found" });
+    // }
+    return res.status(201).send({ message: "Product Updated" });
+  })
+);
+productRouter.delete(
+  '/product/:id',
+  isAuth,
+  
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
     if (product) {
-      product.name = req.body.name;
-      product.price = req.body.price;
-      product.images = req.body.image;
-      product.category = req.body.category;
-      product.brand = req.body.brand;
-      product.countInStock = req.body.countInStock;
-      product.description = req.body.description;
-      res.send({ message: "Product Updated", product: updatedProduct });
+      const deleteProduct = await product.remove();
+      res.send({ message: 'Product Deleted', product: deleteProduct });
     } else {
-      res.status(404).send({ message: "Product Not Found" });
+      res.status(404).send({ message: 'Product Not Found' });
     }
   })
 );
