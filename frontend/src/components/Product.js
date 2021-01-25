@@ -12,7 +12,7 @@ export default function Product(props) {
     setClick("click");
   };
   return (
-    <div key={product._id} className="card mx-2">
+    <div key={product._id} className="card m-05">
       <Link to={`/products/product/${product._id}`}>
         <div className="card_img">
           <img src={`/uploads/products/${product._id}/${product.images[0]}`} alt={product.name}/>

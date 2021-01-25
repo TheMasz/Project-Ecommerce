@@ -65,9 +65,9 @@ export default function MyProductsScreen() {
               <div className="col-2 "></div>
             </div>
             <div className="product-grid-container">
-              <div className="product-items row flex-start ">
+              <div className="product-items row flex-start">
                 {products.map((product) => (
-                  <div key={product._id} className="card mx-2">
+                  <div key={product._id} className="card m-01">
                     <Link to={`/products/product/${product._id}`}>
                       <div className="card_img">
                         <img

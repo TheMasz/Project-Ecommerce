@@ -69,7 +69,7 @@ export const MineProduct = () => async (dispatch, getState) => {
 };
 
 export const updateProduct = (productId,product) => async (dispatch, getState) => {
-  console.log(product.values());
+
   dispatch({ type: PRODUCT_UPDATE_REQUEST, payload: product });
   const {
     userSignin: { userInfo },

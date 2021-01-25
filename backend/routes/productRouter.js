@@ -27,14 +27,10 @@ productRouter.get(
   })
 );
 productRouter.get(
-  "/category/:category",
+  "/categories",
   expressAsyncHandler(async (req, res) => {
-    const products = await Product.find({ category: req.params.category });
-    if (products) {
-      res.send(products);
-    } else {
-      return res.status(404).send({ message: "Product Not Found" });
-    }
+    const categories = await Product.find().distinct("category");
+    res.send(categories);
   })
 );
 
@@ -124,61 +120,49 @@ productRouter.put(
     const productId = req.params.id;
     const file = req.files;
     const arr = [];
-     const images = JSON.parse(req.body.images);
-  
-    console.log(images);
-    
-    // if(file===null ){
-    //   for(let index in images){
-    //     arr.push(images[index])
-    //   }
-    // }else if(file && images){
-    //   for (let index in file) {
-    //     arr.push(file[index].name);
-    //   }
-    //   for(let index in images){
-    //     arr.push(images[index]);
-    //   }  
-    // }else{
-    //   return arr;
-    // }
-  
+    const images = JSON.parse(req.body.images);
+    for (let index in images) {
+      if (images[index] != "" && images[index] != null) {
+        arr.push(images[index]);
+      }
+    }
+    console.log(arr);
 
-    // const product = await Product.findById(productId);
-    // if (product) {
-    //   product.name = req.body.name;
-    //   product.price = req.body.price;
-    //   product.images = arr;
-    //   product.category = req.body.category;
-    //   product.brand = req.body.brand;
-    //   product.countInStock = req.body.countInStock;
-    //   product.description = req.body.description;
-    //   const updatedProduct = await product.save();
-    //   for (let i in file) {
-    //     await file[
-    //       i
-    //     ].mv(
-    //       `./frontend/public/uploads/products/${productId}/${file[i].name}`,
-    //       (err) => {}
-    //     );
-    //   }
-    // } else {
-    //   res.status(404).send({ message: "Product Not Found" });
-    // }
+    const product = await Product.findById(productId);
+    if (product) {
+      product.name = req.body.name;
+      product.price = req.body.price;
+      product.images = arr;
+      product.category = req.body.category;
+      product.brand = req.body.brand;
+      product.countInStock = req.body.countInStock;
+      product.description = req.body.description;
+      const updatedProduct = await product.save();
+      for (let i in file) {
+        await file[
+          i
+        ].mv(
+          `./frontend/public/uploads/products/${productId}/${file[i].name}`,
+          (err) => {}
+        );
+      }
+    } else {
+      res.status(404).send({ message: "Product Not Found" });
+    }
     return res.status(201).send({ message: "Product Updated" });
   })
 );
 productRouter.delete(
-  '/product/:id',
+  "/product/:id",
   isAuth,
-  
+
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
       const deleteProduct = await product.remove();
-      res.send({ message: 'Product Deleted', product: deleteProduct });
+      res.send({ message: "Product Deleted", product: deleteProduct });
     } else {
-      res.status(404).send({ message: 'Product Not Found' });
+      res.status(404).send({ message: "Product Not Found" });
     }
   })
 );

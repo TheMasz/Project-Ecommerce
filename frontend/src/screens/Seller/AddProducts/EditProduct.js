@@ -24,6 +24,10 @@ export default function EditProduct(props) {
   const [brand, setBrand] = useState();
   const [countInStock, setCountInStock] = useState();
   const [price, setPrice] = useState();
+  const [nameImg1, setNameImg1] = useState();
+  const [nameImg2, setNameImg2] = useState();
+  const [nameImg3, setNameImg3] = useState();
+  const [nameImg4, setNameImg4] = useState();
   const [img1, setImg1] = useState();
   const [img2, setImg2] = useState();
   const [img3, setImg3] = useState();
@@ -36,8 +40,8 @@ export default function EditProduct(props) {
   const [deleteImg2, setDeleteImg2] = useState(false);
   const [deleteImg3, setDeleteImg3] = useState(false);
   const [deleteImg4, setDeleteImg4] = useState(false);
-  const arr = [img1,img2,img3,img4];
- 
+  const arr = [nameImg1,nameImg2,nameImg3,nameImg4];
+  
   useEffect(() => {
     if (!product || product._id !== productId) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
@@ -49,10 +53,11 @@ export default function EditProduct(props) {
       setCountInStock(product.countInStock);
       setBrand(product.brand);
       setDescription(product.description);
-      product.images[0] && setImg1(product.images[0]);
-      product.images[1] && setImg2(product.images[1]);
-      product.images[2] && setImg3(product.images[2]);
-      product.images[3] && setImg4(product.images[3]);
+      product.images[0] && setNameImg1(product.images[0]);
+      product.images[1] && setNameImg2(product.images[1]);
+      product.images[2] && setNameImg3(product.images[2]);
+      product.images[3] && setNameImg4(product.images[3]);
+      
     }
     if (successUpdate) {
       props.history.push("/portal/product/list");
@@ -63,7 +68,6 @@ export default function EditProduct(props) {
   const submitHandler = (e) => {
     e.preventDefault();
   
-    console.log(arr);
     const data = new FormData();
     data.append("name", name);
     data.append("description", description);
@@ -71,12 +75,13 @@ export default function EditProduct(props) {
     data.append("brand", brand);
     data.append("countInStock", countInStock);
     data.append("price", price);
-    data.append("img1", img1);
-    data.append("img2", img2);
-    data.append("img3", img3);
-    data.append("img4", img4);
+    data.append("file", img1);
+    data.append("file", img2);
+    data.append("file", img3);
+    data.append("file", img4);
     data.append("images", JSON.stringify(arr));
     dispatch(updateProduct(productId, data));
+
   };
 
   const ChangeHandler1 = (file) => {
@@ -85,6 +90,7 @@ export default function EditProduct(props) {
       setPreview1(render.result);
     };
     setImg1(file);
+    setNameImg1(file.name)
     setDeleteImg1(false);
   };
   const ChangeHandler2 = (file) => {
@@ -93,6 +99,7 @@ export default function EditProduct(props) {
       setPreview2(render.result);
     };
     setImg2(file);
+    setNameImg2(file.name)
     setDeleteImg2(false);
   };
   const ChangeHandler3 = (file) => {
@@ -101,6 +108,7 @@ export default function EditProduct(props) {
       setPreview3(render.result);
     };
     setImg3(file);
+    setNameImg3(file.name)
     setDeleteImg3(false);
   };
   const ChangeHandler4 = (file) => {
@@ -109,6 +117,7 @@ export default function EditProduct(props) {
       setPreview4(render.result);
     };
     setImg4(file);
+    setNameImg4(file.name)
     setDeleteImg4(false);
   };
   return loading ? (

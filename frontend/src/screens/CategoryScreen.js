@@ -6,17 +6,17 @@ import MessageBox from "../components/MessageBox";
 import Product from "../components/Product";
 
 export default function CategoryScreen(props) {
-  const dispatch = useDispatch();
-  const category = props.match.params.category;
-  const productCategory = useSelector((state)=> state.productCategory)
-  const { loading, error, products } = productCategory;
+  // const dispatch = useDispatch();
+  // const category = props.match.params.category;
+  // const productCategory = useSelector((state)=> state.productCategory)
+  // const { loading, error, products } = productCategory;
 
-  useEffect(() => {
-    dispatch(categoryProduct(category));
-  }, [dispatch, category]);
+  // useEffect(() => {
+  //   dispatch(categoryProduct(category));
+  // }, [dispatch, category]);
   return (
     <div className="container">
-      {loading ? (
+      {/* {loading ? (
         <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
@@ -28,7 +28,7 @@ export default function CategoryScreen(props) {
             ))}
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 }

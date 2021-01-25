@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Link, Route } from "react-router-dom";
-import ListProductScreen from "./screens/ListProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +23,8 @@ import CategoryScreen from "./screens/CategoryScreen";
 import CategoriesScreen from "./screens/Seller/AddProducts/CategoriesScreen";
 import MyProductsScreen from "./screens/Seller/AddProducts/MyProductsScreen";
 import EditProduct from "./screens/Seller/AddProducts/EditProduct";
+import SearchBox from "./components/SearchBox";
+import SearchScreen from "./screens/SearchScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -82,13 +83,8 @@ function App() {
           </div>
           <ul className="links row">
             <li>
-              <Link to="/">
-                <img
-                  src="/assets/icons/magnifying-glass.svg"
-                  alt="search"
-                  className="small_img"
-                />
-              </Link>
+              <SearchBox/>
+             
             </li>
             <li>
               <Link to="/cart">
@@ -146,7 +142,27 @@ function App() {
 
       <div className={`category_container ${isToggler ? "active" : ""} `}></div>
       <main>
-  
+
+      {/* <Route
+            path="/search/name/:name?"
+            component={SearchScreen}
+            exact
+          ></Route>
+          <Route
+            path="/search/category/:category"
+            component={SearchScreen}
+            exact
+          ></Route>
+          <Route
+            path="/search/category/:category/name/:name"
+            component={SearchScreen}
+            exact
+          ></Route>
+          <Route
+            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
+            component={SearchScreen}
+            exact
+          ></Route> */}
         <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
         <Route path="/orderhistory" component={OrderHistoryScreen} />
         <Route path="/order/:id" component={OrderScreen} exact />
@@ -166,10 +182,6 @@ function App() {
         <Route path="/signin" component={SigninScreen} />
         <Route path="/cart/:id?" component={CartScreen} exact />
         <Route path="/products/category/:category" component={CategoryScreen} />
-        <Route
-          path="/products/showList/:showList"
-          component={ListProductScreen}
-        />
         <Route path="/products/product/:id" component={ProductScreen} exact/>
         <Route path="/" component={HomeScreen} exact />
       </main>
