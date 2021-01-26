@@ -1,4 +1,8 @@
 import {
+  USER_INFO_FAIL,
+  USER_INFO_REQUEST,
+  USER_INFO_RESET,
+  USER_INFO_SUCCESS,
   USER_SIGNIN_FAIL,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -33,5 +37,21 @@ export const userSignupReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     default:
       return state;
+  }
+};
+
+export const userInfoReducer = (
+  state = { seller: {}, loading: true },
+  action
+) => {
+  switch (action.type) {
+    case USER_INFO_REQUEST:
+      return { loading: true };
+    case USER_INFO_SUCCESS:
+      return { loading: false, seller: action.payload };
+    case USER_INFO_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return {};
   }
 };

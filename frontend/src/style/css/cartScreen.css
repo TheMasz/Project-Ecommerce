@@ -1,11 +1,9 @@
-/* line 1, ../sass/cartScreen.scss */
 .cart-page,
 .cart-page-checkout {
   box-shadow: 0 0 8px 0 lightgray;
   padding: 30px;
   border-radius: 10px; }
 
-/* line 7, ../sass/cartScreen.scss */
 .cart-item-overview__thumbnail {
   background-position: 50%;
   background-size: contain;
@@ -13,11 +11,9 @@
   width: 8rem;
   height: 8rem; }
 
-/* line 14, ../sass/cartScreen.scss */
 .cart-page-header {
   border-bottom: 1px solid lightgray; }
 
-/* line 17, ../sass/cartScreen.scss */
 .image__content {
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -25,19 +21,16 @@
   width: 8rem;
   height: 8rem; }
 
-/* line 24, ../sass/cartScreen.scss */
 .order-page-section__status,
 .order-page-section__address,
 .order-page-section__order,
 .order-page-section__payment {
   border-bottom: 1px solid lightgray; }
 
-/* line 30, ../sass/cartScreen.scss */
 .order-page-section__payment__header {
   border-bottom: 1px dashed lightgray;
   padding-bottom: 20px; }
 
-/* line 34, ../sass/cartScreen.scss */
 .payment-form-section {
   margin: 0 auto;
   background-color: white;

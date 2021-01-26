@@ -1,0 +1,14 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .page-item{
+        padding: 0;
+        min-width: 2.5rem;
+        text-align: center;
+        height: 1.875rem;
+        font-size: 1.25rem;
+        margin-left: .9375rem;
+        margin-right: .9375rem;
+    }
+}

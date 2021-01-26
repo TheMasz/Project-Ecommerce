@@ -1,4 +1,3 @@
-/* line 1, ../sass/header.scss */
 header {
   height: auto;
   padding: 10px 50px;
@@ -6,14 +5,12 @@ header {
   background-color: #fefefe;
   box-shadow: 0 0 10px 0 darkgray; }
 
-/* line 9, ../sass/header.scss */
 .btn_toggler {
   border: none;
   outline: none;
   background-color: inherit;
   padding: 0 20px; }
 
-/* line 15, ../sass/header.scss */
 .category_container {
   position: fixed;
   top: 0;
@@ -30,7 +27,6 @@ header {
   justify-content: center;
   overflow: hidden; }
 
-/* line 33, ../sass/header.scss */
 .sticky {
   position: fixed;
   top: 0;
@@ -38,25 +34,20 @@ header {
   right: 0;
   z-index: 99; }
 
-/* line 40, ../sass/header.scss */
 .link_category {
   width: 100%;
   transition: all 0.25s ease-in-out; }
 
-/* line 44, ../sass/header.scss */
 .link_category:hover {
   border-radius: 10px;
   box-shadow: 0 0 8px 0 lightgray; }
 
-/* line 48, ../sass/header.scss */
 .dropdown {
   position: relative; }
 
-/* line 51, ../sass/header.scss */
 .dropdown-content {
   display: none; }
 
-/* line 54, ../sass/header.scss */
 .dropdown-content-active {
   display: flex;
   flex-direction: column;
@@ -71,43 +62,33 @@ header {
   border-radius: 0.5rem;
   box-shadow: 0 0 4px 0 lightgray; }
 
-/* line 69, ../sass/header.scss */
 .left-active {
   position: relative; }
 
 @media (min-width: 576px) {
-  /* line 74, ../sass/header.scss */
   .active {
     width: 40%; }
 
-  /* line 77, ../sass/header.scss */
   .left-active {
     left: 40%; } }
 @media (min-width: 768px) {
-  /* line 83, ../sass/header.scss */
   .active {
     width: 35%; }
 
-  /* line 86, ../sass/header.scss */
   .left-active {
     left: 35%; } }
 @media (min-width: 992px) {
-  /* line 92, ../sass/header.scss */
   .active {
     width: 30%; }
 
-  /* line 95, ../sass/header.scss */
   .left-active {
     left: 30%; } }
 @media (min-width: 1200px) {
-  /* line 101, ../sass/header.scss */
   .active {
     width: 15%; }
 
-  /* line 104, ../sass/header.scss */
   .left-active {
     left: 15%; } }
-/* line 1, ../sass/carousel.scss */
 .carousel {
   margin: 0 auto;
   height: 333px;
@@ -115,7 +96,6 @@ header {
   position: relative;
   overflow: hidden; }
 
-/* line 8, ../sass/carousel.scss */
 .carousel_item {
   position: absolute;
   width: 100%;
@@ -124,13 +104,11 @@ header {
   flex-direction: row;
   justify-content: space-between; }
 
-/* line 17, ../sass/carousel.scss */
 .slide_img {
   width: 100%;
   object-fit: cover;
   transition: all 0.25s ease-in-out; }
 
-/* line 22, ../sass/carousel.scss */
 .left {
   position: absolute;
   left: 0;
@@ -140,7 +118,6 @@ header {
   opacity: 30%;
   transition: all 0.2s ease-in-out; }
 
-/* line 31, ../sass/carousel.scss */
 .right {
   position: absolute;
   right: 0;
@@ -150,27 +127,23 @@ header {
   opacity: 30%;
   transition: all 0.2s ease-in-out; }
 
-/* line 40, ../sass/carousel.scss */
 .right:hover,
 .left:hover {
   opacity: unset;
   background-color: black; }
 
-/* line 45, ../sass/carousel.scss */
 .next,
 .prev {
   background-color: unset;
   border: unset;
   outline: none; }
 
-/* line 1, ../sass/card.scss */
 .card {
   background-color: #fefefe;
   box-shadow: 0 0 10px 0 lightgray;
   width: 200px;
   height: 293px; }
 
-/* line 9, ../sass/card.scss */
 .card_img {
   width: 100%;
   height: 188px;
@@ -179,7 +152,6 @@ header {
   border: none;
   text-align: center;
   padding: 10px 10px 0 10px; }
-  /* line 17, ../sass/card.scss */
   .card_img img {
     width: auto;
     height: auto;
@@ -187,57 +159,46 @@ header {
     max-height: 100%;
     border-radius: 3px 3px 0 0; }
 
-/* line 26, ../sass/card.scss */
 .card_body {
   padding: 0 10px 10px 10px; }
-  /* line 28, ../sass/card.scss */
   .card_body .product-name {
     color: #404040; }
 
-/* line 32, ../sass/card.scss */
 .line {
   width: 180px;
   height: 2px;
   background-color: #707070;
   margin: 0 auto; }
 
-/* line 38, ../sass/card.scss */
 .price {
   font-size: 2rem;
   color: #FFC107; }
 
-/* line 43, ../sass/card.scss */
 .card:hover .text-title {
   color: #0090FF; }
 
-/* line 1, ../sass/productScreen.scss */
 .box-small {
   max-width: 10rem;
   width: 100%;
   box-shadow: 0 0 8px 0 lightgray;
   object-fit: contain; }
 
-/* line 7, ../sass/productScreen.scss */
 .text-description {
   color: #7a7575;
   font-size: 2.5rem; }
 
-/* line 11, ../sass/productScreen.scss */
 button {
   cursor: pointer; }
 
-/* line 14, ../sass/productScreen.scss */
 button.block {
   width: 100%; }
 
-/* line 17, ../sass/productScreen.scss */
 button.primary {
   background-color: #008CF8;
   color: white;
   padding: 10px;
   border-radius: 10px; }
 
-/* line 24, ../sass/productScreen.scss */
 button.normal {
   background-color: #fff;
   color: #404040;
@@ -245,15 +206,12 @@ button.normal {
   border-radius: 10px;
   border: 1px solid lightgray; }
 
-/* line 31, ../sass/productScreen.scss */
 button.primary:hover {
   filter: brightness(110%); }
 
-/* line 34, ../sass/productScreen.scss */
 button.normal:hover {
   filter: brightness(90%); }
 
-/* line 37, ../sass/productScreen.scss */
 .selector {
   border-top: none;
   border-left: none;
@@ -262,7 +220,6 @@ button.normal:hover {
   outline: none;
   background-color: transparent; }
 
-/* line 45, ../sass/productScreen.scss */
 .AddToCart {
   animation: wriggly 0.3s; }
 
@@ -273,7 +230,6 @@ button.normal:hover {
     transform: rotate(90deg); }
   100% {
     transform: rotate(0deg); } }
-/* line 60, ../sass/productScreen.scss */
 .product-image__large {
   width: 70%;
   height: 450px;
@@ -281,7 +237,6 @@ button.normal:hover {
   background-color: white;
   border-radius: 10px;
   text-align: center; }
-  /* line 68, ../sass/productScreen.scss */
   .product-image__large .product-image__large-inner {
     width: 100%;
     height: 100%;
@@ -289,14 +244,12 @@ button.normal:hover {
     background-size: contain !important;
     background-position: center !important; }
 
-/* line 76, ../sass/productScreen.scss */
 .product-image__small {
   width: 20%;
   height: 100px;
   padding: 5px;
   background-color: white;
   box-shadow: 0 0 4px 0 lightgray; }
-  /* line 82, ../sass/productScreen.scss */
   .product-image__small .product-image__small-inner {
     width: 100%;
     height: 100%;
@@ -304,7 +257,25 @@ button.normal:hover {
     background-size: contain !important;
     background-position: center !important; }
 
-/* line 1, ../sass/Loading.scss */
+.page-product__shop {
+  width: 100%;
+  padding: 20px; }
+  .page-product__shop .page-product__shop-left {
+    border-right: 1px solid lightgray; }
+    .page-product__shop .page-product__shop-left .shop-avatar {
+      width: 5rem;
+      height: 5rem;
+      border: none;
+      margin-right: 1.25rem; }
+    .page-product__shop .page-product__shop-left .shop-info {
+      margin-bottom: 10px; }
+    .page-product__shop .page-product__shop-left .btn_shop {
+      border: 1px solid lightgray;
+      padding: 5px 10px;
+      color: #404040; }
+    .page-product__shop .page-product__shop-left .btn_shop:hover {
+      background-color: #f0f0f0; }
+
 .loadingBox {
   position: fixed;
   left: 0;
@@ -321,14 +292,12 @@ button.normal:hover {
   transition: all ease-in-out 0.2s;
   z-index: 100; }
 
-/* line 1, ../sass/cartScreen.scss */
 .cart-page,
 .cart-page-checkout {
   box-shadow: 0 0 8px 0 lightgray;
   padding: 30px;
   border-radius: 10px; }
 
-/* line 7, ../sass/cartScreen.scss */
 .cart-item-overview__thumbnail {
   background-position: 50%;
   background-size: contain;
@@ -336,11 +305,9 @@ button.normal:hover {
   width: 8rem;
   height: 8rem; }
 
-/* line 14, ../sass/cartScreen.scss */
 .cart-page-header {
   border-bottom: 1px solid lightgray; }
 
-/* line 17, ../sass/cartScreen.scss */
 .image__content {
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -348,19 +315,16 @@ button.normal:hover {
   width: 8rem;
   height: 8rem; }
 
-/* line 24, ../sass/cartScreen.scss */
 .order-page-section__status,
 .order-page-section__address,
 .order-page-section__order,
 .order-page-section__payment {
   border-bottom: 1px solid lightgray; }
 
-/* line 30, ../sass/cartScreen.scss */
 .order-page-section__payment__header {
   border-bottom: 1px dashed lightgray;
   padding-bottom: 20px; }
 
-/* line 34, ../sass/cartScreen.scss */
 .payment-form-section {
   margin: 0 auto;
   background-color: white;
@@ -369,11 +333,9 @@ button.normal:hover {
   border-radius: 20px;
   width: 500px; }
 
-/* line 1, ../sass/signinScreen.scss */
 .signin-page-section, .signup-page-section {
   transition: all 0.2s ease-in-out; }
 
-/* line 4, ../sass/signinScreen.scss */
 .signin-form-section, .signup-form-section {
   background-color: white;
   padding: 50px;
@@ -381,7 +343,6 @@ button.normal:hover {
   border-radius: 20px;
   width: 500px; }
 
-/* line 12, ../sass/signinScreen.scss */
 .input_form {
   padding: 15px;
   border-radius: 10px;
@@ -389,27 +350,22 @@ button.normal:hover {
   outline: none;
   width: 100%; }
 
-/* line 19, ../sass/signinScreen.scss */
 .text-title-form {
   font-size: 4rem;
   color: #00D1EC; }
 
-/* line 23, ../sass/signinScreen.scss */
 .text-sub-form {
   font-size: 1.8rem;
   color: #686868; }
 
 /*Add Page*/
-/* line 2, ../sass/sellerScreen.scss */
 .seller-page-section {
   box-shadow: 0 0 8px 0 lightgray;
   border-radius: 10px; }
 
-/* line 6, ../sass/sellerScreen.scss */
 .seller-page-section__header {
   border-bottom: 1px solid lightgray; }
 
-/* line 9, ../sass/sellerScreen.scss */
 .input_wrap {
   border: 1px solid #008cf8;
   border-radius: 10px;
@@ -420,23 +376,19 @@ button.normal:hover {
   flex-wrap: nowrap;
   background-color: white; }
 
-/* line 19, ../sass/sellerScreen.scss */
 .input_wrap input {
   border: none;
   outline: none;
   width: 95%; }
 
-/* line 24, ../sass/sellerScreen.scss */
 .input__suffix {
   padding-left: 8px;
   border-left: 1px solid lightgray; }
 
-/* line 28, ../sass/sellerScreen.scss */
 .seller-page-categories__selector {
   background-color: #e8e8e8;
   box-shadow: 0 0 8px 0 darkgray; }
 
-/* line 32, ../sass/sellerScreen.scss */
 .scroll-item {
   -webkit-box-flex: 1;
   -ms-flex: 1;
@@ -446,40 +398,33 @@ button.normal:hover {
   background-color: whitesmoke;
   box-shadow: 0 0 4px 0 darkgray; }
 
-/* line 41, ../sass/sellerScreen.scss */
 .input_wrap-normal {
   width: 30%;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 4px 0 darkgray; }
-  /* line 46, ../sass/sellerScreen.scss */
   .input_wrap-normal input {
     border: none;
     outline: none;
     background-color: none;
     width: 90%; }
 
-/* line 53, ../sass/sellerScreen.scss */
 .scroll-item li {
   cursor: pointer;
   flex: 1; }
 
-/* line 57, ../sass/sellerScreen.scss */
 .scroll-item li:hover {
   background-color: lightgray; }
 
 @media screen and (max-width: 1200px) {
-  /* line 61, ../sass/sellerScreen.scss */
   .input_wrap-normal {
     width: 100%; } }
-/* line 66, ../sass/sellerScreen.scss */
 .input-wrap {
   position: relative;
   line-height: 0;
   flex-basis: 1000px;
   width: 1000px;
   max-width: 1000px; }
-  /* line 73, ../sass/sellerScreen.scss */
   .input-wrap .input-wrap_inner-large {
     position: relative;
     height: 40px;
@@ -487,7 +432,6 @@ button.normal:hover {
     border-radius: 4px;
     padding: 0 12px;
     width: 100%; }
-  /* line 81, ../sass/sellerScreen.scss */
   .input-wrap .input-wrap_input {
     width: 100%;
     height: 100%;
@@ -497,13 +441,11 @@ button.normal:hover {
     color: #666;
     transition: border 0.2s ease-in-out; }
 
-/* line 91, ../sass/sellerScreen.scss */
 .text-wrap {
   flex-basis: 166px;
   width: 166px;
   max-width: 166px; }
 
-/* line 97, ../sass/sellerScreen.scss */
 .textarea-wrap_inner-large {
   padding: 12px;
   width: 100%;
@@ -517,7 +459,6 @@ button.normal:hover {
   height: 198px;
   border: 1px solid #e5e5e5;
   border-radius: 4px; }
-  /* line 110, ../sass/sellerScreen.scss */
   .textarea-wrap_inner-large .input-wrap_textarea {
     resize: none;
     color: #666;
@@ -526,12 +467,10 @@ button.normal:hover {
     outline: none;
     border: none; }
 
-/* line 119, ../sass/sellerScreen.scss */
 .select-wrap_inner-large {
   width: 100%;
   border: 1px solid #e5e5e5;
   height: 40px; }
-  /* line 124, ../sass/sellerScreen.scss */
   .select-wrap_inner-large .input-wrap_select {
     width: 100%;
     height: 100%;
@@ -539,11 +478,9 @@ button.normal:hover {
     border: none;
     color: #666; }
 
-/* line 132, ../sass/sellerScreen.scss */
 .input_img::-webkit-file-upload-button {
   visibility: hidden; }
 
-/* line 135, ../sass/sellerScreen.scss */
 .image_input-wrap {
   position: relative;
   border: 1px dotted #008cf8;
@@ -552,21 +489,18 @@ button.normal:hover {
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important; }
-  /* line 143, ../sass/sellerScreen.scss */
   .image_input-wrap .image_input-inner {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #008cf8; }
-  /* line 150, ../sass/sellerScreen.scss */
   .image_input-wrap .input_img {
     opacity: 0;
     width: 100%;
     height: 100%; }
 
 /*Seller Page*/
-/* line 157, ../sass/sellerScreen.scss */
 .sidebar-container {
   position: relative;
   width: 220px;
@@ -574,7 +508,6 @@ button.normal:hover {
   background-color: white;
   z-index: 900;
   box-shadow: 0 0 0 1px lightgray; }
-  /* line 164, ../sass/sellerScreen.scss */
   .sidebar-container .sidebar {
     position: fixed;
     left: 0;
@@ -582,14 +515,11 @@ button.normal:hover {
     overflow: hidden;
     min-height: calc(100vh - 56px);
     width: inherit; }
-    /* line 172, ../sass/sellerScreen.scss */
     .sidebar-container .sidebar .sidebar-menu {
       padding: 16px 16px 0; }
-      /* line 174, ../sass/sellerScreen.scss */
       .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box {
         margin-bottom: 20px;
         height: auto; }
-        /* line 177, ../sass/sellerScreen.scss */
         .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-menu-item {
           display: -webkit-box;
           display: -ms-flexbox;
@@ -605,7 +535,6 @@ button.normal:hover {
           color: #999;
           cursor: pointer;
           padding: 5px 0; }
-        /* line 193, ../sass/sellerScreen.scss */
         .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-submenu {
           margin-top: 10px;
           padding-left: 32px;
@@ -613,7 +542,6 @@ button.normal:hover {
           -webkit-transition: height 0.2s ease;
           transition: height 0.2s ease;
           height: 0; }
-          /* line 201, ../sass/sellerScreen.scss */
           .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-submenu .sidebar-submenu-item {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -629,26 +557,21 @@ button.normal:hover {
             font-size: 13px;
             line-height: 18px;
             padding: 5px 0; }
-            /* line 216, ../sass/sellerScreen.scss */
             .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-submenu .sidebar-submenu-item .sidebar-submenu-item-link {
               color: inherit;
               width: 100%; }
 
-/* line 226, ../sass/sellerScreen.scss */
 .submenu-active {
   height: 10rem !important; }
 
 /*Mine Products*/
-/* line 231, ../sass/sellerScreen.scss */
 .product-list-main {
   position: relative;
   width: 100%; }
 
-/* line 235, ../sass/sellerScreen.scss */
 .product-grid-container {
   position: relative; }
 
-/* line 238, ../sass/sellerScreen.scss */
 .product-card-item {
   position: relative;
   width: 162px;
@@ -658,7 +581,6 @@ button.normal:hover {
   box-shadow: 0 0 0 1px #e5e5e5;
   color: #404040; }
 
-/* line 247, ../sass/sellerScreen.scss */
 .app-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -667,31 +589,25 @@ button.normal:hover {
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
   flex-direction: row; }
-  /* line 256, ../sass/sellerScreen.scss */
   .app-container .page-container {
     width: 100%; }
 
-/* line 260, ../sass/sellerScreen.scss */
 .product-actions {
   color: #404040; }
-  /* line 262, ../sass/sellerScreen.scss */
   .product-actions a {
     color: inherit; }
 
-/* line 1, ../sass/checkoutScreen.scss */
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;
   color: #c0c0c0;
   flex: 1;
   padding: 1rem; }
 
-/* line 7, ../sass/checkoutScreen.scss */
 .checkout-steps > div.active {
   border-top-color: #008CF8;
   color: #008CF8;
   font-weight: bold; }
 
-/* line 1, ../sass/Modal.scss */
 .modal__mask {
   position: fixed;
   top: 0;
@@ -700,7 +616,6 @@ button.normal:hover {
   left: 0;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.4); }
-  /* line 9, ../sass/Modal.scss */
   .modal__mask .modal__container {
     position: absolute;
     top: 40px;
@@ -716,7 +631,6 @@ button.normal:hover {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center; }
-    /* line 24, ../sass/Modal.scss */
     .modal__mask .modal__container .modal__box {
       position: relative;
       display: -webkit-inline-box;
@@ -726,7 +640,6 @@ button.normal:hover {
       padding: 0 24px;
       -webkit-transform-origin: top;
       transform-origin: top; }
-      /* line 33, ../sass/Modal.scss */
       .modal__mask .modal__container .modal__box .modal__content {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -742,12 +655,10 @@ button.normal:hover {
         border-radius: 3px;
         -webkit-box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.12);
         box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.12); }
-        /* line 48, ../sass/Modal.scss */
         .modal__mask .modal__container .modal__box .modal__content .modal__header {
           flex-shrink: 0;
           min-height: 24px;
           padding: 24px; }
-        /* line 53, ../sass/Modal.scss */
         .modal__mask .modal__container .modal__box .modal__content .modal__body {
           -webkit-box-flex: 1;
           -ms-flex-positive: 1;
@@ -756,20 +667,17 @@ button.normal:hover {
           padding: 0 24px;
           overflow: auto;
           font-size: 14px; }
-          /* line 61, ../sass/Modal.scss */
           .modal__mask .modal__container .modal__box .modal__content .modal__body .modal__body-inner-bottom {
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
             margin: 10px 10px 4px 8px;
             color: #404040; }
-            /* line 67, ../sass/Modal.scss */
             .modal__mask .modal__container .modal__box .modal__content .modal__body .modal__body-inner-bottom .modal__image {
               width: 80px;
               height: 80px;
               margin-right: 16px;
               border: 1px solid #e8e8e8; }
-            /* line 73, ../sass/Modal.scss */
             .modal__mask .modal__container .modal__box .modal__content .modal__body .modal__body-inner-bottom .modal__name {
               -webkit-box-flex: 1;
               -ms-flex: 1;
@@ -786,24 +694,33 @@ button.normal:hover {
               font-size: 18px;
               border-bottom: 1px dashed #e8e8e8;
               overflow: hidden; }
-        /* line 92, ../sass/Modal.scss */
         .modal__mask .modal__container .modal__box .modal__content .modal__footer {
           flex-shrink: 0;
           padding: 24px;
           overflow: hidden; }
-          /* line 96, ../sass/Modal.scss */
           .modal__mask .modal__container .modal__box .modal__content .modal__footer .modal__footer-buttons {
             display: -webkit-inline-box;
             display: -ms-inline-flexbox;
             display: inline-flex;
             float: right; }
 
-/* line 12, ../sass/App.scss */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .pagination .page-item {
+    padding: 0;
+    min-width: 2.5rem;
+    text-align: center;
+    height: 1.875rem;
+    font-size: 1.25rem;
+    margin-left: .9375rem;
+    margin-right: .9375rem; }
+
 html {
   font-size: 62.5%;
   /* 16px x 62.5 = 10px = 1rem */ }
 
-/* line 15, ../sass/App.scss */
 body {
   margin: 0;
   font-size: 1.6rem;
@@ -813,151 +730,116 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f6f6; }
 
-/* line 24, ../sass/App.scss */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
 
-/* line 29, ../sass/App.scss */
 li {
   list-style: none;
   padding: 0 20px; }
 
-/* line 33, ../sass/App.scss */
 li a {
   text-decoration: none; }
 
-/* line 36, ../sass/App.scss */
 a {
   text-decoration: none; }
 
-/* line 39, ../sass/App.scss */
 .text-title {
   color: #333;
   font-size: 3rem; }
 
-/* line 43, ../sass/App.scss */
 .text-center {
   text-align: center; }
 
-/* line 46, ../sass/App.scss */
 .text-capitalize {
   text-transform: capitalize; }
 
-/* line 49, ../sass/App.scss */
 .text-blue {
   color: #0090ff;
   font-size: 2rem;
   text-decoration: underline; }
 
-/* line 54, ../sass/App.scss */
 .text-underline {
   text-decoration: underline;
   text-decoration-color: #0090ff;
   text-underline-position: under; }
 
-/* line 59, ../sass/App.scss */
 .small_img {
   width: 30px; }
 
-/* line 62, ../sass/App.scss */
 .w-100 {
   width: 100%; }
 
-/* line 65, ../sass/App.scss */
 .p-1 {
   padding: 10px; }
 
-/* line 68, ../sass/App.scss */
 .p-2 {
   padding: 20px; }
 
-/* line 71, ../sass/App.scss */
 .p-3 {
   padding: 30px; }
 
-/* line 74, ../sass/App.scss */
 .px-1 {
   padding: 0 10px; }
 
-/* line 77, ../sass/App.scss */
 .py-1 {
   padding: 10px 0; }
 
-/* line 80, ../sass/App.scss */
 .py-2 {
   padding: 20px 0; }
 
-/* line 83, ../sass/App.scss */
 .py-3 {
   padding: 30px 0; }
 
-/* line 86, ../sass/App.scss */
 .py-5 {
   padding: 50px 0; }
 
-/* line 89, ../sass/App.scss */
 .pt-1 {
   padding-top: 10px; }
 
-/* line 92, ../sass/App.scss */
 .pt-3 {
   padding-top: 30px; }
 
-/* line 95, ../sass/App.scss */
 .pl-2 {
   padding-left: 10px; }
 
-/* line 98, ../sass/App.scss */
 .pr-1 {
   padding-right: 20px; }
 
-/* line 101, ../sass/App.scss */
 .pr-2 {
   padding-right: 20px; }
 
-/* line 104, ../sass/App.scss */
 .m-1 {
   margin: 10; }
 
-/* line 107, ../sass/App.scss */
 .m-05 {
   margin: 5px; }
 
-/* line 110, ../sass/App.scss */
 .m-01 {
   margin: 1px; }
 
-/* line 113, ../sass/App.scss */
 .m-2 {
   margin: 20px; }
 
-/* line 116, ../sass/App.scss */
 .my-2 {
   margin: 20px 0; }
 
-/* line 119, ../sass/App.scss */
 .my-1 {
   margin: 10px 0; }
 
-/* line 122, ../sass/App.scss */
 .mx-1 {
   margin: 0 10px; }
 
-/* line 125, ../sass/App.scss */
 .mt-1 {
   margin-top: 10px; }
 
-/* line 128, ../sass/App.scss */
 .mt-4 {
   margin-top: 40px; }
 
-/* line 131, ../sass/App.scss */
 .text-bold {
   font-weight: bolder; }
 
-/* line 134, ../sass/App.scss */
 .row {
   display: flex;
   flex-direction: row;
@@ -965,98 +847,76 @@ a {
   align-items: center;
   flex-wrap: wrap; }
 
-/* line 141, ../sass/App.scss */
 .col-1 {
   flex: 1 1 25rem; }
 
-/* line 144, ../sass/App.scss */
 .col-2 {
   flex: 2 1 50rem; }
 
-/* line 147, ../sass/App.scss */
 .d-flex {
   display: flex; }
 
-/* line 150, ../sass/App.scss */
 .flex-column {
   flex-direction: column; }
 
-/* line 153, ../sass/App.scss */
 .flex-end {
   justify-content: flex-end; }
 
-/* line 156, ../sass/App.scss */
 .flex-start {
   justify-content: flex-start; }
 
-/* line 159, ../sass/App.scss */
 .align-center {
   align-items: center; }
 
-/* line 162, ../sass/App.scss */
 .align-start {
   align-items: flex-start; }
 
-/* line 165, ../sass/App.scss */
 .space-evenly {
   justify-content: space-evenly; }
 
-/* line 168, ../sass/App.scss */
 .no-wrap {
   flex-wrap: nowrap; }
 
-/* line 171, ../sass/App.scss */
 .center {
   justify-content: center; }
 
-/* line 174, ../sass/App.scss */
 img.medium {
   width: 50%; }
 
-/* line 177, ../sass/App.scss */
 .container {
   margin: 0 auto; }
 
-/* line 180, ../sass/App.scss */
 .alert {
   padding: 1rem;
   border: 0.1rem solid transparent;
   border: 0.5rem;
   margin: 10px 0; }
 
-/* line 186, ../sass/App.scss */
 .error {
   color: #a02020; }
 
-/* line 189, ../sass/App.scss */
 .success {
   color: #20a020; }
 
-/* line 192, ../sass/App.scss */
 .loading {
   color: #007ff4; }
 
-/* line 195, ../sass/App.scss */
 .alert-loading {
   color: #007ff4;
   background-color: #e6efff; }
 
-/* line 199, ../sass/App.scss */
 .alert-success {
   color: #20a020;
   background-color: #def8d6; }
 
-/* line 203, ../sass/App.scss */
 .alert-info {
   color: #2020a0;
   background-color: #e0e0ff; }
 
-/* line 207, ../sass/App.scss */
 .alert-danger {
   color: #a02020;
   background-color: #ffe0e0e0; }
 
-/* line 211, ../sass/App.scss */
 .badge {
   background-color: #f02020;
   color: white;
@@ -1065,41 +925,43 @@ img.medium {
   font-size: 1.4rem;
   margin-left: 0.2rem; }
 
-/* line 219, ../sass/App.scss */
 button {
   outline: none;
   border: none;
   background-color: inherit; }
 
-/* line 224, ../sass/App.scss */
 .bg-white {
   background-color: white;
   box-shadow: 0 0 8px 0 lightgray;
   border-radius: 10px; }
 
-/* line 229, ../sass/App.scss */
 .pointer {
   cursor: pointer; }
 
-/* line 232, ../sass/App.scss */
 .text-overflow {
   overflow: hidden;
   text-overflow: ellipsis; }
 
+.wrapper-btn {
+  text-align: center; }
+  .wrapper-btn .btn_seeMore {
+    border: 1px solid lightgray;
+    padding: 10px 20px;
+    border-radius: 3px;
+    color: #404040; }
+  .wrapper-btn .btn_seeMore:hover {
+    background-color: lightgray; }
+
 @media (min-width: 576px) {
-  /* line 237, ../sass/App.scss */
   .container {
     max-width: 100%; } }
 @media (min-width: 768px) {
-  /* line 243, ../sass/App.scss */
   .container {
     max-width: 720px; } }
 @media (min-width: 992px) {
-  /* line 249, ../sass/App.scss */
   .container {
     max-width: 960px; } }
 @media (min-width: 1200px) {
-  /* line 255, ../sass/App.scss */
   .container {
     max-width: 1280px; } }
 

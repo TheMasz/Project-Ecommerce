@@ -25,6 +25,7 @@ import MyProductsScreen from "./screens/Seller/AddProducts/MyProductsScreen";
 import EditProduct from "./screens/Seller/AddProducts/EditProduct";
 import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
+import ProductsListScreen from "./screens/ProductsListScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function App() {
   const handleScroll = (e) => {
     e.preventDefault();
     const offset = window.scrollY;
-    if (offset >= 100) {
+    if (offset >= 50) {
       setSticky(true);
     } else {
       setSticky(false);
@@ -163,6 +164,7 @@ function App() {
             component={SearchScreen}
             exact
           ></Route> */}
+          <Route path="/product/pageNumber/:pageNumber" component={ProductsListScreen} />
         <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
         <Route path="/orderhistory" component={OrderHistoryScreen} />
         <Route path="/order/:id" component={OrderScreen} exact />

@@ -52,4 +52,17 @@ userRouter.post(
   })
 );
 
+userRouter.get(
+  "/info/:id",
+  expressAsyncHandler(async (req, res) => {
+    const userInfo = await User.findById(req.params.seller);
+    console.log(req.params.seller);
+    if (userInfo) {
+      res.send(userInfo);
+    } else {
+      return res.status(404).send({ message: "User Not Found" });
+    }
+  })
+);
+
 export default userRouter;

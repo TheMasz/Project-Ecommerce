@@ -126,8 +126,7 @@ productRouter.put(
         arr.push(images[index]);
       }
     }
-    console.log(arr);
-
+    
     const product = await Product.findById(productId);
     if (product) {
       product.name = req.body.name;

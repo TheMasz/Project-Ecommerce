@@ -15,7 +15,7 @@ export default function HomeScreen() {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(18);
+  const [postsPerPage] = useState(6);
 
   useEffect(() => {
     dispatch(listProduct());
@@ -47,11 +47,10 @@ export default function HomeScreen() {
                 <Product key={product._id} product={product} />
               ))}
             </div>
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={products.length}
-              paginate={paginate}
-            />
+            <div className="wrapper-btn">
+            <Link to="/product/pageNumber/2" className="btn_seeMore">ดูเพิ่มเติม</Link>
+            </div>
+           
           </>
         )}
       </div>

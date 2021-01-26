@@ -87,3 +87,27 @@ button.normal:hover{
         background-position: center !important;
     }
 }
+.page-product__shop{
+    width: 100%;
+    padding: 20px;
+    .page-product__shop-left{
+        border-right: 1px solid lightgray;
+        .shop-avatar{
+            width: 5rem;
+            height: 5rem;
+            border: none;
+            margin-right: 1.25rem;
+        }
+        .shop-info{
+            margin-bottom: 10px;
+        }
+        .btn_shop{
+           border: 1px solid lightgray;
+           padding: 5px 10px;
+           color: #404040;
+        }
+        .btn_shop:hover{
+            background-color: rgb(240, 240, 240);
+        }
+    }
+}

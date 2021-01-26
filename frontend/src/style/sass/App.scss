@@ -8,6 +8,8 @@
 @import "sellerScreen";
 @import "checkoutScreen";
 @import "Modal";
+@import "Pogination";
+
 
 html {
   font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
@@ -233,6 +235,21 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.wrapper-btn{
+  text-align: center;
+  .btn_seeMore{
+    border: 1px solid lightgray;
+    padding: 10px 20px ;
+    border-radius: 3px;
+    color: #404040;
+    
+  }
+  
+.btn_seeMore:hover{
+  background-color: lightgray;
+}
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 100%;

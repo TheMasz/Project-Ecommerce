@@ -1,4 +1,3 @@
-/* line 1, ../sass/header.scss */
 header {
   height: auto;
   padding: 10px 50px;
@@ -6,14 +5,12 @@ header {
   background-color: #fefefe;
   box-shadow: 0 0 10px 0 darkgray; }
 
-/* line 9, ../sass/header.scss */
 .btn_toggler {
   border: none;
   outline: none;
   background-color: inherit;
   padding: 0 20px; }
 
-/* line 15, ../sass/header.scss */
 .category_container {
   position: fixed;
   top: 0;
@@ -30,7 +27,6 @@ header {
   justify-content: center;
   overflow: hidden; }
 
-/* line 33, ../sass/header.scss */
 .sticky {
   position: fixed;
   top: 0;
@@ -38,25 +34,20 @@ header {
   right: 0;
   z-index: 99; }
 
-/* line 40, ../sass/header.scss */
 .link_category {
   width: 100%;
   transition: all 0.25s ease-in-out; }
 
-/* line 44, ../sass/header.scss */
 .link_category:hover {
   border-radius: 10px;
   box-shadow: 0 0 8px 0 lightgray; }
 
-/* line 48, ../sass/header.scss */
 .dropdown {
   position: relative; }
 
-/* line 51, ../sass/header.scss */
 .dropdown-content {
   display: none; }
 
-/* line 54, ../sass/header.scss */
 .dropdown-content-active {
   display: flex;
   flex-direction: column;
@@ -71,40 +62,31 @@ header {
   border-radius: 0.5rem;
   box-shadow: 0 0 4px 0 lightgray; }
 
-/* line 69, ../sass/header.scss */
 .left-active {
   position: relative; }
 
 @media (min-width: 576px) {
-  /* line 74, ../sass/header.scss */
   .active {
     width: 40%; }
 
-  /* line 77, ../sass/header.scss */
   .left-active {
     left: 40%; } }
 @media (min-width: 768px) {
-  /* line 83, ../sass/header.scss */
   .active {
     width: 35%; }
 
-  /* line 86, ../sass/header.scss */
   .left-active {
     left: 35%; } }
 @media (min-width: 992px) {
-  /* line 92, ../sass/header.scss */
   .active {
     width: 30%; }
 
-  /* line 95, ../sass/header.scss */
   .left-active {
     left: 30%; } }
 @media (min-width: 1200px) {
-  /* line 101, ../sass/header.scss */
   .active {
     width: 15%; }
 
-  /* line 104, ../sass/header.scss */
   .left-active {
     left: 15%; } }
 

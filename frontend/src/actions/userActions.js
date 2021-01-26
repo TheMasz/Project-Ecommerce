@@ -1,5 +1,8 @@
 import Axios from "axios";
 import {
+  USER_INFO_FAIL,
+  USER_INFO_REQUEST,
+  USER_INFO_SUCCESS,
   USER_SIGNIN_FAIL,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -54,4 +57,20 @@ export const signout = () => (dispatch) => {
   localStorage.removeItem("shippingAddress");
   localStorage.removeItem("payment");
   dispatch({ type: USER_SIGNOUT });
+};
+
+export const sellerInfo = (seller) => async(dispatch) => {
+  dispatch({type:USER_INFO_REQUEST})
+  try{
+    const {data} = await Axios.get(`/api/users/info/${seller}`)
+    dispatch({type: USER_INFO_SUCCESS, payload: data})
+  }catch(error){
+    dispatch({
+      type: USER_INFO_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };
