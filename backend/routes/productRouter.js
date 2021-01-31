@@ -10,7 +10,9 @@ const productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
-    const products = await Product.find({});
+    const name = req.query.name || '';
+    const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+    const products = await Product.find({...nameFilter});
     res.send(products);
   })
 );
@@ -38,6 +40,18 @@ productRouter.get(
   "/showList/:showList",
   expressAsyncHandler(async (req, res) => {
     const products = await Product.find({ showList: req.params.showList });
+    if (products) {
+      res.send(products);
+    } else {
+      return res.status(404).send({ message: "Product Not Found" });
+    }
+  })
+);
+
+productRouter.get(
+  "/shop/seller/:id",
+  expressAsyncHandler(async (req, res) => {
+    const products = await Product.find({ seller: req.params.id });
     if (products) {
       res.send(products);
     } else {
@@ -154,7 +168,6 @@ productRouter.put(
 productRouter.delete(
   "/product/:id",
   isAuth,
-
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {

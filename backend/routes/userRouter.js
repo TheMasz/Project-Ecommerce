@@ -3,7 +3,7 @@ import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import data from "../data.js";
 import User from "../models/userModel.js";
-import { generateToken } from "../utils.js";
+import { generateToken, isAuth } from "../utils.js";
 
 const userRouter = express.Router();
 
@@ -23,6 +23,7 @@ userRouter.post(
           _id: user._id,
           name: user.name,
           email: user.email,
+          avatar:user.avatar,
           isAdmin: user.isAdmin,
           token: generateToken(user),
         });
@@ -55,13 +56,40 @@ userRouter.post(
 userRouter.get(
   "/info/:id",
   expressAsyncHandler(async (req, res) => {
-    const userInfo = await User.findById(req.params.seller);
-    console.log(req.params.seller);
+    const userInfo = await User.findById(req.params.id);
     if (userInfo) {
-      res.send(userInfo);
+      res.send({
+        _id: userInfo._id,
+        name: userInfo.name,
+        email: userInfo.email,
+        avatar: userInfo.avatar,
+        createdAt: userInfo.createdAt,
+      });
     } else {
       return res.status(404).send({ message: "User Not Found" });
     }
+  })
+);
+
+userRouter.put(
+  "/profile/:id/edit",
+
+  expressAsyncHandler(async (req, res) => {
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    if (user) {
+      user.name = req.body.name;
+      user.email = req.body.email;
+      user.avatar = req.body.fileName;
+      const updatedUser = await user.save();
+      res.status(201).send(updatedUser);
+      if(req.files.file){
+        req.files.file.mv(`./frontend/public/uploads/users/${req.files.file.name}`);
+      }
+    } else {
+      res.status(404).send({ message: "User Not Found" });
+    }
+
   })
 );
 

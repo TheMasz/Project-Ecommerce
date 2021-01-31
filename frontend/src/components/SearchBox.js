@@ -11,8 +11,8 @@ export default function SearchBox(props) {
       <div className="row">
         <input
           type="text"
-          name="q"
-          id="q"
+          name="query"
+          id="query"
           onChange={(e) => setName(e.target.value)}
         ></input>
         <button  type="submit">
@@ -24,5 +24,6 @@ export default function SearchBox(props) {
         </button>
       </div>
     </form>
+
   );
 }

@@ -9,6 +9,8 @@
 @import "checkoutScreen";
 @import "Modal";
 @import "Pogination";
+@import "EditUserScreen";
+@import "SearchScreen";
 
 
 html {
@@ -248,6 +250,15 @@ button {
 .btn_seeMore:hover{
   background-color: lightgray;
 }
+}
+.avatar{
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 @media (min-width: 576px) {

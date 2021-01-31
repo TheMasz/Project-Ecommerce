@@ -1,25 +1,31 @@
+/* line 1, ../sass/productScreen.scss */
 .box-small {
   max-width: 10rem;
   width: 100%;
   box-shadow: 0 0 8px 0 lightgray;
   object-fit: contain; }
 
+/* line 7, ../sass/productScreen.scss */
 .text-description {
   color: #7a7575;
   font-size: 2.5rem; }
 
+/* line 11, ../sass/productScreen.scss */
 button {
   cursor: pointer; }
 
+/* line 14, ../sass/productScreen.scss */
 button.block {
   width: 100%; }
 
+/* line 17, ../sass/productScreen.scss */
 button.primary {
-  background-color: #008CF8;
+  background-color: #008cf8;
   color: white;
   padding: 10px;
   border-radius: 10px; }
 
+/* line 23, ../sass/productScreen.scss */
 button.normal {
   background-color: #fff;
   color: #404040;
@@ -27,12 +33,15 @@ button.normal {
   border-radius: 10px;
   border: 1px solid lightgray; }
 
+/* line 30, ../sass/productScreen.scss */
 button.primary:hover {
   filter: brightness(110%); }
 
+/* line 33, ../sass/productScreen.scss */
 button.normal:hover {
   filter: brightness(90%); }
 
+/* line 36, ../sass/productScreen.scss */
 .selector {
   border-top: none;
   border-left: none;
@@ -41,6 +50,7 @@ button.normal:hover {
   outline: none;
   background-color: transparent; }
 
+/* line 44, ../sass/productScreen.scss */
 .AddToCart {
   animation: wriggly 0.3s; }
 
@@ -51,6 +61,7 @@ button.normal:hover {
     transform: rotate(90deg); }
   100% {
     transform: rotate(0deg); } }
+/* line 58, ../sass/productScreen.scss */
 .product-image__large {
   width: 70%;
   height: 450px;
@@ -58,6 +69,7 @@ button.normal:hover {
   background-color: white;
   border-radius: 10px;
   text-align: center; }
+  /* line 66, ../sass/productScreen.scss */
   .product-image__large .product-image__large-inner {
     width: 100%;
     height: 100%;
@@ -65,12 +77,14 @@ button.normal:hover {
     background-size: contain !important;
     background-position: center !important; }
 
+/* line 74, ../sass/productScreen.scss */
 .product-image__small {
   width: 20%;
   height: 100px;
   padding: 5px;
   background-color: white;
   box-shadow: 0 0 4px 0 lightgray; }
+  /* line 80, ../sass/productScreen.scss */
   .product-image__small .product-image__small-inner {
     width: 100%;
     height: 100%;
@@ -78,22 +92,33 @@ button.normal:hover {
     background-size: contain !important;
     background-position: center !important; }
 
+/* line 88, ../sass/productScreen.scss */
 .page-product__shop {
   width: 100%;
   padding: 20px; }
+  /* line 91, ../sass/productScreen.scss */
   .page-product__shop .page-product__shop-left {
     border-right: 1px solid lightgray; }
+    /* line 93, ../sass/productScreen.scss */
     .page-product__shop .page-product__shop-left .shop-avatar {
+      position: relative;
       width: 5rem;
       height: 5rem;
       border: none;
-      margin-right: 1.25rem; }
+      margin-right: 1.25rem;
+      border-radius: 50%;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important; }
+    /* line 104, ../sass/productScreen.scss */
     .page-product__shop .page-product__shop-left .shop-info {
       margin-bottom: 10px; }
+    /* line 107, ../sass/productScreen.scss */
     .page-product__shop .page-product__shop-left .btn_shop {
       border: 1px solid lightgray;
       padding: 5px 10px;
       color: #404040; }
+    /* line 112, ../sass/productScreen.scss */
     .page-product__shop .page-product__shop-left .btn_shop:hover {
       background-color: #f0f0f0; }
 

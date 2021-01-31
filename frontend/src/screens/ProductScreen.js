@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 import { detailsProduct } from "../actions/productActions";
-import { sellerInfo } from "../actions/userActions";
+import { userInfo } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
+import { USER_INFO_RESET } from "../constants/userConstants";
 
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
@@ -12,13 +14,23 @@ export default function ProductScreen(props) {
   const productId = props.match.params.id;
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-  const infoSeller = useSelector((state) => state.sellerInfo);
-  const { loading: sellerLoading, seller, error: errorSeller } = infoSeller;
+  const infoUser = useSelector((state) => state.userInfo);
+  const { loading: sellerLoading, error: errorSeller, user } = infoUser;
   const [image, setImage] = useState(0);
+  const [sellerId, setSellerId] = useState();
 
   useEffect(() => {
-    dispatch(detailsProduct(productId));
-  }, [dispatch, productId]);
+    if (!product || product._id !== productId) {
+      dispatch({ type: USER_INFO_RESET });
+      dispatch(detailsProduct(productId));
+    } else {
+      setSellerId(product.seller);
+    }
+    if (!user) {
+      dispatch(userInfo(sellerId));
+    }
+  }, [dispatch, productId, product, sellerId, user]);
+
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
@@ -118,22 +130,36 @@ export default function ProductScreen(props) {
             ) : errorSeller ? (
               <MessageBox variant="danger">{errorSeller}</MessageBox>
             ) : (
-              <div className="col-2 page-product__shop-left">
-                <div className="row flex-start">
-                  <div className="shop-avatar">
-                    <img src="/assets/icons/menu1.svg" />
-                  </div>
-                  <div>
-                    <div className="shop-info"></div>
-                    <Link to="" className="btn_shop">
-                      ดูร้านค้า
-                    </Link>
+              <>
+                <div className="col-2 page-product__shop-left">
+                  <div className="row flex-start">
+                    <div className="shop-avatar" style={
+                        user.avatar
+                          ? {
+                              background: `url('/uploads/users/${user.avatar}')`,
+                            }
+                          : { background: "url('/assets/icons/shop.jpg')" }
+                      }>
+                    </div>
+                    <div>
+                      <div className="shop-info">{user.name}</div>
+                      <Link
+                        to={`/shop/seller/${user._id}`}
+                        className="btn_shop"
+                      >
+                        ดูร้านค้า
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div className="col-2 page-product__shop-right">
+                  <div className="text-overflow px-1">
+                    เข้าร่วมเมื่อ{" "}
+                    {dayjs(user.createdAt).locale("th").format("DD MMMM YYYY")}
+                  </div>
+                </div>
+              </>
             )}
-
-            <div className="col-2 page-product__shop-right"></div>
           </div>
         </>
       )}

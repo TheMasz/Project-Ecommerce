@@ -10,6 +10,9 @@ import {
   USER_SIGNUP_FAIL,
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
+  USER_UPDATE_FAIL,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
 } from "../constants/userConstants";
 
 export const signin = (email, password) => async (dispatch) => {
@@ -59,10 +62,10 @@ export const signout = () => (dispatch) => {
   dispatch({ type: USER_SIGNOUT });
 };
 
-export const sellerInfo = (seller) => async(dispatch) => {
+export const userInfo = (userId) => async(dispatch) => {
   dispatch({type:USER_INFO_REQUEST})
   try{
-    const {data} = await Axios.get(`/api/users/info/${seller}`)
+    const {data} = await Axios.get(`/api/users/info/${userId}`)
     dispatch({type: USER_INFO_SUCCESS, payload: data})
   }catch(error){
     dispatch({
@@ -72,5 +75,26 @@ export const sellerInfo = (seller) => async(dispatch) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+};
+
+export const updateUser = (userId,user) => async (dispatch, getState) => {
+  dispatch({ type: USER_UPDATE_REQUEST, payload: user });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.put(`/api/users/profile/${userId}/edit`, user, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+    localStorage.setItem('userInfo', JSON.stringify(data));
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: USER_UPDATE_FAIL, payload: message });
   }
 };

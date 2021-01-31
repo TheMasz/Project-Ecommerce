@@ -17,7 +17,6 @@ import PaymentBankScreen from "./screens/Shipping/PaymentBankScreen";
 
 import SellerScreen from "./screens/Seller/SellerScreen";
 
-
 import NewProduct from "./screens/Seller/AddProducts/NewProduct";
 import CategoryScreen from "./screens/CategoryScreen";
 import CategoriesScreen from "./screens/Seller/AddProducts/CategoriesScreen";
@@ -26,6 +25,8 @@ import EditProduct from "./screens/Seller/AddProducts/EditProduct";
 import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
 import ProductsListScreen from "./screens/ProductsListScreen";
+import SellerShopScreen from "./screens/SellerShopScreen";
+import EditUserScreen from "./screens/EditUserScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ function App() {
   const handleScroll = (e) => {
     e.preventDefault();
     const offset = window.scrollY;
-    if (offset >= 50) {
+    if (offset >= 100) {
       setSticky(true);
     } else {
       setSticky(false);
@@ -84,8 +85,9 @@ function App() {
           </div>
           <ul className="links row">
             <li>
-              <SearchBox/>
-             
+              <Route render={({history})=>(
+                 <SearchBox history={history}/>
+              )}/>                         
             </li>
             <li>
               <Link to="/cart">
@@ -102,9 +104,21 @@ function App() {
             <li>
               {userInfo ? (
                 <div className="dropdown" onClick={btnDropdonw}>
-                  <Link to="#" className="text-sub-form">
-                    {userInfo.name} <i className="fa fa-caret-down p-1"></i>
-                  </Link>
+                  <div className="row">
+                    <div
+                      className="avatar"
+                      style={
+                        userInfo.avatar
+                          ? {
+                              background: `url('/uploads/users/${userInfo.avatar}')`,
+                            }
+                          : { background: "url('/assets/icons/user.svg')" }
+                      }
+                    ></div>
+                    <Link to="#" className="text-sub-form">
+                      {userInfo.name} <i className="fa fa-caret-down p-1"></i>
+                    </Link>
+                  </div>
                   <ul
                     className={`${
                       isDropdown
@@ -112,6 +126,12 @@ function App() {
                         : "dropdown-content"
                     }`}
                   >
+                    <Link
+                      to={`/profile/${userInfo._id}`}
+                      className="text-sub-form"
+                    >
+                      Account
+                    </Link>
                     <Link to="/seller" className="text-sub-form">
                       Seller
                     </Link>
@@ -143,28 +163,17 @@ function App() {
 
       <div className={`category_container ${isToggler ? "active" : ""} `}></div>
       <main>
-
-      {/* <Route
+        <Route
             path="/search/name/:name?"
             component={SearchScreen}
             exact
-          ></Route>
-          <Route
-            path="/search/category/:category"
-            component={SearchScreen}
-            exact
-          ></Route>
-          <Route
-            path="/search/category/:category/name/:name"
-            component={SearchScreen}
-            exact
-          ></Route>
-          <Route
-            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
-            component={SearchScreen}
-            exact
-          ></Route> */}
-          <Route path="/product/pageNumber/:pageNumber" component={ProductsListScreen} />
+          />
+        <Route path="/profile/:id" component={EditUserScreen} />
+        <Route path="/shop/seller/:id" component={SellerShopScreen} exact />
+        <Route
+          path="/product/pageNumber/:pageNumber"
+          component={ProductsListScreen}
+        />
         <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
         <Route path="/orderhistory" component={OrderHistoryScreen} />
         <Route path="/order/:id" component={OrderScreen} exact />
@@ -178,13 +187,13 @@ function App() {
           exact
         />
         <Route path="/portal/product/new" component={NewProduct} exact />
-        <Route path="/portal/product/:id/edit" component={EditProduct}  exact/>
+        <Route path="/portal/product/:id/edit" component={EditProduct} exact />
         <Route path="/portal/product/list" component={MyProductsScreen} exact />
         <Route path="/signup" component={SignupScreen} />
         <Route path="/signin" component={SigninScreen} />
         <Route path="/cart/:id?" component={CartScreen} exact />
         <Route path="/products/category/:category" component={CategoryScreen} />
-        <Route path="/products/product/:id" component={ProductScreen} exact/>
+        <Route path="/products/product/:id" component={ProductScreen} exact />
         <Route path="/" component={HomeScreen} exact />
       </main>
     </BrowserRouter>

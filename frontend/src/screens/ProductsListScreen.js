@@ -14,7 +14,7 @@ export default function ProductsListScreen() {
   const [postsPerPage] = useState(6);
 
   useEffect(() => {
-    dispatch(listProduct());
+    dispatch(listProduct({}));
   }, [dispatch]);
   let currentPosts;
   if (!loading) {

@@ -10,16 +10,19 @@ import {
   PRODUCT_CATEGORY_LIST_REQUEST,
   PRODUCT_CATEGORY_LIST_SUCCESS,
   PRODUCT_CATEGORY_LIST_FAIL,
+  PRODUCT_SELLER_LIST_REQUEST,
+  PRODUCT_SELLER_LIST_SUCCESS,
+  PRODUCT_SELLER_LIST_FAIL,
 
 } from "../constants/productConstants";
 
 
-export const listProduct = () => async (dispatch) => {
+export const listProduct = ({name='',}) => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get("/api/products/");
+    const { data } = await Axios.get(`/api/products?name=${name}`);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -52,5 +55,17 @@ export const listProductCategories = () => async (dispatch) => {
     dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: error.message });
+  }
+};
+
+export const sellerProduct = (sellerId) => async (dispatch) => {
+  dispatch({
+    type: PRODUCT_SELLER_LIST_REQUEST,
+  });
+  try {
+    const { data } = await Axios.get(`/api/products/shop/seller/${sellerId}`);
+    dispatch({ type: PRODUCT_SELLER_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PRODUCT_SELLER_LIST_FAIL, payload: error.message });
   }
 };

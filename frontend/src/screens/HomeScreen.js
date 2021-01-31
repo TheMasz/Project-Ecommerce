@@ -18,7 +18,7 @@ export default function HomeScreen() {
   const [postsPerPage] = useState(6);
 
   useEffect(() => {
-    dispatch(listProduct());
+    dispatch(listProduct({}));
   }, [dispatch]);
 
   let currentPosts;
