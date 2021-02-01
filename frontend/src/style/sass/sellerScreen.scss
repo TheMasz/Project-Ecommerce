@@ -7,19 +7,19 @@
   border-bottom: 1px solid lightgray;
 }
 .input_wrap {
-  border: 1px solid #008cf8;
-  border-radius: 10px;
-  flex: 1;
-  margin-left: 10px;
-  padding: 15px;
-  font-size: 1.8rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 12px;
   flex-wrap: nowrap;
   background-color: white;
+  flex-basis: 1000px;
+  width: 1000px;
+  max-width: 1000px;
 }
 .input_wrap input {
   border: none;
-  outline: none;
-  width: 95%;
+  outline: none;  
+  width: 90%;
 }
 .input__suffix {
   padding-left: 8px;

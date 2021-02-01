@@ -84,14 +84,20 @@ export default function NewProduct(props) {
               <span>* ชื่อสินค้า</span>
             </div>
 
-            <div className="input-wrap">
-              <div className="input-wrap_inner-large">
+            <div className="input_wrap">
+              <div className="row ">
                 <input
                   type="text"
                   className="input-wrap_input"
                   required
+                  maxLength="30"
                   onChange={(e) => setName(e.target.value)}
                 />
+                   <div className="input__suffix">
+                  <span className="input__suffix-spilit">
+                    {name?name.length:0}/30
+                  </span>
+                </div>
               </div>
             </div>
           </div>

@@ -260,6 +260,33 @@ button {
   background-position: center !important;
   background-repeat: no-repeat !important;
 }
+.searchbar{
+  display: flex;
+  flex-direction: row;
+  height: 3rem;
+  border: 1px solid lightgray;
+  padding: 3px;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 0 lightgray;
+  .searchbar-main{
+    flex: 1;
+    background-color: white;
+  
+    input{
+      outline: none;
+      border: none;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  button{
+    background: #007ff4;
+    color: white;
+    padding: 4px;
+    border-radius: 3px;
+  }
+ 
+}
 
 @media (min-width: 576px) {
   .container {

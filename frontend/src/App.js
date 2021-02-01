@@ -49,7 +49,7 @@ function App() {
   const handleScroll = (e) => {
     e.preventDefault();
     const offset = window.scrollY;
-    if (offset >= 100) {
+    if (offset >= 200) {
       setSticky(true);
     } else {
       setSticky(false);

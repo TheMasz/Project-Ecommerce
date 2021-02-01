@@ -441,20 +441,20 @@ button.normal:hover {
 
 /* line 9, ../sass/sellerScreen.scss */
 .input_wrap {
-  border: 1px solid #008cf8;
-  border-radius: 10px;
-  flex: 1;
-  margin-left: 10px;
-  padding: 15px;
-  font-size: 1.8rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  padding: 12px;
   flex-wrap: nowrap;
-  background-color: white; }
+  background-color: white;
+  flex-basis: 1000px;
+  width: 1000px;
+  max-width: 1000px; }
 
 /* line 19, ../sass/sellerScreen.scss */
 .input_wrap input {
   border: none;
   outline: none;
-  width: 95%; }
+  width: 90%; }
 
 /* line 24, ../sass/sellerScreen.scss */
 .input__suffix {
@@ -1454,20 +1454,46 @@ button {
   background-position: center !important;
   background-repeat: no-repeat !important; }
 
+/* line 263, ../sass/App.scss */
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  height: 3rem;
+  border: 1px solid lightgray;
+  padding: 3px;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 0 lightgray; }
+  /* line 271, ../sass/App.scss */
+  .searchbar .searchbar-main {
+    flex: 1;
+    background-color: white; }
+    /* line 275, ../sass/App.scss */
+    .searchbar .searchbar-main input {
+      outline: none;
+      border: none;
+      height: 100%;
+      width: 100%; }
+  /* line 282, ../sass/App.scss */
+  .searchbar button {
+    background: #007ff4;
+    color: white;
+    padding: 4px;
+    border-radius: 3px; }
+
 @media (min-width: 576px) {
-  /* line 265, ../sass/App.scss */
+  /* line 292, ../sass/App.scss */
   .container {
     max-width: 100%; } }
 @media (min-width: 768px) {
-  /* line 271, ../sass/App.scss */
+  /* line 298, ../sass/App.scss */
   .container {
     max-width: 720px; } }
 @media (min-width: 992px) {
-  /* line 277, ../sass/App.scss */
+  /* line 304, ../sass/App.scss */
   .container {
     max-width: 960px; } }
 @media (min-width: 1200px) {
-  /* line 283, ../sass/App.scss */
+  /* line 310, ../sass/App.scss */
   .container {
     max-width: 1280px; } }
 
