@@ -8,7 +8,7 @@ import Pagination from "../components/Pagination";
 import Product from "../components/Product";
 
 export default function SearchScreen(props) {
-  const { name = "all" } = useParams();
+  const { name = "all", sortBy = "" } = useParams();
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -17,10 +17,25 @@ export default function SearchScreen(props) {
     e.preventDefault();
     setDropdown(!dropdown);
   };
+  const lastestHandler = (e) => {
+    e.preventDefault();
+    props.history.push(getFilterUrl({ sortBy: "ctime" }));
+    console.log('ctime');
+  };
+  const concernedHandler = (e) => {
+     e.preventDefault(); 
+    props.history.push(getFilterUrl({ sortBy: "relevancy" }));
+    console.log('relevancy');
+  };
   useEffect(() => {
-    dispatch(listProduct({ name: name !== "all" ? name : "" }));
+    dispatch(listProduct({ name: name !== "all" ? name : "", sortBy }));
   }, [dispatch, name]);
+  const getFilterUrl = (filter) => {
+    const filterName = filter.name || name;
+    const filterSortBy = filter.sortBy || sortBy;
 
+    return `/search/name/${filterName}/sortBy/${filterSortBy}`;
+  };
   return (
     <div className="container">
       {loading ? (
@@ -32,8 +47,18 @@ export default function SearchScreen(props) {
           <div className="sort-bar">
             <span className="sort-bar__label">เรียงโดย</span>
             <div className="sort-by-options">
-              <div className="sort-by-options__option">เกี่ยวข้อง</div>
-              <div className="sort-by-options__option">ล่าสุด</div>
+              <div
+                className={`sort-by-options__option`}
+                onClick={concernedHandler}
+              >
+                เกี่ยวข้อง
+              </div>
+              <div
+                className={`sort-by-options__option `}
+                onClick={lastestHandler}
+              >
+                ล่าสุด
+              </div>
               <div className="select-with-status" onClick={dropdownHandler}>
                 <span className="select-with-status__placeholder">ราคา</span>
                 <span>

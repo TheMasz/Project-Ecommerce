@@ -49,7 +49,7 @@ function App() {
   const handleScroll = (e) => {
     e.preventDefault();
     const offset = window.scrollY;
-    if (offset >= 200) {
+    if (offset >= 300) {
       setSticky(true);
     } else {
       setSticky(false);
@@ -163,6 +163,11 @@ function App() {
 
       <div className={`category_container ${isToggler ? "active" : ""} `}></div>
       <main>
+      <Route
+            path="/search/name/:name/sortBy/:sortBy"
+            component={SearchScreen}
+            exact
+          />
         <Route
             path="/search/name/:name?"
             component={SearchScreen}

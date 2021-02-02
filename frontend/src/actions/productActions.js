@@ -17,12 +17,12 @@ import {
 } from "../constants/productConstants";
 
 
-export const listProduct = ({name='',}) => async (dispatch) => {
+export const listProduct = ({name='',sortBy=''}) => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get(`/api/products?name=${name}`);
+    const { data } = await Axios.get(`/api/products?name=${name}&sortBy=${sortBy}`);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });

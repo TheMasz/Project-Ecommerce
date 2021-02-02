@@ -10,9 +10,12 @@ const productRouter = express.Router();
 productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
-    const name = req.query.name || '';
-    const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
-    const products = await Product.find({...nameFilter});
+    const name = req.query.name || "";
+    const sortBy = req.query.sortBy || "";
+    const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
+    const sortByFilter =
+      sortBy === "ctime" ? { createdAt: -1 } : sortBy === "relevancy" ? { createdAt: 1} : {};
+    const products = await Product.find({ ...nameFilter }).sort(sortByFilter);
     res.send(products);
   })
 );
@@ -140,7 +143,7 @@ productRouter.put(
         arr.push(images[index]);
       }
     }
-    
+
     const product = await Product.findById(productId);
     if (product) {
       product.name = req.body.name;
