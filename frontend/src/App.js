@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Link, Route } from "react-router-dom";
+import { BrowserRouter, Link, Redirect, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +27,9 @@ import SearchScreen from "./screens/SearchScreen";
 import ProductsListScreen from "./screens/ProductsListScreen";
 import SellerShopScreen from "./screens/SellerShopScreen";
 import EditUserScreen from "./screens/EditUserScreen";
+import SellOrdersList from "./screens/Seller/AddProducts/SellOrdersList";
+import AdminRoute from "./components/AdminRoute";
+import DashboardScreen from "./screens/Admin/DashboardScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -85,9 +88,9 @@ function App() {
           </div>
           <ul className="links row">
             <li>
-              <Route render={({history})=>(
-                 <SearchBox history={history}/>
-              )}/>                         
+              <Route
+                render={({ history }) => <SearchBox history={history} />}
+              />
             </li>
             <li>
               <Link to="/cart">
@@ -126,6 +129,11 @@ function App() {
                         : "dropdown-content"
                     }`}
                   >
+                    {userInfo.isAdmin && (
+                      <Link to="/dashboard" className="text-sub-form">
+                        Dashboard
+                      </Link>
+                    )}
                     <Link
                       to={`/profile/${userInfo._id}`}
                       className="text-sub-form"
@@ -163,16 +171,13 @@ function App() {
 
       <div className={`category_container ${isToggler ? "active" : ""} `}></div>
       <main>
-      <Route
-            path="/search/name/:name/sortBy/:sortBy"
-            component={SearchScreen}
-            exact
-          />
+        <AdminRoute path="/dashboard" component={DashboardScreen} exact />
         <Route
-            path="/search/name/:name?"
-            component={SearchScreen}
-            exact
-          />
+          path="/search/name/:name/sortBy/:sortBy"
+          component={SearchScreen}
+          exact
+        />
+        <Route path="/search/name/:name?" component={SearchScreen} exact />
         <Route path="/profile/:id" component={EditUserScreen} />
         <Route path="/shop/seller/:id" component={SellerShopScreen} exact />
         <Route
@@ -192,6 +197,7 @@ function App() {
           exact
         />
         <Route path="/portal/product/new" component={NewProduct} exact />
+        <Route path="/portal/sell/orders" component={SellOrdersList} exact />
         <Route path="/portal/product/:id/edit" component={EditProduct} exact />
         <Route path="/portal/product/list" component={MyProductsScreen} exact />
         <Route path="/signup" component={SignupScreen} />

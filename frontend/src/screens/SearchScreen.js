@@ -29,7 +29,7 @@ export default function SearchScreen(props) {
   };
   useEffect(() => {
     dispatch(listProduct({ name: name !== "all" ? name : "", sortBy }));
-  }, [dispatch, name]);
+  }, [dispatch, name, sortBy]);
   const getFilterUrl = (filter) => {
     const filterName = filter.name || name;
     const filterSortBy = filter.sortBy || sortBy;

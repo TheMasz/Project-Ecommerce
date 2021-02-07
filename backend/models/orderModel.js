@@ -1,19 +1,23 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
-  
   {
     orderItems: [
       {
-        name: { type: String, required: true },
-        qty: { type: Number, required: true },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Product",
-          required: true,
-        },
+        seller: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        products: [
+          {
+            name: { type: String, required: true },
+            qty: { type: Number, required: true },
+            image: { type: String, required: true },
+            price: { type: Number, required: true },
+            product: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Product",
+              required: true,
+            },
+          },
+        ],
       },
     ],
     shippingAddress: {
@@ -27,9 +31,9 @@ const orderSchema = new mongoose.Schema(
       update_time: { type: String },
       fourCode: { type: String },
     },
-    paymentImg:{
-      name: {type: String},
-      contentType: {type: String},
+    paymentImg: {
+      name: { type: String },
+      contentType: { type: String },
     },
     itemsPrice: { type: Number, required: true },
     shippingPrice: { type: Number, required: true },

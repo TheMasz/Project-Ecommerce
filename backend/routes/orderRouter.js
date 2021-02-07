@@ -1,8 +1,7 @@
-
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Order from "../models/orderModel.js";
-import { isAuth } from "../utils.js";
+import { isAdmin, isAuth } from "../utils.js";
 
 const orderRouter = express.Router();
 
@@ -42,11 +41,54 @@ orderRouter.get(
   })
 );
 orderRouter.get(
+  "/admin/order",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find();
+    if (orders) {
+      res.send(orders);
+    } else {
+      res.status(404).send({ message: "Order Not Found" });
+    }
+  })
+);
+orderRouter.get(
   "/mine/order",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.find({ user: req.user._id });
     res.send(orders);
+  })
+);
+orderRouter.get(
+  "/sell/order",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find();
+    const seller = req.user._id;
+    const convertArrayToObject = (array) => {
+      const initialValue = {};
+      return array.reduce((obj, item) => {
+        return {
+          ...obj,
+          item,
+        };
+      }, initialValue);
+    };
+    const order = orders.map((item) => {
+      const result = item.orderItems.filter((result) => {
+        return result.seller == seller;
+      });
+
+      const convertResult = convertArrayToObject(result);
+      const obj = {
+        ...convertResult,
+        ...item.shippingAddress,
+        isPaid: item.isPaid,
+      };
+      res.send(obj);
+    });
   })
 );
 orderRouter.put(
@@ -76,15 +118,13 @@ orderRouter.put(
           fourCode: req.body.fourCode,
         };
         const updatedOrder = order.save();
-      
       } else {
         res.status(400).send({ message: "File is not supported." });
       }
-    }else{
+    } else {
       res.status(400).send({ message: "Order not found." });
     }
-    res.status(201).send({ message: "Order Paid"  });
-    
+    res.status(201).send({ message: "Order Paid" });
   })
 );
 export default orderRouter;

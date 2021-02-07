@@ -1,0 +1,50 @@
+.order-list-section {
+  overflow-x: auto;
+  .table-section {
+    position: relative;
+    border: 1px solid lightgray;
+    width: 100%;
+    margin: 30px 0;
+    border-collapse: collapse;
+    text-align: left;
+    cursor: pointer;
+    background-color: #fff;
+    th,
+    td {
+      padding: 20px;
+    }
+    tr:hover {
+      background-color: rgb(245, 245, 245);
+    }
+    .table-section__header {
+      border: 1px solid lightgray;
+    }
+    .table-section__body {
+      font-size: 16px;
+      
+      .isPaid-status {
+        padding: 10px;
+        width: 110px;
+        border-radius: 5px;
+      }
+    }
+  }
+  .no-data {
+    padding: 124px 0;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #999;
+  }
+}

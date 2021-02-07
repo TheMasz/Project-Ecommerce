@@ -12,7 +12,8 @@ export default function CartScreen(props) {
     : 1;
 
   const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const { cartItems, cartItemsGroup } = cart;
+
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
@@ -21,8 +22,8 @@ export default function CartScreen(props) {
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
   };
-  const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id));
+  const removeFromCartHandler = (id, seller) => {
+    dispatch(removeFromCart(id, seller));
   };
 
   return (
@@ -42,46 +43,67 @@ export default function CartScreen(props) {
             </div>
             <div className="cart-page-section">
               <ul>
-                {cartItems.map((item) => (
-                  <li key={item.product}>
-                    <div className="cart-page-section__item row space-evenly py-3">
-                      <div
-                        className="cart-page-section__image image__content"
-                        style={{ background: `url('/uploads/products/${item.product}/${item.image}')` }}
-                      ></div>
-                      <div className="cart-page-section__description">
-                        <p>{item.category}</p>
-                        <Link to={`/product/${item.product}`}>{item.name}</Link>
-                      </div>
-                      <div className="cart-page-section__qty ">
-                        <select
-                          value={item.qty}
-                          onChange={(e) =>
-                            dispatch(
-                              addToCart(item.product, Number(e.target.value))
-                            )
-                          }
-                        >
-                          {[...Array(item.countInStock).keys()].map((x) => (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="cart-page-section__price">
-                        {item.price}
-                      </div>
-                      <div className="cart-page-section__actions">
-                        <button
-                          type="button"
-                          onClick={()=>removeFromCartHandler(item.product)}
-                        >
-                          <i className="fa fa-times"></i>
-                        </button>
-                      </div>
+                {cartItemsGroup.map((item) => (
+                  <div key={item.seller}>
+                    <div className="cart-page-section__header">{item.seller}</div>
+                    <div className="cart-page-section__body">
+                      {item.products.map((result) => (
+                        <li key={result.product}>
+                          <div className="cart-page-section__item row space-evenly py-3">
+                            <div
+                              className="cart-page-section__image image__content"
+                              style={{
+                                background: `url('/uploads/products/${result.product}/${result.image}')`,
+                              }}
+                            ></div>
+                            <div className="cart-page-section__description">
+                              <p>{item.category}</p>
+                              <Link to={`/product/${result.product}`}>
+                                {result.name}
+                              </Link>
+                            </div>
+                            <div className="cart-page-section__qty ">
+                              <select
+                                value={result.qty}
+                                onChange={(e) =>
+                                  dispatch(
+                                    addToCart(
+                                      result.product,
+                                      Number(e.target.value)
+                                    )
+                                  )
+                                }
+                              >
+                                {[...Array(result.countInStock).keys()].map(
+                                  (x) => (
+                                    <option key={x + 1} value={x + 1}>
+                                      {x + 1}
+                                    </option>
+                                  )
+                                )}
+                              </select>
+                            </div>
+                            <div className="cart-page-section__price">
+                              {item.price}
+                            </div>
+                            <div className="cart-page-section__actions">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  removeFromCartHandler(
+                                    item.product,
+                                    item.seller
+                                  )
+                                }
+                              >
+                                <i className="fa fa-times"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+                      ))}
                     </div>
-                  </li>
+                  </div>
                 ))}
               </ul>
             </div>

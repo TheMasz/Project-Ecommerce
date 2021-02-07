@@ -1,4 +1,7 @@
 import {
+  ORDER_ADMIN_LIST_FAIL,
+  ORDER_ADMIN_LIST_REQUEST,
+  ORDER_ADMIN_LIST_SUCCESS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_RESET,
@@ -13,6 +16,9 @@ import {
   ORDER_PAY_REQUEST,
   ORDER_PAY_RESET,
   ORDER_PAY_SUCCESS,
+  ORDER_SELL_LIST_FAIL,
+  ORDER_SELL_LIST_REQUEST,
+  ORDER_SELL_LIST_SUCCESS,
 } from "../constants/orderConstants";
 
 export const orderCreateReducer = (state = {}, action) => {
@@ -53,6 +59,32 @@ export const orderMineListReducer = (state = { orders: [] }, action) => {
     case ORDER_MINE_LIST_SUCCESS:
       return { loading: false, orders: action.payload };
     case ORDER_MINE_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const orderSellListReducer = (state = { orders: [] }, action) => {
+  switch (action.type) {
+    case ORDER_SELL_LIST_REQUEST:
+      return { loading: true };
+    case ORDER_SELL_LIST_SUCCESS:
+      return { loading: false, orders: [action.payload] };
+    case ORDER_SELL_LIST_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const orderAdminListReducer = (state = { orders: [] }, action) => {
+  switch (action.type) {
+    case ORDER_ADMIN_LIST_REQUEST:
+      return { loading: true };
+    case ORDER_ADMIN_LIST_SUCCESS:
+      return { loading: false, orders: action.payload };
+    case ORDER_ADMIN_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

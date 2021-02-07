@@ -3,6 +3,9 @@ import {
   USER_INFO_FAIL,
   USER_INFO_REQUEST,
   USER_INFO_SUCCESS,
+  USER_LIST_FAIL,
+  USER_LIST_REQUEST,
+  USER_LIST_SUCCESS,
   USER_SIGNIN_FAIL,
   USER_SIGNIN_REQUEST,
   USER_SIGNIN_SUCCESS,
@@ -98,3 +101,22 @@ export const updateUser = (userId,user) => async (dispatch, getState) => {
     dispatch({ type: USER_UPDATE_FAIL, payload: message });
   }
 };
+
+export const userList = () => async(dispatch,getState)=>{
+  dispatch({ type: USER_LIST_REQUEST});
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try{
+    const { data } = await Axios.get(`/api/users/list`,{
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: USER_LIST_SUCCESS, payload: data });
+  }catch(error){
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: USER_LIST_FAIL, payload: message });
+  }
+}

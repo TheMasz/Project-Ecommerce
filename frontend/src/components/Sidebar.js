@@ -31,7 +31,7 @@ export default function Sidebar() {
                 }`}
               >
                 <li className="sidebar-submenu-item ">
-                  <Link to="/" className="sidebar-submenu-item-link">
+                  <Link to="/portal/sell/orders" className="sidebar-submenu-item-link">
                     <span>คำสั่งซื้อสินค้าของฉัน</span>
                   </Link>
                 </li>

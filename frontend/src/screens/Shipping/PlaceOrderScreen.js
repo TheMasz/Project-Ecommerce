@@ -21,7 +21,7 @@ export default function PlaceOrderScreen(props) {
   );
   cart.totalPrice = cart.itemsPrice + ~~cart.paymentMethod.shippingPrice;
   const placeOrderHandler = () => {
-    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItemsGroup }));
   };
   useEffect(() => {
     if (success) {
@@ -45,25 +45,35 @@ export default function PlaceOrderScreen(props) {
         <div className="order-page-section__order p-3 my-2">
           สั่งซื้อสินค้าแล้ว
           <ul>
-            {cart.cartItems.map((item) => (
-              <li key={item.product}>
-                <div className="cart-page-section__item row space-evenly py-3">
-                  <div
-                    className="cart-page-section__image image__content"
-                    style={{
-                      background: `url('/uploads/products/${item.product}/${item.image}')`,
-                    }}
-                  ></div>
-                  <div className="cart-page-section__description">
-                    <p>{item.category}</p>
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>
-                  </div>
+            {cart.cartItemsGroup.map((item) => (
+              <div key={item.seller}>
+                <div className="cart-page-section__header">{item.seller}</div>
+                <div className="cart-page-section__body">
+                  {item.products.map((result) => (
+                    <li key={result.product}>
+                      <div className="cart-page-section__item row space-evenly py-3">
+                        <div
+                          className="cart-page-section__image image__content"
+                          style={{
+                            background: `url('/uploads/products/${result.product}/${result.image}')`,
+                          }}
+                        ></div>
+                        <div className="cart-page-section__description">
+                          <p>{result.category}</p>
+                          <Link to={`/product/${result.product}`}>
+                            {result.name}
+                          </Link>
+                        </div>
 
-                  <div className="cart-page-section__price">
-                    ${item.price} x {item.qty} = ${item.price * item.qty}
-                  </div>
+                        <div className="cart-page-section__price">
+                          ${result.price} x {result.qty} = $
+                          {result.price * result.qty}
+                        </div>
+                      </div>
+                    </li>
+                  ))}
                 </div>
-              </li>
+              </div>
             ))}
           </ul>
         </div>

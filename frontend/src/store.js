@@ -7,10 +7,29 @@ import {
   productCategoryListReducer,
   productSellerListReducer,
 } from "./reducers/productReducers";
-import { userInfoReducer, userSigninReducer, userSignupReducer, userUpdateReducer } from "./reducers/userReducers";
-import { categoriesReducer, mineProductReducer, productCreateReducer, productDeleteReducer, productUpdateReducer } from "./reducers/addProductReducers";
-import { orderCreateReducer, orderDetailsReducer, orderMineListReducer, orderPayReducer } from "./reducers/orderReducers";
-import {uploadReducer} from './reducers/uploadReducers';
+import {
+  userInfoReducer,
+  userListReducer,
+  userSigninReducer,
+  userSignupReducer,
+  userUpdateReducer,
+} from "./reducers/userReducers";
+import {
+  categoriesReducer,
+  mineProductReducer,
+  productCreateReducer,
+  productDeleteReducer,
+  productUpdateReducer,
+} from "./reducers/addProductReducers";
+import {
+  orderAdminListReducer,
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderMineListReducer,
+  orderPayReducer,
+  orderSellListReducer,
+} from "./reducers/orderReducers";
+import { uploadReducer } from "./reducers/uploadReducers";
 const initialState = {
   userSignin: {
     userInfo: localStorage.getItem("userInfo")
@@ -21,12 +40,15 @@ const initialState = {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
+      cartItemsGroup: localStorage.getItem("cartItemsGroup")
+      ? JSON.parse(localStorage.getItem("cartItemsGroup"))
+      : [],
     shippingAddress: localStorage.getItem("shippingAddress")
       ? JSON.parse(localStorage.getItem("shippingAddress"))
       : {},
     paymentMethod: localStorage.getItem("payment")
-    ? JSON.parse(localStorage.getItem("payment"))
-    : {},
+      ? JSON.parse(localStorage.getItem("payment"))
+      : {},
   },
 };
 
@@ -39,18 +61,20 @@ const reducer = combineReducers({
   userSignup: userSignupReducer,
   userUpdate: userUpdateReducer,
   userInfo: userInfoReducer,
+  userList:userListReducer,
   categories: categoriesReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderMineList: orderMineListReducer,
+  orderSellerList: orderSellListReducer,
+  orderAdminList: orderAdminListReducer,
   orderPay: orderPayReducer,
   upload: uploadReducer,
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,
   productDelete: productDeleteReducer,
-  productSeller:productSellerListReducer,
+  productSeller: productSellerListReducer,
   mineProduct: mineProductReducer,
-
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
