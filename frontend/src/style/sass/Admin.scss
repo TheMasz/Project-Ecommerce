@@ -1,7 +1,58 @@
-.dashboard-page-section{
+.dashboard-page-section {
+  .dashboard-page-section__top {
+    justify-content: center;
+    .box-content {
+      width: 200px;
+      height: 100px;
+      border-radius: 4px;
+      margin: 20px 50px;
+      background-size: cover;
+      color: white;
+      font-size: large;
+      box-shadow: 0 0 8px 0 darkgray;
+      cursor: pointer;
+      .box-content__body{
+          padding: 20px;
+          justify-content: space-between;
+          .text-large{
+              font-size: 30px;
+          }
+      }
+    }
+    .blue {
+      background-image: linear-gradient(
+        to left bottom,
+        #0061f2,
+        #0088ff,
+        #00a9ff,
+        #00c7ff,
+        #1ae1ff
+      ) !important;
+    }
+    .red {
+      background-image: linear-gradient(
+        to left bottom,
+        #ff7171,
+        #ff626c,
+        #ff5168,
+        #ff3d65,
+        #ff1f63
+      ) !important;
+    }
+    .orange {
+      background-image: linear-gradient(
+        to left bottom,
+        #ff9204,
+        #ffac07,
+        #ffc519,
+        #ffde2f,
+        #fff748
+      ) !important;
+    }
+  }
+  .dashboard-page-section__bottom {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
@@ -9,7 +60,9 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: flex-start;
-    -ms-flex-pack: flex-start;
-    justify-content: flex-start;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+   
+  }
 }
