@@ -83,7 +83,7 @@ orderRouter.get(
 
       const convertResult = convertArrayToObject(result);
       const obj = {
-        ...convertResult,
+        /*--Bug error send in loop-- */ ...convertResult,
         ...item.shippingAddress,
         isPaid: item.isPaid,
       };
@@ -98,8 +98,7 @@ orderRouter.put(
     const orderId = req.params.id;
     const order = await Order.findById(orderId);
     const file = req.files.file;
-    const fileName =
-      orderId + "-" + Date.now() + "." + file.mimetype.split("/")[1];
+    const fileName = orderId + "." + file.mimetype.split("/")[1];
     if (order) {
       if (
         file.mimetype === "image/jpeg" ||
@@ -127,4 +126,20 @@ orderRouter.put(
     res.status(201).send({ message: "Order Paid" });
   })
 );
+
+orderRouter.put(
+  "/ispaid/:id",
+  
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if(order){
+      order.isPaid = true;
+      order.save();
+    }else{
+      res.status(400).send({ message: "Order not found." });
+    }
+    res.status(201).send({ message: "Order Paid" });
+  })
+);
+
 export default orderRouter;

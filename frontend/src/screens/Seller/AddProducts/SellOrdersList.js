@@ -24,7 +24,7 @@ export default function SellOrdersList() {
             <div className="title">คำสั่งซื้อ</div>
           </div>
           <div className="order-list-pannel">
-            <div className="order-list-section">
+            <div className="table-list-section">
               {orders.map((result) =>
                 result.item ? (
                   <table className="table-section">

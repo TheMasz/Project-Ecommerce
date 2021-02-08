@@ -9,6 +9,10 @@ import {
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
+  ORDER_ISPAID_FAIL,
+  ORDER_ISPAID_REQUEST,
+  ORDER_ISPAID_RESET,
+  ORDER_ISPAID_SUCCESS,
   ORDER_MINE_LIST_FAIL,
   ORDER_MINE_LIST_REQUEST,
   ORDER_MINE_LIST_SUCCESS,
@@ -96,10 +100,25 @@ export const orderPayReducer = (state = {}, action) => {
     case ORDER_PAY_REQUEST:
       return { loading: false };
     case ORDER_PAY_SUCCESS:
-      return { loading: false,  success: true, order: action.payload };
+      return { loading: false,  success: true, };
     case ORDER_PAY_FAIL:
       return { loading: false, error: action.payload };
     case ORDER_PAY_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const orderIsPaidReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ORDER_ISPAID_REQUEST:
+      return { loading: false };
+    case ORDER_ISPAID_SUCCESS:
+      return { loading: false,  success: true, };
+    case ORDER_ISPAID_FAIL:
+      return { loading: false, error: action.payload };
+    case ORDER_ISPAID_RESET:
       return {};
     default:
       return state;

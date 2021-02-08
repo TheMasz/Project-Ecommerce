@@ -24,7 +24,7 @@ export default function OrderHistoryScreen(props) {
           onClick={(e) => props.history.push(`/order/${order._id}`)}
           key={order._id}
         >
-          {order.orderItems.slice(0,1).map((item) => (
+          {order.orderItems.slice(0, 1).map((item) => (
             <div className="order-content__item__product row py-1">
               <div className="row">
                 <div className="order-content__item__image">
@@ -41,32 +41,22 @@ export default function OrderHistoryScreen(props) {
                   </div>
                 </div>
               </div>
-              <div className="order-content__item__price">{order.totalPrice} บาท</div>
+              <div className="order-content__item__price">
+                {order.totalPrice} บาท
+              </div>
             </div>
           ))}
         </div>
       ))}
+      {orders.length === 0 && (
+        <div className="no-data">
+          <i className="fa fa-2x fa-calendar-o"></i>
+          <div className="order-list-section__content py-1">
+            ไม่พบคำสั่งซื้อ
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-// {order.orderItems.map((item) => (
-//   <div className="order-content__item__product row py-1">
-//   <div className="row">
-//     <div className="order-content__item__image">
-//       <div
-//         className="image__content"
-//         style={{
-//           background: `url('/uploads/products/${item.products[0].product}/${item.products[0].image}')`,
-//         }}
-//       ></div>
-//     </div>
-//     <div className="order-content__item__detail-content">
-//       <div className="order-content__item__name">{item.products[0].name}</div>
-//       <div className="order-content__item__quantity">
-//         x{item.qty}
-//       </div>
-//     </div>
-//   </div>
-//   <div className="order-content__item__price">${item.price}</div>
-// </div>
-// ))}
+

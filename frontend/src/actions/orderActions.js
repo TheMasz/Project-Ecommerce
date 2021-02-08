@@ -12,13 +12,16 @@ import {
   ORDER_DETAILS_SUCCESS,
   ORDER_MINE_LIST_FAIL,
   ORDER_MINE_LIST_REQUEST,
-ORDER_MINE_LIST_SUCCESS,
+  ORDER_MINE_LIST_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
   ORDER_SELL_LIST_FAIL,
   ORDER_SELL_LIST_REQUEST,
   ORDER_SELL_LIST_SUCCESS,
+  ORDER_ISPAID_REQUEST,
+  ORDER_ISPAID_SUCCESS,
+  ORDER_ISPAID_FAIL,
 } from "../constants/orderConstants";
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -34,6 +37,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     });
     dispatch({ type: CART_EMPTY });
     localStorage.removeItem("cartItems");
+    localStorage.removeItem("cartItemsGroup");
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data.order });
   } catch (error) {
     dispatch({
@@ -131,7 +135,6 @@ export const payOrder = (order, paymentResult) => async (
   dispatch,
   getState
 ) => {
-  console.log(order._id);
   dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
   const {
     userSignin: { userInfo },
@@ -144,12 +147,31 @@ export const payOrder = (order, paymentResult) => async (
         headers: { Authorization: `Bearer ${userInfo.token}` },
       }
     );
-     dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
+    dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
   } catch (error) {
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message;
     dispatch({ type: ORDER_PAY_FAIL, payload: message });
+  }
+};
+
+export const paidOrder = (orderId) => async (dispatch, getState) => {
+  dispatch({ type: ORDER_ISPAID_REQUEST });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.put(`/api/orders/ispaid/${orderId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: ORDER_ISPAID_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ORDER_ISPAID_FAIL, payload: message });
   }
 };

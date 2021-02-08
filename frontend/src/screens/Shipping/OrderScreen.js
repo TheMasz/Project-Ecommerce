@@ -76,10 +76,6 @@ export default function OrderScreen(props) {
           </div>
           <div className="d-flex flex-end ">
             <div className="py-2">
-              <p className="py-1">
-                ราคารวมสินค้า:{" "}
-                {order.orderItems.reduce((a, c) => a + c.price * c.qty, 0)}
-              </p>
               <p className="py-1">ค่าจัดส่ง: {order.shippingPrice}</p>
               <p className="py-1">ราคารวมสินค้า: {order.totalPrice}</p>
             </div>

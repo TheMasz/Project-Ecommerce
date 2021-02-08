@@ -807,21 +807,22 @@ button.normal:hover {
               display: -webkit-box;
               display: -ms-flexbox;
               display: flex;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              -webkit-box-pack: start;
-              -ms-flex-pack: start;
-              justify-content: flex-start;
+              flex-direction: column;
+              -webkit-box-align: flex-start;
+              -ms-flex-align: flex-start;
+              align-items: flex-start;
+              -webkit-box-pack: center;
+              -ms-flex-pack: center;
+              justify-content: center;
               font-size: 18px;
               border-bottom: 1px dashed #e8e8e8;
               overflow: hidden; }
-        /* line 92, ../sass/Modal.scss */
+        /* line 93, ../sass/Modal.scss */
         .modal__mask .modal__container .modal__box .modal__content .modal__footer {
           flex-shrink: 0;
           padding: 24px;
           overflow: hidden; }
-          /* line 96, ../sass/Modal.scss */
+          /* line 97, ../sass/Modal.scss */
           .modal__mask .modal__container .modal__box .modal__content .modal__footer .modal__footer-buttons {
             display: -webkit-inline-box;
             display: -ms-inline-flexbox;
@@ -1144,10 +1145,10 @@ button.normal:hover {
         cursor: pointer; }
 
 /* line 1, ../sass/Table.scss */
-.order-list-section {
+.table-list-section {
   overflow-x: auto; }
   /* line 3, ../sass/Table.scss */
-  .order-list-section .table-section {
+  .table-list-section .table-section {
     position: relative;
     border: 1px solid lightgray;
     width: 100%;
@@ -1157,41 +1158,46 @@ button.normal:hover {
     cursor: pointer;
     background-color: #fff; }
     /* line 12, ../sass/Table.scss */
-    .order-list-section .table-section th,
-    .order-list-section .table-section td {
+    .table-list-section .table-section th,
+    .table-list-section .table-section td {
       padding: 20px; }
     /* line 16, ../sass/Table.scss */
-    .order-list-section .table-section tr:hover {
-      background-color: whitesmoke; }
+    .table-list-section .table-section tr {
+      border-bottom: 1px solid lightgray; }
     /* line 19, ../sass/Table.scss */
-    .order-list-section .table-section .table-section__header {
-      border: 1px solid lightgray; }
+    .table-list-section .table-section tr:hover {
+      background-color: whitesmoke; }
     /* line 22, ../sass/Table.scss */
-    .order-list-section .table-section .table-section__body {
+    .table-list-section .table-section .table-section__header {
+      border: 1px solid lightgray; }
+    /* line 25, ../sass/Table.scss */
+    .table-list-section .table-section .table-section__body {
       font-size: 16px; }
-      /* line 25, ../sass/Table.scss */
-      .order-list-section .table-section .table-section__body .isPaid-status {
+      /* line 28, ../sass/Table.scss */
+      .table-list-section .table-section .table-section__body .isPaid-status {
         padding: 10px;
         width: 110px;
         border-radius: 5px; }
-  /* line 32, ../sass/Table.scss */
-  .order-list-section .no-data {
-    padding: 124px 0;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: #999; }
+
+/* line 36, ../sass/Table.scss */
+.no-data {
+  padding: 124px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #999;
+  margin: 0 auto; }
 
 /* line 2, ../sass/Admin.scss */
 .dashboard-page-section .dashboard-page-section__top {
@@ -1227,6 +1233,7 @@ button.normal:hover {
 .dashboard-page-section .dashboard-page-section__bottom {
   display: -webkit-box;
   display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -1234,9 +1241,33 @@ button.normal:hover {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: space-evenly;
-  -ms-flex-pack: space-evenly;
-  justify-content: space-evenly; }
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 300px; }
+  /* line 68, ../sass/Admin.scss */
+  .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right,
+  .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left {
+    height: 100%;
+    border: 1px solid lightgray;
+    background-color: white; }
+    /* line 73, ../sass/Admin.scss */
+    .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right .dashboard-page-section__menu,
+    .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left .dashboard-page-section__menu {
+      display: flex;
+      flex-direction: column;
+      width: 200px; }
+      /* line 78, ../sass/Admin.scss */
+      .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right .dashboard-page-section__menu a,
+      .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left .dashboard-page-section__menu a {
+        padding: 10px;
+        border: 1px solid lightgray;
+        width: 100%;
+        color: #404040; }
+      /* line 84, ../sass/Admin.scss */
+      .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right .dashboard-page-section__menu a:hover,
+      .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left .dashboard-page-section__menu a:hover {
+        background-color: lightgray; }
 
 /* line 18, ../sass/App.scss */
 html {

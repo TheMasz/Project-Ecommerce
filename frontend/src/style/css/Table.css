@@ -1,8 +1,8 @@
 /* line 1, ../sass/Table.scss */
-.order-list-section {
+.table-list-section {
   overflow-x: auto; }
   /* line 3, ../sass/Table.scss */
-  .order-list-section .table-section {
+  .table-list-section .table-section {
     position: relative;
     border: 1px solid lightgray;
     width: 100%;
@@ -12,40 +12,45 @@
     cursor: pointer;
     background-color: #fff; }
     /* line 12, ../sass/Table.scss */
-    .order-list-section .table-section th,
-    .order-list-section .table-section td {
+    .table-list-section .table-section th,
+    .table-list-section .table-section td {
       padding: 20px; }
     /* line 16, ../sass/Table.scss */
-    .order-list-section .table-section tr:hover {
-      background-color: whitesmoke; }
+    .table-list-section .table-section tr {
+      border-bottom: 1px solid lightgray; }
     /* line 19, ../sass/Table.scss */
-    .order-list-section .table-section .table-section__header {
-      border: 1px solid lightgray; }
+    .table-list-section .table-section tr:hover {
+      background-color: whitesmoke; }
     /* line 22, ../sass/Table.scss */
-    .order-list-section .table-section .table-section__body {
+    .table-list-section .table-section .table-section__header {
+      border: 1px solid lightgray; }
+    /* line 25, ../sass/Table.scss */
+    .table-list-section .table-section .table-section__body {
       font-size: 16px; }
-      /* line 25, ../sass/Table.scss */
-      .order-list-section .table-section .table-section__body .isPaid-status {
+      /* line 28, ../sass/Table.scss */
+      .table-list-section .table-section .table-section__body .isPaid-status {
         padding: 10px;
         width: 110px;
         border-radius: 5px; }
-  /* line 32, ../sass/Table.scss */
-  .order-list-section .no-data {
-    padding: 124px 0;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: #999; }
+
+/* line 36, ../sass/Table.scss */
+.no-data {
+  padding: 124px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #999;
+  margin: 0 auto; }
 
 /*# sourceMappingURL=Table.css.map */

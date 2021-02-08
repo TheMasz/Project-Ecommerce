@@ -30,6 +30,9 @@ import EditUserScreen from "./screens/EditUserScreen";
 import SellOrdersList from "./screens/Seller/AddProducts/SellOrdersList";
 import AdminRoute from "./components/AdminRoute";
 import DashboardScreen from "./screens/Admin/DashboardScreen";
+import ProductsScreen from "./screens/Admin/ProductsScreen";
+import UsersScreen from "./screens/Admin/UsersScreen";
+import OrdersScreen from "./screens/Admin/OrdersScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -171,6 +174,17 @@ function App() {
 
       <div className={`category_container ${isToggler ? "active" : ""} `}></div>
       <main>
+        <AdminRoute
+          path="/dashboard/products"
+          component={ProductsScreen}
+          exact
+        />
+        <AdminRoute
+          path="/dashboard/orders"
+          component={OrdersScreen}
+          exact
+        />
+        <AdminRoute path="/dashboard/users" component={UsersScreen} exact />
         <AdminRoute path="/dashboard" component={DashboardScreen} exact />
         <Route
           path="/search/name/:name/sortBy/:sortBy"

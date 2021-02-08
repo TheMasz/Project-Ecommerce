@@ -1,4 +1,4 @@
-.order-list-section {
+.table-list-section {
   overflow-x: auto;
   .table-section {
     position: relative;
@@ -12,6 +12,9 @@
     th,
     td {
       padding: 20px;
+    }
+    tr{
+      border-bottom: 1px solid lightgray;
     }
     tr:hover {
       background-color: rgb(245, 245, 245);
@@ -29,22 +32,23 @@
       }
     }
   }
-  .no-data {
-    padding: 124px 0;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: #999;
-  }
+}
+.no-data {
+  padding: 124px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #999;
+  margin: 0 auto;
 }

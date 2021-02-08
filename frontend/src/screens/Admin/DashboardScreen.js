@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,21 +7,23 @@ import { listProduct } from "../../actions/productActions";
 import { userList } from "../../actions/userActions";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
-import Product from "../../components/Product";
 
 export default function DashboardScreen() {
   const dispatch = useDispatch();
+
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   const orderAdminList = useSelector((state) => state.orderAdminList);
   const { loading: LoadingOrders, error: errorOders, orders } = orderAdminList;
   const listUser = useSelector((state) => state.userList);
   const { loading: LoadingUSer, error: errorUser, users } = listUser;
+
   useEffect(() => {
     dispatch(listProduct({}));
     dispatch(listOrderAdmin());
     dispatch(userList());
   }, [dispatch]);
+
   return (
     <div className="container">
       {loading || LoadingOrders || LoadingUSer ? (
@@ -31,7 +33,7 @@ export default function DashboardScreen() {
           {error || errorOders || errorUser}
         </MessageBox>
       ) : (
-        <div className="mt-4 dashboard-page-section">
+        <div className="mt-4 dashboard-page-section bg-white p-3">
           <div className="dashboard-page-section__top row">
             <div className="box-content blue">
               <div className="row box-content__body">
@@ -40,7 +42,7 @@ export default function DashboardScreen() {
                   <div className="text-overflow">Total Products</div>
                 </div>
                 <div className="box-content__right">
-                <i className="fa fa-2x fa-cube"></i>
+                  <i className="fa fa-2x fa-cube"></i>
                 </div>
               </div>
             </div>
@@ -62,16 +64,38 @@ export default function DashboardScreen() {
                   <div className="text-overflow">Total Users</div>
                 </div>
                 <div className="box-content__right">
-                <i className="fa fa-2x fa-user-o"></i>
+                  <i className="fa fa-2x fa-user-o"></i>
                 </div>
               </div>
             </div>
           </div>
-          <div className="dashboard-page-section__bottom row">
-            <div className="dashboard-page-section__left bg-white">
+          <div className="dashboard-page-section__bottom ">
+            <div className="dashboard-page-section__left ">
+              <div className="dashboard-page-section__menu">
+                <Link to="/dashboard/products" className="row flex-start">
+                  <div>
+                    <i className="fa fa-cube"></i>
+                  </div>
+                  <div className="px-1">Product</div>
+                </Link>
+                <Link to="/dashboard/orders" className="row flex-start">
+                  <div>
+                    <i className="fa fa-shopping-cart"></i>
+                  </div>
+                  <div className="px-1">Orders</div>
+                </Link>
+                <Link to="/dashboard/users" className="row flex-start">
+                  <div>
+                    <i className="fa fa-user-o"></i>
+                  </div>
+                  <div className="px-1">Users</div>
+                </Link>
+              </div>
+            </div>
+            <div className="dashboard-page-section__right ">
               <Chart
-                width={"500px"}
-                height={"300px"}
+                width={"auto"}
+                height={"280px"}
                 chartType="PieChart"
                 loader={
                   <MessageBox variant="loading">Loading Chart</MessageBox>
@@ -88,7 +112,6 @@ export default function DashboardScreen() {
                 rootProps={{ "data-testid": "1" }}
               />
             </div>
-            <div className="dashboard-page-section__right bg-white">ปฎิทิน</div>
           </div>
         </div>
       )}
