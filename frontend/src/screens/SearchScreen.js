@@ -4,15 +4,33 @@ import { useParams } from "react-router-dom";
 import { listProduct } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import Pagination from "../components/Pagination";
+import PaginationTable from "../components/PaginationTable";
 import Product from "../components/Product";
 
 export default function SearchScreen(props) {
-  const { name = "all", sortBy = "" } = useParams();
+  const {
+    name = "all",
+    category = "all",
+    sortBy = "",
+
+  } = useParams();
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   const [dropdown, setDropdown] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  let currentPosts;
+  if (!loading) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   const dropdownHandler = (e) => {
     e.preventDefault();
     setDropdown(!dropdown);
@@ -20,22 +38,38 @@ export default function SearchScreen(props) {
   const lastestHandler = (e) => {
     e.preventDefault();
     props.history.push(getFilterUrl({ sortBy: "ctime" }));
-    console.log('ctime');
   };
   const concernedHandler = (e) => {
-     e.preventDefault(); 
+    e.preventDefault();
     props.history.push(getFilterUrl({ sortBy: "relevancy" }));
-    console.log('relevancy');
   };
+  const minHandler = (e) => {
+    e.preventDefault();
+    props.history.push(getFilterUrl({ sortBy: "lowest" }));
+  };
+  const maxHandler = (e) => {
+    e.preventDefault();
+    props.history.push(getFilterUrl({ sortBy: "highest" }));
+  };
+
   useEffect(() => {
-    dispatch(listProduct({ name: name !== "all" ? name : "", sortBy }));
-  }, [dispatch, name, sortBy]);
+    dispatch(
+      listProduct({
+        name: name !== "all" ? name : "",
+        category: category !== "all" ? category : "",
+        sortBy,
+
+      })
+    );
+  }, [dispatch, name, sortBy, category, ]);
   const getFilterUrl = (filter) => {
     const filterName = filter.name || name;
+    const filterCategory = filter.category || category;
     const filterSortBy = filter.sortBy || sortBy;
 
-    return `/search/name/${filterName}/sortBy/${filterSortBy}`;
+    return `/search/category/${filterCategory}/name/${filterName}/sortBy/${filterSortBy}`;
   };
+
   return (
     <div className="container">
       {loading ? (
@@ -68,10 +102,16 @@ export default function SearchScreen(props) {
                   className="select-with-status__dropdown"
                   style={dropdown ? { visibility: "unset" } : null}
                 >
-                  <div className="select-with-status__dropdown-item--with-tick">
+                  <div
+                    className="select-with-status__dropdown-item--with-tick"
+                    onClick={minHandler}
+                  >
                     ราคา: จากน้อยไปมาก
                   </div>
-                  <div className="select-with-status__dropdown-item--with-tick">
+                  <div
+                    className="select-with-status__dropdown-item--with-tick"
+                    onClick={maxHandler}
+                  >
                     ราคา: จากมากไปน้อย
                   </div>
                 </div>
@@ -79,11 +119,24 @@ export default function SearchScreen(props) {
             </div>
             <div className="mini-page-controller"></div>
           </div>
-          <div className="row py-3  flex-start">
-            {products.map((product) => (
+          <div className="row py-3  flex-start wrapper-products">
+            {currentPosts.map((product) => (
               <Product key={product._id} product={product} />
             ))}
           </div>
+          <PaginationTable
+            postsPerPage={postsPerPage}
+            totalPosts={products.length}
+            paginate={paginate}
+          />
+          {currentPosts.length === 0 && (
+            <div className="no-data">
+              <i className="fa fa-2x fa-search"></i>
+              <div className="order-list-section__content py-1">
+                ไม่พบสินค้า
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>

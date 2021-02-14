@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../components/MessageBox";
+import { CART_EMPTY } from "../constants/cartContansts";
 
 export default function CartScreen(props) {
   const dispatch = useDispatch();
@@ -18,12 +19,17 @@ export default function CartScreen(props) {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
-  }, [dispatch, productId, qty]);
+
+  }, [dispatch, productId, qty,cartItems]);
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
   };
   const removeFromCartHandler = (id, seller) => {
     dispatch(removeFromCart(id, seller));
+    if(cartItems.length === 1){
+      dispatch({type:CART_EMPTY})
+      localStorage.setItem("cartItemsGroup", JSON.stringify([]));
+    }
   };
 
   return (
@@ -45,7 +51,7 @@ export default function CartScreen(props) {
               <ul>
                 {cartItemsGroup.map((item) => (
                   <div key={item.seller}>
-                    <div className="cart-page-section__header">{item.seller}</div>
+                    <div className="cart-page-section__header">{item.products[0]?item.seller:''}</div>
                     <div className="cart-page-section__body">
                       {item.products.map((result) => (
                         <li key={result.product}>
@@ -91,7 +97,7 @@ export default function CartScreen(props) {
                                 type="button"
                                 onClick={() =>
                                   removeFromCartHandler(
-                                    item.product,
+                                    result.product,
                                     item.seller
                                   )
                                 }

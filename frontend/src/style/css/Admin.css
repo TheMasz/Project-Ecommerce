@@ -33,6 +33,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
@@ -43,27 +45,28 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 300px; }
-  /* line 68, ../sass/Admin.scss */
+  height: 100%; }
+  /* line 70, ../sass/Admin.scss */
   .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right,
   .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left {
     height: 100%;
     border: 1px solid lightgray;
     background-color: white; }
-    /* line 73, ../sass/Admin.scss */
+    /* line 75, ../sass/Admin.scss */
     .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right .dashboard-page-section__menu,
     .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left .dashboard-page-section__menu {
       display: flex;
       flex-direction: column;
+      height: 280px;
       width: 200px; }
-      /* line 78, ../sass/Admin.scss */
+      /* line 80, ../sass/Admin.scss */
       .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right .dashboard-page-section__menu a,
       .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left .dashboard-page-section__menu a {
         padding: 10px;
         border: 1px solid lightgray;
         width: 100%;
         color: #404040; }
-      /* line 84, ../sass/Admin.scss */
+      /* line 86, ../sass/Admin.scss */
       .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__right .dashboard-page-section__menu a:hover,
       .dashboard-page-section .dashboard-page-section__bottom .dashboard-page-section__left .dashboard-page-section__menu a:hover {
         background-color: lightgray; }

@@ -11,7 +11,6 @@ export default function SellOrdersList() {
   useEffect(() => {
     dispatch(listOrderSeller());
   }, [dispatch]);
-  console.log(orders);
   return (
     <div className="container">
       {loading ? (
@@ -25,73 +24,61 @@ export default function SellOrdersList() {
           </div>
           <div className="order-list-pannel">
             <div className="table-list-section">
-              {orders.map((result) =>
-                result.item ? (
-                  <table className="table-section">
-                    <thead className="table-section__header">
-                      <tr>
-                        <th>สินค้าทั้งหมด</th>
-                        <th>ที่อยู่</th>
-                        <th>สถานะ</th>
-                        <th>ดำเนินการ</th>
-                      </tr>
-                    </thead>
-                    <tbody className="table-section__body">
-                      <tr>
-                        <td>
-                          {result.item.products.map((item) => (
-                            <p>
-                              {item.name} x{item.qty}
-                            </p>
-                          ))}
-                        </td>
-                        <td>
+              <table className="table-section">
+                <thead className="table-section__header">
+                  <tr>
+                    <th>สินค้าทั้งหมด</th>
+                    <th>ที่อยู่</th>
+                    <th>สถานะ</th>
+                    <th>ดำเนินการ</th>
+                  </tr>
+                </thead>
+                <tbody className="table-section__body">
+                  {orders.map((result) => (
+                    <tr key={result._id}>
+                      <td>
+                        {result.item.products.map((item) => (
                           <p>
-                            {result.fullName} {result.address}{" "}
-                            {result.postalCode} {result.country}
+                            {item.name} x{item.qty}
                           </p>
-                        </td>
-                        <td>
-                          <div
-                            className={`isPaid-status ${
-                              result.isPaid ? "alert-success" : "alert-danger"
-                            }`}
-                          >
-                            <p>
-                              {result.isPaid
-                                ? "ชำระเงินเรียบร้อย"
-                                : "ยังไม่ชำระเงิน"}
-                            </p>
-                          </div>
-                        </td>
-                        <td>
-                          <button type="button" className="primary">
-                            จัดส่ง
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                ) : (
-                  <>
-                    <table className="table-section">
-                      <thead className="table-section__header">
-                        <tr>
-                          <th>สินค้าทั้งหมด</th>
-                          <th>ที่อยู่</th>
-                          <th>สถานะ</th>
-                          <th>ดำเนินการ</th>
-                        </tr>
-                      </thead>
-                    </table>
-                    <div className="no-data">
-                      <i className="fa fa-2x fa-calendar-o"></i>
-                      <div className="order-list-section__content py-1">
-                        ไม่พบคำสั่งซื้อ
-                      </div>
-                    </div>
-                  </>
-                )
+                        ))}
+                      </td>
+                      <td>
+                        <p>
+                          {result.fullName} {result.address} {result.postalCode}{" "}
+                          {result.country}
+                        </p>
+                      </td>
+                      <td>
+                        <div
+                          className={`isPaid-status ${
+                            result.isPaid ? "alert-success" : "alert-danger"
+                          }`}
+                        >
+                          <p>
+                            {result.isPaid
+                              ? "ชำระเงินเรียบร้อย"
+                              : "ยังไม่ชำระเงิน"}
+                          </p>
+                        </div>
+                      </td>
+                      <td>
+                        <button type="button" className="primary">
+                          จัดส่ง
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              {orders.length === 0 && (
+                <div className="no-data">
+                  <i className="fa fa-2x fa-calendar-o"></i>
+                  <div className="order-list-section__content py-1">
+                    ไม่พบคำสั่งซื้อ
+                  </div>
+                </div>
               )}
             </div>
           </div>

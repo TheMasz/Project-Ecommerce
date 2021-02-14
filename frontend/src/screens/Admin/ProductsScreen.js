@@ -74,7 +74,7 @@ export default function ProductsScreen() {
                   <td>{product.category}</td>
                   <td>{product.price} บาท</td>
                   <td>
-                    <button type="button" className="primary" onClick={()=>CfdeleteHandler(product._id)}>
+                    <button type="button" className="delete w-100" onClick={()=>CfdeleteHandler(product._id)}>
                       ลบ
                     </button>
                   </td>

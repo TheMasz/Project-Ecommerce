@@ -19,14 +19,13 @@ const createCategories = (categories, parentId) => {
   const categoryList = [];
   let category;
   if (parentId == null) {
-    category = categories.filter((cat)=>{
+    category = categories.filter((cat) => {
       return cat.parentId == undefined;
-    })
+    });
   } else {
-    category = categories.filter((cat)=>{
+    category = categories.filter((cat) => {
       return cat.parentId == parentId;
-    })
-    
+    });
   }
   for (let cate of category) {
     categoryList.push({
@@ -40,21 +39,21 @@ const createCategories = (categories, parentId) => {
 };
 
 categoryRouter.get(
-  "/",
+  "/seed",
   expressAsyncHandler(async (req, res) => {
-    const categories = await Categories.find({});
-    if (categories) {
-      const categoryList = createCategories(categories);
-      res.send( categoryList );
-    }
+    // await Categories.remove({});
+    const createdCategories = await Categories.insertMany(data.categories);
+    res.send({ createdCategories });
   })
 );
 
-// categoryRouter.get("/seed", async (req, res) => {
-//   await Catgories.remove({});
-//   const createdCategories = await Catgories.insertMany(data.categories);
-//   res.send({ createdCategories });
-// });
+categoryRouter.get(
+  "/",
+  expressAsyncHandler(async (req, res) => {
+    const category = await Categories.find();
+    res.send(category);
+  })
+);
 
 categoryRouter.post("/category/create", (req, res) => {
   const category = new Categories({

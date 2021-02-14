@@ -167,27 +167,27 @@
 /*Seller Page*/
 /* line 157, ../sass/sellerScreen.scss */
 .sidebar-container {
-  position: relative;
   width: 220px;
-  height: 94vh;
-  background-color: white;
-  z-index: 900;
-  box-shadow: 0 0 0 1px lightgray; }
-  /* line 164, ../sass/sellerScreen.scss */
+  position: relative;
+  z-index: 500; }
+  /* line 161, ../sass/sellerScreen.scss */
   .sidebar-container .sidebar {
     position: fixed;
+    width: inherit;
     left: 0;
-    top: 6vh;
+    top: 58px;
+    bottom: 0;
+    min-height: 100vh;
     overflow: hidden;
-    min-height: calc(100vh - 56px);
-    width: inherit; }
+    background-color: #fff;
+    box-shadow: 0 0 0 1px lightgray; }
     /* line 172, ../sass/sellerScreen.scss */
     .sidebar-container .sidebar .sidebar-menu {
-      padding: 16px 16px 0; }
-      /* line 174, ../sass/sellerScreen.scss */
+      padding: 16px 16px 0;
+      background-color: #fff; }
+      /* line 175, ../sass/sellerScreen.scss */
       .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box {
-        margin-bottom: 20px;
-        height: auto; }
+        margin-bottom: 24px; }
         /* line 177, ../sass/sellerScreen.scss */
         .sidebar-container .sidebar .sidebar-menu .sidebar-menu-box .sidebar-menu-item {
           display: -webkit-box;
@@ -238,16 +238,16 @@
   height: 10rem !important; }
 
 /*Mine Products*/
-/* line 231, ../sass/sellerScreen.scss */
+/* line 232, ../sass/sellerScreen.scss */
 .product-list-main {
   position: relative;
   width: 100%; }
 
-/* line 235, ../sass/sellerScreen.scss */
+/* line 236, ../sass/sellerScreen.scss */
 .product-grid-container {
   position: relative; }
 
-/* line 238, ../sass/sellerScreen.scss */
+/* line 239, ../sass/sellerScreen.scss */
 .product-card-item {
   position: relative;
   width: 162px;
@@ -257,8 +257,9 @@
   box-shadow: 0 0 0 1px #e5e5e5;
   color: #404040; }
 
-/* line 247, ../sass/sellerScreen.scss */
+/* line 248, ../sass/sellerScreen.scss */
 .app-container {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -266,14 +267,14 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
   flex-direction: row; }
-  /* line 256, ../sass/sellerScreen.scss */
+  /* line 259, ../sass/sellerScreen.scss */
   .app-container .page-container {
     width: 100%; }
 
-/* line 260, ../sass/sellerScreen.scss */
+/* line 263, ../sass/sellerScreen.scss */
 .product-actions {
   color: #404040; }
-  /* line 262, ../sass/sellerScreen.scss */
+  /* line 265, ../sass/sellerScreen.scss */
   .product-actions a {
     color: inherit; }
 

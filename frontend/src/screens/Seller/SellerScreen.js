@@ -7,7 +7,9 @@ export default function SellerScreen() {
   return (
     <div className="app-container">
     <Sidebar/>
-      <div className="page-container"></div>
+      <div className="page-container">
+        <div className="container"></div>
+      </div>
     </div>
   );
 }

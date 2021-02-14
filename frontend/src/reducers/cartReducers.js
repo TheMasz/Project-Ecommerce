@@ -14,8 +14,10 @@ export const cartReducer = (
     case CART_ADD_ITEM:
       const item = action.payload;
       const existItem = state.cartItems.find((x) => x.product === item.product);
-      const test1 = state.cartItemsGroup.find((x) => x.seller === item.seller);
-      if (!test1) {
+      const sellProduct = state.cartItemsGroup.find(
+        (x) => x.seller === item.seller
+      );
+      if (!sellProduct) {
         /* ไม่มี*/
         return {
           ...state,
@@ -27,37 +29,62 @@ export const cartReducer = (
         };
       } else {
         /* มี*/
-        const test = state.cartItems.filter((x) => x.seller === item.seller);
-
+        const sellProductsList = state.cartItems.filter(
+          (x) => x.seller === item.seller
+        );
         const arr = [];
-        arr.push(...test, item);
-  
-
-        return {
-          ...state,
-          cartItems: [...state.cartItems, item],
-          cartItemsGroup: state.cartItemsGroup.map((x) =>
-            x.seller === item.seller
-              ? { seller: item.seller, products: arr }
-              : x
-          ),
-        };
+        arr.push(...sellProductsList, item);
+        if (existItem) {
+          return {
+            ...state,
+            error: "",
+            cartItems: state.cartItems.map((x) =>
+              x.product === existItem.product ? item : x
+            ),
+          };
+        } else {
+          return {
+            ...state,
+            cartItems: [...state.cartItems, item],
+            cartItemsGroup: state.cartItemsGroup.map((x) =>
+              x.seller === item.seller
+                ? { seller: item.seller, products: arr }
+                : x
+            ),
+          };
+        }
       }
 
     case CART_REMOVE_ITEM:
+      const sellCartList = state.cartItems.filter(
+        (x) => x.product !== action.payload.productId
+      );
+      console.log("sellCartList", sellCartList);
+      const sellProductsListDl = sellCartList.filter(
+        (x) => x.seller === action.payload.sellerId
+      );
+      const arr = [];
+      arr.push(...sellProductsListDl, sellCartList);
+      console.log("sellProductsListDl", sellProductsListDl);
       return {
         ...state,
         error: "",
         cartItems: state.cartItems.filter(
           (x) => x.product !== action.payload.productId
         ),
+        cartItemsGroup: state.cartItemsGroup.map((x) =>
+          x.seller === action.payload.sellerId
+            ? { seller: action.payload.sellerId, products: sellProductsListDl }
+            : x
+        ),
       };
+
     case CART_SAVE_SHIPPING_ADDRESS:
       return { ...state, shippingAddress: action.payload };
     case CART_SAVE_PAYMENT_METHOD:
       return { ...state, paymentMethod: action.payload };
     case CART_EMPTY:
-      return { ...state, error: "", cartItems: [] };
+      return { ...state, error: "", cartItems: [], cartItemsGroup: [] };
     default:
       return state;
   }

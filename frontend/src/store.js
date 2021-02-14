@@ -4,10 +4,10 @@ import { cartReducer } from "./reducers/cartReducers";
 import {
   productDetailsReducer,
   productListReducer,
-  productCategoryListReducer,
   productSellerListReducer,
 } from "./reducers/productReducers";
 import {
+  userDeleteReducer,
   userInfoReducer,
   userListReducer,
   userSigninReducer,
@@ -56,13 +56,13 @@ const initialState = {
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
-  productCategoryList: productCategoryListReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
   userSignup: userSignupReducer,
   userUpdate: userUpdateReducer,
   userInfo: userInfoReducer,
   userList:userListReducer,
+  userDelete: userDeleteReducer,
   categories: categoriesReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,

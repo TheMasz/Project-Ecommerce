@@ -26,7 +26,8 @@ export default function EditUserScreen(props) {
 
   useEffect(() => {
   
-    if (userLoading) {
+    if (!user || user._id !== userId) {
+      dispatch({ type: USER_UPDATE_RESET });
       dispatch(userInfo(userId));
     } else {
       setName(user.name);
@@ -35,9 +36,10 @@ export default function EditUserScreen(props) {
     }
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_RESET });
-      
+      dispatch(userInfo(userId));
+      props.history.push('/');
     }
-  }, [dispatch, userId, user, userLoading, successUpdate, ]);
+  }, [dispatch, userId, user, userLoading, successUpdate, props.history]);
 
   const ChangeHandler1 = (file) => {
     render.readAsDataURL(file);
@@ -96,10 +98,10 @@ export default function EditUserScreen(props) {
                   />
                 </div>
               </div>
-  
               <button type="button" className="primary" onClick={submitHandler}>
                 บันทึก
               </button>
+          
             </div>
             <div className="my-account-profile__right">
               <div className="avatar-uploader">
@@ -124,7 +126,9 @@ export default function EditUserScreen(props) {
                 accept=".jpg,.jpeg,.png"
                 onChange={(e) => ChangeHandler1(e.target.files[0])}
               />
+              
             </div>
+        
           </div>
           {loadingUpdate ? (
             <MessageBox variant="loading">Loading...</MessageBox>

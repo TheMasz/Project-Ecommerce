@@ -5,6 +5,7 @@ import { MineProduct, deleteProduct } from "../../../actions/addProductActions";
 import { detailsProduct } from "../../../actions/productActions";
 import LoadingBox from "../../../components/LoadingBox";
 import MessageBox from "../../../components/MessageBox";
+import PaginationTable from "../../../components/PaginationTable";
 
 import Sidebar from "../../../components/Sidebar";
 import { PRODUCT_DELETE_RESET } from "../../../constants/addProductContants";
@@ -26,6 +27,18 @@ export default function MyProductsScreen() {
     product: productDetail,
   } = productDetails;
   const [isModal, setModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  let currentPosts;
+  if (!loading) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     dispatch(MineProduct());
@@ -65,8 +78,8 @@ export default function MyProductsScreen() {
               <div className="col-2 "></div>
             </div>
             <div className="product-grid-container">
-              <div className="product-items row flex-start">
-                {products.map((product) => (
+              <div className="product-items row flex-start wrapper-products">
+                {currentPosts.map((product) => (
                   <div key={product._id} className="card m-01">
                     <Link to={`/products/product/${product._id}`}>
                       <div className="card_img">
@@ -108,6 +121,11 @@ export default function MyProductsScreen() {
                 ))}
               </div>
             </div>
+            <PaginationTable
+            postsPerPage={postsPerPage}
+            totalPosts={products.length}
+            paginate={paginate}
+          />
           </div>
         </div>
       </div>

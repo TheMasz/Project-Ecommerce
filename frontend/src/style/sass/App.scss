@@ -13,6 +13,7 @@
 @import "SearchScreen";
 @import "Table";
 @import "Admin";
+@import 'Footer';
 
 
 html {
@@ -66,7 +67,7 @@ a {
   width: 30px;
 }
 .w-100 {
-  width: 100%;
+  width: 100% !important;
 }
 .p-1 {
   padding: 10px;
@@ -181,7 +182,9 @@ img.medium {
   width: 50%;
 }
 .container {
+  position: relative;
   margin: 0 auto;
+  min-height: 100vh;
 }
 .alert {
   padding: 1rem;
@@ -213,6 +216,20 @@ img.medium {
 .alert-danger {
   color: #a02020;
   background-color: #ffe0e0e0;
+}
+button.edit{
+  color: #007ff4;
+  background-color: #e6efff;
+  padding: 10px;
+  width: 50%;
+  border-radius: 5px;
+}
+button.delete{
+  color: #a02020;
+  background-color: #ffe0e0e0;
+  padding: 10px;
+  width: 50%;
+  border-radius: 5px;
 }
 .badge {
   background-color: #f02020;
@@ -314,4 +331,10 @@ button {
   }
 }
 
+
+@media (max-width: 1200px){
+  .wrapper-products{
+    justify-content: center !important;
+  }
+}
 

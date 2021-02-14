@@ -33,6 +33,7 @@ import DashboardScreen from "./screens/Admin/DashboardScreen";
 import ProductsScreen from "./screens/Admin/ProductsScreen";
 import UsersScreen from "./screens/Admin/UsersScreen";
 import OrdersScreen from "./screens/Admin/OrdersScreen";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,13 +42,10 @@ function App() {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  const [isToggler, setToggler] = useState(false);
+
   const [isDropdown, setDropdown] = useState(false);
   const [isSticky, setSticky] = useState(false);
-  const btnToggler = (e) => {
-    e.preventDefault();
-    setToggler(!isToggler);
-  };
+
   const btnDropdonw = (e) => {
     e.preventDefault();
     setDropdown(!isDropdown);
@@ -76,20 +74,13 @@ function App() {
   return (
     <BrowserRouter>
       <header className={`${isSticky ? "sticky" : ""} `}>
-        <div className="nav-main row">
-          <div className={`row ${isToggler ? "left-active" : ""}`}>
-            <button className="btn_toggler" onClick={btnToggler}>
-              <img
-                src="/assets/icons/menu1.svg"
-                className="small_img"
-                alt="list"
-              />
-            </button>
+        <div className="nav-main row no-wrap">
+          <div className="row no-wrap">
             <Link to="/" className="text-title text-bold">
               Logo
             </Link>
           </div>
-          <ul className="links row">
+          <ul className="links row no-wrap">
             <li>
               <Route
                 render={({ history }) => <SearchBox history={history} />}
@@ -110,7 +101,7 @@ function App() {
             <li>
               {userInfo ? (
                 <div className="dropdown" onClick={btnDropdonw}>
-                  <div className="row">
+                  <div className="row avatar-with-name">
                     <div
                       className="avatar"
                       style={
@@ -172,39 +163,44 @@ function App() {
         </div>
       </header>
 
-      <div className={`category_container ${isToggler ? "active" : ""} `}></div>
       <main>
         <AdminRoute
           path="/dashboard/products"
           component={ProductsScreen}
           exact
         />
-        <AdminRoute
-          path="/dashboard/orders"
-          component={OrdersScreen}
-          exact
-        />
+        <AdminRoute path="/dashboard/orders" component={OrdersScreen} exact />
         <AdminRoute path="/dashboard/users" component={UsersScreen} exact />
         <AdminRoute path="/dashboard" component={DashboardScreen} exact />
         <Route
-          path="/search/name/:name/sortBy/:sortBy"
+          path="/search/name/:name?"
           component={SearchScreen}
           exact
-        />
-        <Route path="/search/name/:name?" component={SearchScreen} exact />
-        <Route path="/profile/:id" component={EditUserScreen} />
+      />
+       <Route
+          path="/search/category/:category?"
+          component={SearchScreen}
+          exact
+      />
+      <Route
+          path="/search/category/:category/name/:name/sortBy/:sortBy"
+          component={SearchScreen}
+          exact
+      />
+     
+        <Route path="/profile/:id" component={EditUserScreen} exact />
         <Route path="/shop/seller/:id" component={SellerShopScreen} exact />
         <Route
           path="/product/pageNumber/:pageNumber"
           component={ProductsListScreen}
         />
         <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
-        <Route path="/orderhistory" component={OrderHistoryScreen} />
+        <Route path="/orderhistory" component={OrderHistoryScreen} exact />
         <Route path="/order/:id" component={OrderScreen} exact />
-        <Route path="/placeorder" component={PlaceOrderScreen} />
-        <Route path="/payments" component={PaymentScreen} />
-        <Route path="/shipping" component={AddressScreen} />
-        <Route path="/seller" component={SellerScreen} />
+        <Route path="/placeorder" component={PlaceOrderScreen} exact />
+        <Route path="/payments" component={PaymentScreen} exact />
+        <Route path="/shipping" component={AddressScreen} exact />
+        <Route path="/seller" component={SellerScreen} exact />
         <Route
           path="/portal/product/categories"
           component={CategoriesScreen}
@@ -214,13 +210,14 @@ function App() {
         <Route path="/portal/sell/orders" component={SellOrdersList} exact />
         <Route path="/portal/product/:id/edit" component={EditProduct} exact />
         <Route path="/portal/product/list" component={MyProductsScreen} exact />
-        <Route path="/signup" component={SignupScreen} />
-        <Route path="/signin" component={SigninScreen} />
+        <Route path="/signup" component={SignupScreen} exact />
+        <Route path="/signin" component={SigninScreen} exact />
         <Route path="/cart/:id?" component={CartScreen} exact />
         <Route path="/products/category/:category" component={CategoryScreen} />
         <Route path="/products/product/:id" component={ProductScreen} exact />
         <Route path="/" component={HomeScreen} exact />
       </main>
+                <Footer/>
     </BrowserRouter>
   );
 }

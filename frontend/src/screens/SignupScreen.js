@@ -71,6 +71,7 @@ export default function SignupScreen(props) {
               id="password"
               placeholder="Enter 6 charater or more"
               required
+              minLength='6'
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -82,6 +83,7 @@ export default function SignupScreen(props) {
               id="confirmPassword"
               placeholder="Enter Confirm Password"
               required
+              minLength='6'
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>

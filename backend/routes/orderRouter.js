@@ -67,6 +67,7 @@ orderRouter.get(
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.find();
     const seller = req.user._id;
+    const arr = [];
     const convertArrayToObject = (array) => {
       const initialValue = {};
       return array.reduce((obj, item) => {
@@ -76,19 +77,29 @@ orderRouter.get(
         };
       }, initialValue);
     };
-    const order = orders.map((item) => {
-      const result = item.orderItems.filter((result) => {
-        return result.seller == seller;
+    const order = orders.map((order) => {
+      const isPaid = order.isPaid;
+      const address = order.shippingAddress;
+      const orderItems = order.orderItems;
+      arr.push({
+        isPaid: isPaid,
+        shippingAddress: address,
+        orderItems: orderItems,
       });
-
-      const convertResult = convertArrayToObject(result);
-      const obj = {
-        /*--Bug error send in loop-- */ ...convertResult,
-        ...item.shippingAddress,
-        isPaid: item.isPaid,
-      };
-      res.send(obj);
     });
+    const resultArr = [];
+    const orderFilter = arr.map((item) => {
+      const a = item.orderItems.filter((result) => result.seller == seller);
+      const b = convertArrayToObject(a);
+      const obj = {
+        ...b,
+        isPaid: item.isPaid,
+        ...item.shippingAddress,
+      };
+      resultArr.push(obj);
+    });
+    const c = resultArr.filter((result) => result.item);
+    res.send(c);
   })
 );
 orderRouter.put(
@@ -129,13 +140,13 @@ orderRouter.put(
 
 orderRouter.put(
   "/ispaid/:id",
-  
+
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
-    if(order){
+    if (order) {
       order.isPaid = true;
       order.save();
-    }else{
+    } else {
       res.status(400).send({ message: "Order not found." });
     }
     res.status(201).send({ message: "Order Paid" });

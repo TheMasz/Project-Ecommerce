@@ -23,7 +23,7 @@ userRouter.post(
           _id: user._id,
           name: user.name,
           email: user.email,
-          avatar:user.avatar,
+          avatar: user.avatar,
           isAdmin: user.isAdmin,
           token: generateToken(user),
         });
@@ -73,23 +73,34 @@ userRouter.get(
 
 userRouter.put(
   "/profile/:id/edit",
-
+  isAuth,
   expressAsyncHandler(async (req, res) => {
     const userId = req.params.id;
     const user = await User.findById(userId);
+    if (req.files) {
+      req.files.file.mv(
+        `./frontend/public/uploads/users/${req.files.file.name}`
+      );
+    }
     if (user) {
       user.name = req.body.name;
       user.email = req.body.email;
-      user.avatar = req.body.fileName;
-      const updatedUser = await user.save();
-      res.status(201).send(updatedUser);
-      if(req.files.file){
-        req.files.file.mv(`./frontend/public/uploads/users/${req.files.file.name}`);
+      if (req.body.fileName) {
+        user.avatar = req.body.fileName;
       }
+      if(req.body.password){
+        user.password =  bcrypt.hashSync(req.body.password, 8)
+      }
+      const updatedUser = await user.save();
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        token: generateToken(updatedUser),
+      });
     } else {
       res.status(404).send({ message: "User Not Found" });
     }
-
   })
 );
 
@@ -103,6 +114,25 @@ userRouter.get(
       res.send(users);
     } else {
       res.status(404).send({ message: "Users Not Found" });
+    }
+  })
+);
+
+userRouter.delete(
+  "/:id",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      if (user.email === "admin@example.com") {
+        res.status(400).send({ message: "Can Not Delete Admin User" });
+        return;
+      }
+      const deleteUser = await user.remove();
+      res.send({ message: "User Deleted", user: deleteUser });
+    } else {
+      res.status(404).send({ message: "User Not Found" });
     }
   })
 );

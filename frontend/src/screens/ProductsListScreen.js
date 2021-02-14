@@ -32,7 +32,7 @@ export default function ProductsListScreen() {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <>
-          <div className="row py-3  flex-start">
+          <div className="row py-3  flex-start wrapper-products">
             {currentPosts.map((product) => (
               <Product key={product._id} product={product} />
             ))}

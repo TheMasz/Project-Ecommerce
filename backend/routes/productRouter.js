@@ -11,11 +11,25 @@ productRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     const name = req.query.name || "";
+    const category = req.query.category || "";
     const sortBy = req.query.sortBy || "";
     const nameFilter = name ? { name: { $regex: name, $options: "i" } } : {};
+    const categoryFilter = category ? { category } : {};
     const sortByFilter =
-      sortBy === "ctime" ? { createdAt: -1 } : sortBy === "relevancy" ? { createdAt: 1} : {};
-    const products = await Product.find({ ...nameFilter }).sort(sortByFilter);
+      sortBy === "ctime"
+        ? { createdAt: -1 }
+        : sortBy === "relevancy"
+        ? { createdAt: 1 }
+        : sortBy === "lowest"
+        ? { price: 1 }
+        : sortBy === "highest"
+        ? { price: -1 }
+        : {};
+
+    const products = await Product.find({
+      ...nameFilter,
+      ...categoryFilter,
+    }).sort(sortByFilter);
     res.send(products);
   })
 );
@@ -29,13 +43,6 @@ productRouter.get(
     } else {
       return res.status(404).send({ message: "Product Not Found" });
     }
-  })
-);
-productRouter.get(
-  "/categories",
-  expressAsyncHandler(async (req, res) => {
-    const categories = await Product.find().distinct("category");
-    res.send(categories);
   })
 );
 
@@ -181,6 +188,5 @@ productRouter.delete(
     }
   })
 );
-
 
 export default productRouter;

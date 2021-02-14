@@ -164,5 +164,6 @@ export default function ProductScreen(props) {
         </>
       )}
     </div>
+    
   );
 }

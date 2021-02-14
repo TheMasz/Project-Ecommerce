@@ -155,25 +155,25 @@
 }
 /*Seller Page*/
 .sidebar-container {
-  position: relative;
   width: 220px;
-  height: 94vh;
-  background-color: white;
-  z-index: 900;
-  box-shadow: 0 0 0 1px lightgray;
+  position: relative;
+  z-index: 500;
   .sidebar {
-    position: fixed;
-    left: 0;
-    top: 6vh;
-    overflow: hidden;
-    min-height: calc(100vh - 56px);
+  position: fixed;
     width: inherit;
-
+    left: 0;
+    top: 58px;
+    bottom: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px lightgray;
+    
     .sidebar-menu {
       padding: 16px 16px 0;
+      background-color: #fff;
       .sidebar-menu-box {
-        margin-bottom: 20px;
-        height: auto;
+        margin-bottom: 24px;
         .sidebar-menu-item {
           display: -webkit-box;
           display: -ms-flexbox;
@@ -227,6 +227,7 @@
   height: 10rem !important;
 }
 
+
 /*Mine Products*/
 .product-list-main {
   position: relative;
@@ -245,6 +246,7 @@
   color: #404040;
 }
 .app-container {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -252,6 +254,7 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
   flex-direction: row;
+
 
   .page-container {
     width: 100%;
@@ -263,3 +266,4 @@
     color: inherit;
   }
 }
+
