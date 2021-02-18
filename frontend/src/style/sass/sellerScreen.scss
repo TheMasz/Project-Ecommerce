@@ -15,11 +15,13 @@
   flex-basis: 1000px;
   width: 1000px;
   max-width: 1000px;
+  
 }
 .input_wrap input {
   border: none;
   outline: none;  
   width: 90%;
+  color: #666;
 }
 .input__suffix {
   padding-left: 8px;
@@ -88,6 +90,7 @@
     transition: border 0.2s ease-in-out;
   }
 }
+
 .text-wrap {
   flex-basis: 166px;
   width: 166px;

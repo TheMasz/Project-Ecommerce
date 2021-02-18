@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../actions/orderActions";
@@ -66,8 +66,8 @@ export default function PlaceOrderScreen(props) {
                         </div>
 
                         <div className="cart-page-section__price">
-                          ${result.price} x {result.qty} = $
-                          {result.price * result.qty}
+                          {(result.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} x {result.qty} = {' '}
+                          {(result.price * result.qty).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} THB
                         </div>
                       </div>
                     </li>
@@ -88,12 +88,12 @@ export default function PlaceOrderScreen(props) {
             <div className="py-2">
               <p className="py-1">
                 ราคารวมสินค้า:{" "}
-                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท
               </p>
               <p className="py-1">
                 ค่าจัดส่ง: {cart.paymentMethod.shippingPrice}
               </p>
-              <p className="py-1">ราคารวมสินค้า: {cart.totalPrice}</p>
+              <p className="py-1">ราคารวมทั้งหมด: {(cart.totalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท</p>
               <button
                 className="primary block py-1"
                 disabled={cart.cartItems.length === 0}

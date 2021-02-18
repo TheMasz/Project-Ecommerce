@@ -97,7 +97,7 @@ export default function MyProductsScreen() {
                       </Link>
                       <div className="product-info row px-1 ">
                         <div className="price  text-overflow">
-                          {product.price} บาท
+                          {(product.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท
                         </div>
                         <div className="text-overflow">
                           คลัง {product.countInStock}

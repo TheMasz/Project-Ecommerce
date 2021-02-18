@@ -34,12 +34,20 @@ export const cartReducer = (
         );
         const arr = [];
         arr.push(...sellProductsList, item);
+
         if (existItem) {
+          const product = state.cartItems.map((x) =>
+            x.product === existItem.product ? item : x
+          );
+          const products = product.filter((x) => x.seller === item.seller);
           return {
             ...state,
             error: "",
-            cartItems: state.cartItems.map((x) =>
-              x.product === existItem.product ? item : x
+            cartItems: product,
+            cartItemsGroup: state.cartItemsGroup.map((x) =>
+              x.seller === item.seller
+                ? { seller: item.seller, products: products }
+                : x
             ),
           };
         } else {

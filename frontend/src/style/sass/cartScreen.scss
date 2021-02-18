@@ -39,3 +39,28 @@
   border-radius: 20px;
   width: 500px;
 }
+.cart-page-section__item{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .cart-page-section__description{
+    flex: 3 1 ;
+    text-align: center;
+  }
+  .cart-page-section__price{
+    flex: 1 1 ;
+    text-align: center;
+  }
+  .cart-page-section__actions{
+    flex: 1 1 ;
+    text-align: center;
+  }
+  .cart-page-section__qty{
+    flex: 1 1 ;
+    text-align: left;
+    
+  }
+  
+}
