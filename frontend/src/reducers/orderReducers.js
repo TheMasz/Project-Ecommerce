@@ -6,6 +6,10 @@ import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_RESET,
   ORDER_CREATE_SUCCESS,
+  ORDER_DELIVERED_FAIL,
+  ORDER_DELIVERED_REQUEST,
+  ORDER_DELIVERED_RESET,
+  ORDER_DELIVERED_SUCCESS,
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
@@ -20,6 +24,9 @@ import {
   ORDER_PAY_REQUEST,
   ORDER_PAY_RESET,
   ORDER_PAY_SUCCESS,
+  ORDER_SELL_DETAIL_FAIL,
+  ORDER_SELL_DETAIL_REQUEST,
+  ORDER_SELL_DETAIL_SUCCESS,
   ORDER_SELL_LIST_FAIL,
   ORDER_SELL_LIST_REQUEST,
   ORDER_SELL_LIST_SUCCESS,
@@ -82,6 +89,22 @@ export const orderSellListReducer = (state = { orders: [] }, action) => {
   }
 };
 
+export const orderSellDetailsReducer = (
+  state = { loading: true, order: {} },
+  action
+) => {
+  switch (action.type) {
+    case ORDER_SELL_DETAIL_REQUEST:
+      return { loading: true };
+    case ORDER_SELL_DETAIL_SUCCESS:
+      return { loading: false, order: action.payload };
+    case ORDER_SELL_DETAIL_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 export const orderAdminListReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_ADMIN_LIST_REQUEST:
@@ -119,6 +142,21 @@ export const orderIsPaidReducer = (state = {}, action) => {
     case ORDER_ISPAID_FAIL:
       return { loading: false, error: action.payload };
     case ORDER_ISPAID_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const orderDeliveredReducer = (state = {}, action) => {
+  switch (action.type) {
+    case ORDER_DELIVERED_REQUEST:
+      return { loading: false };
+    case ORDER_DELIVERED_SUCCESS:
+      return { loading: false,  success: true, };
+    case ORDER_DELIVERED_FAIL:
+      return { loading: false, error: action.payload };
+    case ORDER_DELIVERED_RESET:
       return {};
     default:
       return state;

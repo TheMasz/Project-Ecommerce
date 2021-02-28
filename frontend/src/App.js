@@ -34,6 +34,7 @@ import ProductsScreen from "./screens/Admin/ProductsScreen";
 import UsersScreen from "./screens/Admin/UsersScreen";
 import OrdersScreen from "./screens/Admin/OrdersScreen";
 import Footer from "./components/Footer";
+import BillScreen from "./screens/Seller/BillScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -194,6 +195,7 @@ function App() {
           path="/product/pageNumber/:pageNumber"
           component={ProductsListScreen}
         />
+
         <Route path="/order/:id/pay" component={PaymentBankScreen} exact />
         <Route path="/orderhistory" component={OrderHistoryScreen} exact />
         <Route path="/order/:id" component={OrderScreen} exact />
@@ -206,6 +208,7 @@ function App() {
           component={CategoriesScreen}
           exact
         />
+        <Route path="/bill/:id" component={BillScreen}  />
         <Route path="/portal/product/new" component={NewProduct} exact />
         <Route path="/portal/sell/orders" component={SellOrdersList} exact />
         <Route path="/portal/product/:id/edit" component={EditProduct} exact />
@@ -217,7 +220,7 @@ function App() {
         <Route path="/products/product/:id" component={ProductScreen} exact />
         <Route path="/" component={HomeScreen} exact />
       </main>
-                <Footer/>
+         
     </BrowserRouter>
   );
 }

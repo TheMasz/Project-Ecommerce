@@ -70,7 +70,7 @@ export default function OrdersScreen() {
                         <div>{item.seller}</div>
                         <ul>
                           {item.products.map((result) => (
-                            <li>{result.name}</li>
+                            <li>{result.name} x {result.qty}</li>
                           ))}
                         </ul>
                       </div>

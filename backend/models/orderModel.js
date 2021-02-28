@@ -22,6 +22,7 @@ const orderSchema = new mongoose.Schema(
     ],
     shippingAddress: {
       fullName: { type: String, required: true },
+      tel: { type: String, required: true },
       address: { type: String, required: true },
       postalCode: { type: String, required: true },
       country: { type: String, required: true },
@@ -41,6 +42,7 @@ const orderSchema = new mongoose.Schema(
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
+    deliveredNumber: {type: String},
     isDelivered: { type: Boolean, default: false },
     deliveredAt: { type: Date },
   },

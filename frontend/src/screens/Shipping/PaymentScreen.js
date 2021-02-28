@@ -31,7 +31,7 @@ export default function PaymentScreen(props) {
               value="โอน/ชำระเงินผ่านธนาคาร"
               name="paymentMethod"
               required
-              checked
+
               onChange={(e) => setPayment(e.target.value)}
             />
             <p className="py-2 pl-2 text-sub-signin-form">

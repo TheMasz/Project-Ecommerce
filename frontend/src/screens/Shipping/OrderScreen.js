@@ -22,14 +22,37 @@ export default function OrderScreen(props) {
   ) : (
     <div className="container">
       <div className="order-page-section bg-white p-3 mt-4">
-        <div className="order-page-section__status p-3 my-2"></div>
+        <div className="order-page-section__status p-3 my-2">
+          {order.isDelivered ? (
+            <div className="col">
+              <div className="inline-flex">
+                <p className="text-bold">สถานะการจัดส่ง: </p>
+                <p className=" ml-1">{order.isDelivered ? "จัดส่งเรียบร้อย" : "ยังไม่จัดส่ง"}</p>
+              </div>
+              <div className="inline-flex">
+                <p className="text-bold">วันเวลาการจัดส่ง: </p>
+                <p className=" ml-1">{order.deliveredAt}</p>
+              </div>
+              <div className="inline-flex">
+                <p className="text-bold">หมายเลขพัสดุ: </p>
+                <p className=" ml-1">{order.deliveredNumber}</p>
+              </div>
+            </div>
+          ) : (
+            <div className="inline-flex">
+              <p className="text-bold">สถานะการจัดส่ง: </p>
+              <p className=" ml-1">{order.isDelivered ? "จัดส่งเรียบร้อย" : "ยังไม่จัดส่ง"}</p>
+            </div>
+          )}
+        </div>
         <div className="order-page-section__address p-3 my-2">
           ที่อยู่ในการจัดส่ง
           <p>
             <strong>{order.shippingAddress.fullName}</strong> {"  "}
             {order.shippingAddress.address} {order.shippingAddress.country}
             {"  "}
-            {order.shippingAddress.postalCode}
+            {order.shippingAddress.postalCode} {"  "}{" "}
+            {order.shippingAddress.tel}
           </p>
         </div>
         <div className="order-page-section__order p-3 my-2">
@@ -58,7 +81,9 @@ export default function OrderScreen(props) {
 
                           <div className="cart-page-section__price">
                             ${result.price} x {result.qty} = $
-                            {(result.price * result.qty).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                            {(result.price * result.qty)
+                              .toFixed(2)
+                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
                           </div>
                         </div>
                       </li>
@@ -77,7 +102,12 @@ export default function OrderScreen(props) {
           <div className="d-flex flex-end ">
             <div className="py-2">
               <p className="py-1">ค่าจัดส่ง: {order.shippingPrice}</p>
-              <p className="py-1">ราคารวมสินค้า: {(order.totalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</p>
+              <p className="py-1">
+                ราคารวมสินค้า:{" "}
+                {order.totalPrice
+                  .toFixed(2)
+                  .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+              </p>
             </div>
           </div>
         </div>

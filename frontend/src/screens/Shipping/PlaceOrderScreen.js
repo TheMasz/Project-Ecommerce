@@ -13,6 +13,7 @@ export default function PlaceOrderScreen(props) {
   if (!cart.paymentMethod) {
     props.history.push("/payment");
   }
+
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
   const toPrice = (num) => Number(num.toFixed(2));
@@ -23,6 +24,7 @@ export default function PlaceOrderScreen(props) {
   const placeOrderHandler = () => {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItemsGroup }));
   };
+
   useEffect(() => {
     if (success) {
       props.history.push(`/order/${order._id}`);
@@ -39,7 +41,7 @@ export default function PlaceOrderScreen(props) {
             <strong>{cart.shippingAddress.fullName}</strong> {"  "}
             {cart.shippingAddress.address} {cart.shippingAddress.country}
             {"  "}
-            {cart.shippingAddress.postalCode}
+            {cart.shippingAddress.postalCode} {"  "} {cart.shippingAddress.tel}
           </p>
         </div>
         <div className="order-page-section__order p-3 my-2">
