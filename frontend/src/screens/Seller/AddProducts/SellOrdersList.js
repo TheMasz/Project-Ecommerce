@@ -8,6 +8,7 @@ import {
 } from "../../../actions/orderActions";
 import LoadingBox from "../../../components/LoadingBox";
 import MessageBox from "../../../components/MessageBox";
+import PaginationTable from "../../../components/PaginationTable";
 import { ORDER_DELIVERED_RESET } from "../../../constants/orderConstants";
 
 export default function SellOrdersList() {
@@ -33,6 +34,20 @@ export default function SellOrdersList() {
   const [isModal, setModal] = useState(false);
   const [deliveryNumber, setDeliveryNumber] = useState("");
   const [date, setDate] = useState("");
+
+const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  let currentPosts;
+  if (!loading) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    currentPosts = orders.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     dispatch(
       listOrderSeller({
@@ -126,7 +141,7 @@ export default function SellOrdersList() {
                   </tr>
                 </thead>
                 <tbody className="table-section__body">
-                  {orders.map((result) => (
+                  {currentPosts.map((result) => (
                     <tr key={result.orderId}>
                       <td>{result.orderId}</td>
                       <td>
@@ -175,8 +190,13 @@ export default function SellOrdersList() {
                     </tr>
                   ))}
                 </tbody>
+               
               </table>
-
+              <PaginationTable
+              postsPerPage={postsPerPage}
+              totalPosts={orders.length}
+              paginate={paginate}
+            />
               {orders.length === 0 && (
                 <div className="no-data">
                   <i className="fa fa-2x fa-calendar-o"></i>

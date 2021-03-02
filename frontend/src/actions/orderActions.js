@@ -104,11 +104,14 @@ export const listOrderSeller = ({ pickerPrev = "", pickerNext = "" }) => async (
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get(`/api/orders/sell/order?pickerPrev=${pickerPrev}&pickerNext=${pickerNext}`, {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    });
+    const { data } = await Axios.get(
+      `/api/orders/sell/order?pickerPrev=${pickerPrev}&pickerNext=${pickerNext}`,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+    );
     dispatch({ type: ORDER_SELL_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -137,17 +140,23 @@ export const sellerDetailsOrder = (orderId) => async (dispatch, getState) => {
   }
 };
 
-export const listOrderAdmin = () => async (dispatch, getState) => {
+export const listOrderAdmin = ({ pickerPrev = "", pickerNext = "" }) => async (
+  dispatch,
+  getState
+) => {
   dispatch({ type: ORDER_ADMIN_LIST_REQUEST });
   const {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.get("/api/orders/admin/order", {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    });
+    const { data } = await Axios.get(
+      `/api/orders/admin/order?pickerPrev=${pickerPrev}&pickerNext=${pickerNext}`,
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+    );
     dispatch({ type: ORDER_ADMIN_LIST_SUCCESS, payload: data });
   } catch (error) {
     const message =
@@ -203,15 +212,22 @@ export const paidOrder = (orderId) => async (dispatch, getState) => {
   }
 };
 
-export const deliveredOrder = (orderId, delivered) => async (dispatch, getState) => {
-  dispatch({ type: ORDER_DELIVERED_REQUEST , payload: delivered});
+export const deliveredOrder = (orderId, delivered) => async (
+  dispatch,
+  getState
+) => {
+  dispatch({ type: ORDER_DELIVERED_REQUEST, payload: delivered });
   const {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await Axios.put(`/api/orders/delivered/${orderId}`, delivered,{
-      headers: { Authorization: `Bearer ${userInfo.token}` },
-    });
+    const { data } = await Axios.put(
+      `/api/orders/delivered/${orderId}`,
+      delivered,
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
     dispatch({ type: ORDER_DELIVERED_SUCCESS, payload: data });
   } catch (error) {
     const message =

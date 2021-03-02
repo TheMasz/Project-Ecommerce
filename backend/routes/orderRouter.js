@@ -45,9 +45,22 @@ orderRouter.get(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
+    const pickerPrev = req.query.pickerPrev;
+    const pickerNext = req.query.pickerNext;
+
     const orders = await Order.find();
     if (orders) {
-      res.send(orders);
+      if (pickerPrev && pickerNext) {
+        const date = orders.filter(
+          (order) =>
+            order.createdAt >= new Date(pickerPrev) &&
+            order.createdAt <= new Date(pickerNext)
+        );
+        res.send(date);
+      } else {
+        const orderDESC = orders.sort((a, b) => b.createdAt - a.createdAt);
+        res.send(orderDESC);
+      }
     } else {
       res.status(404).send({ message: "Order Not Found" });
     }
@@ -191,7 +204,7 @@ orderRouter.put(
 orderRouter.put(
   "/delivered/:id",
   isAuth,
-  expressAsyncHandler(async (req, res) => { 
+  expressAsyncHandler(async (req, res) => {
     const orderId = req.params.id;
     const order = await Order.findById(orderId);
     if (order) {

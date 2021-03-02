@@ -50,10 +50,10 @@ export default function MyProductsScreen() {
     setModal(true);
     dispatch(detailsProduct(productId));
   };
-  const deleteHandler = (productId) =>{
+  const deleteHandler = (productId) => {
     setModal(false);
     dispatch(deleteProduct(productId));
-  }
+  };
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -97,7 +97,10 @@ export default function MyProductsScreen() {
                       </Link>
                       <div className="product-info row px-1 ">
                         <div className="price  text-overflow">
-                          {(product.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท
+                          {product.price
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, "$&,")}{" "}
+                          บาท
                         </div>
                         <div className="text-overflow">
                           คลัง {product.countInStock}
@@ -122,10 +125,10 @@ export default function MyProductsScreen() {
               </div>
             </div>
             <PaginationTable
-            postsPerPage={postsPerPage}
-            totalPosts={products.length}
-            paginate={paginate}
-          />
+              postsPerPage={postsPerPage}
+              totalPosts={products.length}
+              paginate={paginate}
+            />
           </div>
         </div>
       </div>
@@ -172,7 +175,11 @@ export default function MyProductsScreen() {
                           >
                             ยกเลิก
                           </button>
-                          <button type="button" className="primary" onClick={e=>deleteHandler(productDetail._id)}>
+                          <button
+                            type="button"
+                            className="primary"
+                            onClick={(e) => deleteHandler(productDetail._id)}
+                          >
                             ยืนยัน
                           </button>
                         </div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, updateUser, userInfo, userList } from "../../actions/userActions";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
+import PaginationTable from "../../components/PaginationTable";
 import { USER_DELETE_RESET, USER_UPDATE_RESET } from "../../constants/userConstants";
 
 export default function UsersScreen() {
@@ -33,6 +34,19 @@ export default function UsersScreen() {
     error: errorUpdate,
     success: successUpdate,
   } = userUpdate;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  let currentPosts;
+  if (!LoadingUser) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    currentPosts = users.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     dispatch(userList());
@@ -100,7 +114,7 @@ export default function UsersScreen() {
               </tr>
             </thead>
             <tbody className="table-section__body">
-              {users.map((user) => (
+              {currentPosts.map((user) => (
                 <tr key={user._id}>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
@@ -126,6 +140,11 @@ export default function UsersScreen() {
               ))}
             </tbody>
           </table>
+          <PaginationTable
+              postsPerPage={postsPerPage}
+              totalPosts={users.length}
+              paginate={paginate}
+            />
         </div>
       )}
       {isModalDL && (

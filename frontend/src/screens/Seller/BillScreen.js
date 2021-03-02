@@ -18,7 +18,7 @@ export default function BillScreen(props) {
   }, [dispatch, orderId]);
   
   var date = new Date();
-  
+
   return DetailsOrderLoading ? (
     <LoadingBox />
   ) : DetailsOrderError ? (
