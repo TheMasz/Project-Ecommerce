@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   deliveredOrder,
-  detailsOrder,
   listOrderSeller,
+  sellerDetailsOrder,
 } from "../../../actions/orderActions";
 import LoadingBox from "../../../components/LoadingBox";
 import MessageBox from "../../../components/MessageBox";
@@ -15,7 +15,7 @@ export default function SellOrdersList() {
   const history = useHistory();
   const orderSellerList = useSelector((state) => state.orderSellerList);
   const { loading, error, orders } = orderSellerList;
-  const orderDetails = useSelector((state) => state.orderDetails);
+  const orderDetails = useSelector((state) => state.orderSellerDetails);
   const {
     order: orderDetail,
     loading: loadingDetail,
@@ -35,7 +35,7 @@ export default function SellOrdersList() {
   const [deliveryNumber, setDeliveryNumber] = useState("");
   const [date, setDate] = useState("");
 
-const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(18);
 
   let currentPosts;
@@ -55,14 +55,21 @@ const [currentPage, setCurrentPage] = useState(1);
         pickerNext: pickerNext ? pickerNext : "",
       })
     );
-    if (orderDetail) {
-      setDeliveryNumber(orderDetail.deliveredId);
-      setDate(orderDetail.deliveredAt);
+    if (!loadingDetail) {
+      setDeliveryNumber(orderDetail.item.deliveredNumber);
+      setDate(orderDetail.item.deliveredAt);
     }
     if (successUpdate) {
       dispatch({ type: ORDER_DELIVERED_RESET });
     }
-  }, [dispatch, pickerPrev, pickerNext, orderDetail, successUpdate]);
+  }, [
+    dispatch,
+    pickerPrev,
+    pickerNext,
+    orderDetail,
+    loadingDetail,
+    successUpdate,
+  ]);
   const billHandler = (id) => {
     console.log("id :", id);
     window.open(`/bill/${id}`, "_blank");
@@ -81,14 +88,19 @@ const [currentPage, setCurrentPage] = useState(1);
   };
   const cfDelivery = (orderId) => {
     setModal(true);
-    dispatch(detailsOrder(orderId));
+    dispatch(sellerDetailsOrder(orderId));
   };
   const delivered = (orderId) => {
     const data = new FormData();
-    data.append("deliveryNumber", deliveryNumber);
+    data.append("deliveredNumber", deliveryNumber);
     data.append("date", date);
     dispatch(deliveredOrder(orderId, data));
     setModal(false);
+  };
+  const cancleDelivered = () => {
+    setModal(false);
+    setDeliveryNumber("");
+    setDate("");
   };
   return (
     <div className="container">
@@ -102,7 +114,7 @@ const [currentPage, setCurrentPage] = useState(1);
             <div className="row">
               <div className="title">คำสั่งซื้อ</div>
               <button type="button" onClick={reloadHandler}>
-                <i class="fa fa-refresh"></i>
+                <i className="fa fa-refresh"></i>
               </button>
             </div>
             <div className="date-picker" onClick={pickerHandler}>
@@ -137,6 +149,7 @@ const [currentPage, setCurrentPage] = useState(1);
                     <th>วันเวลาที่สั่งซื้อ</th>
                     <th>ที่อยู่</th>
                     <th>สถานะ</th>
+                    <th>การจัดส่ง</th>
                     <th>ดำเนินการ</th>
                   </tr>
                 </thead>
@@ -172,31 +185,45 @@ const [currentPage, setCurrentPage] = useState(1);
                         </div>
                       </td>
                       <td>
-                        <button
-                          type="button"
-                          className="primary"
-                          onClick={() => cfDelivery(result.orderId)}
+                        <div
+                          className={`isDelivered-status ${
+                            result.item.isDelivered
+                              ? "alert-success"
+                              : "alert-danger"
+                          }`}
                         >
-                          จัดส่ง
-                        </button>
-                        <button
-                          type="button"
-                          className="primary"
-                          onClick={() => billHandler(result.orderId)}
-                        >
-                          ปริ้นบิล
-                        </button>
+                          {result.item.isDelivered
+                            ? "จัดส่งเรียบร้อย"
+                            : "ยังไม่จัดส่ง"}
+                        </div>
+                      </td>
+                      <td>
+                        <div className="buttons">
+                          <button
+                            type="button"
+                            className="primary"
+                            onClick={() => cfDelivery(result.orderId)}
+                          >
+                            จัดส่ง
+                          </button>
+                          <button
+                            type="button"
+                            className="primary"
+                            onClick={() => billHandler(result.orderId)}
+                          >
+                            ปริ้นบิล
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
                 </tbody>
-               
               </table>
               <PaginationTable
-              postsPerPage={postsPerPage}
-              totalPosts={orders.length}
-              paginate={paginate}
-            />
+                postsPerPage={postsPerPage}
+                totalPosts={orders.length}
+                paginate={paginate}
+              />
               {orders.length === 0 && (
                 <div className="no-data">
                   <i className="fa fa-2x fa-calendar-o"></i>
@@ -233,21 +260,25 @@ const [currentPage, setCurrentPage] = useState(1);
           {loadingDetail || loadingUpdate ? (
             <MessageBox variant="loading">Loading...</MessageBox>
           ) : errorDetail || errorUpdate ? (
-            <MessageBox variant="error">{errorDetail || errorUpdate}</MessageBox>
+            <MessageBox variant="danger">
+              {errorDetail || errorUpdate}
+            </MessageBox>
           ) : (
             <div className="modal__mask" style={{ zIndex: 1000008 }}>
               <div className="modal__container">
                 <div className="modal__box">
                   <div className="modal__content">
-                    <>
+                    <form onSubmit={(e) => delivered(orderDetail.orderId)}>
                       <div className="modal__header">
                         <div className="modal__header-inner">
                           <span className="text-overflow">ชำระเงิน</span>
                         </div>
                       </div>
                       <div className="modal__body">
-                        {orderDetail.isDelivered && (
+                        {orderDetail.item.isDelivered ? (
                           <div className="success">จัดส่งเรียบร้อย</div>
+                        ) : (
+                          <div className="error">ยังไม่จัดส่ง</div>
                         )}
                         <div className="modal__body-inner-top">
                           <span className="text-overflow">
@@ -255,19 +286,23 @@ const [currentPage, setCurrentPage] = useState(1);
                           </span>
                         </div>
                         <div className="modal__body-inner-bottom">
-                          <input
-                            type="text"
-                            placeholder="หมายเลขวัสดุ"
-                            onChange={(e) => setDeliveryNumber(e.target.value)}
-                            value={orderDetail.deliveredNumber}
-                            required
-                          />
-                          <input
-                            type="date"
-                            onChange={(e) => setDate(e.target.value)}
-                            value={orderDetail.date}
-                            required
-                          />
+                
+                            <input
+                              type="text"
+                              placeholder="หมายเลขวัสดุ"
+                              onChange={(e) =>
+                                setDeliveryNumber(e.target.value)
+                              }
+                              value={deliveryNumber}
+                              required
+                            />
+                            <input
+                              type="datetime-local"
+                              onChange={(e) => setDate(e.target.value)}
+                              value={date}
+                              required
+                            />
+                 
                         </div>
                       </div>
                       <div className="modal__footer">
@@ -275,21 +310,20 @@ const [currentPage, setCurrentPage] = useState(1);
                           <button
                             type="button"
                             className="normal mx-1"
-                            onClick={(e) => setModal(false)}
+                            onClick={cancleDelivered}
                           >
                             ยกเลิก
                           </button>
                           <button
-                            type="button"
+                            type="submit"
                             className="primary"
-                            onClick={() => delivered(orderDetail._id)}
-                            disabled={orderDetail.isDelivered}
+                            disabled={orderDetail.item.isDelivered}
                           >
                             ยืนยัน
                           </button>
                         </div>
                       </div>
-                    </>
+                    </form>
                   </div>
                 </div>
               </div>

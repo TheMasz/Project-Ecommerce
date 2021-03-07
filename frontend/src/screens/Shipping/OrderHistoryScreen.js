@@ -42,7 +42,10 @@ export default function OrderHistoryScreen(props) {
                 </div>
               </div>
               <div className="order-content__item__price">
-                {order.totalPrice} บาท
+                {order.totalPrice
+                  .toFixed(2)
+                  .replace(/\d(?=(\d{3})+\.)/g, "$&,")}{" "}
+                บาท
               </div>
             </div>
           ))}
@@ -59,4 +62,3 @@ export default function OrderHistoryScreen(props) {
     </div>
   );
 }
-

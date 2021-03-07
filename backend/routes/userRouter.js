@@ -109,7 +109,9 @@ userRouter.get(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const users = await User.find();
+    const search = req.query.search;
+    const nameFilter = search ? { name: { $regex: search, $options: "i" } } : {};
+    const users = await User.find({...nameFilter});
     if (users) {
       res.send(users);
     } else {

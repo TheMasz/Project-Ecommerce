@@ -29,11 +29,20 @@
       font-size: 16px; }
       /* line 28, ../sass/Table.scss */
       .table-list-section .table-section .table-section__body .isPaid-status {
-        padding: 10px;
-        width: 110px;
+        padding: 5px;
+        width: 100%;
         border-radius: 5px; }
+      /* line 33, ../sass/Table.scss */
+      .table-list-section .table-section .table-section__body .isDelivered-status {
+        padding: 5px;
+        width: 100%;
+        border-radius: 5px; }
+      /* line 38, ../sass/Table.scss */
+      .table-list-section .table-section .table-section__body .buttons {
+        display: flex;
+        flex-direction: column; }
 
-/* line 36, ../sass/Table.scss */
+/* line 46, ../sass/Table.scss */
 .no-data {
   padding: 124px 0;
   width: 100%;

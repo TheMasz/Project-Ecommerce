@@ -51,7 +51,7 @@ export default function ProductsScreen() {
     if (successDelete) {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
-  }, [dispatch, successDelete]);
+  }, [dispatch, successDelete, category]);
   const CfdeleteHandler = (productId) => {
     setModal(true);
     dispatch(detailsProduct(productId));
@@ -77,10 +77,11 @@ export default function ProductsScreen() {
           ) : (
             ""
           )}
-          <div className="select-wrap_inner-large mt-1">
+          <div className="select-wrap_inner-large mt-4">
             <select
               className="input-wrap_select"
               onChange={(e) => setCategory(e.target.value)} 
+              value={category}
             >
               <option value="" selected disabled hidden>
                 กรุณาเลือกหมวดหมู่
@@ -130,6 +131,14 @@ export default function ProductsScreen() {
             totalPosts={products.length}
             paginate={paginate}
           />
+           {products.length === 0 && (
+            <div className="no-data">
+              <i className="fa fa-2x fa-calendar-o"></i>
+              <div className="order-list-section__content py-1">
+                ไม่พบรายการสินค้า
+              </div>
+            </div>
+          )}
         </div>
       )}
       {isModal ? (
@@ -194,6 +203,7 @@ export default function ProductsScreen() {
       ) : (
         ""
       )}
+
     </div>
   );
 }

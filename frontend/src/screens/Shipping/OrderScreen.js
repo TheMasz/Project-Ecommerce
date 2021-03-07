@@ -23,27 +23,33 @@ export default function OrderScreen(props) {
     <div className="container">
       <div className="order-page-section bg-white p-3 mt-4">
         <div className="order-page-section__status p-3 my-2">
-          {order.isDelivered ? (
-            <div className="col">
-              <div className="inline-flex">
-                <p className="text-bold">สถานะการจัดส่ง: </p>
-                <p className=" ml-1">{order.isDelivered ? "จัดส่งเรียบร้อย" : "ยังไม่จัดส่ง"}</p>
-              </div>
-              <div className="inline-flex">
-                <p className="text-bold">วันเวลาการจัดส่ง: </p>
-                <p className=" ml-1">{order.deliveredAt}</p>
-              </div>
-              <div className="inline-flex">
-                <p className="text-bold">หมายเลขพัสดุ: </p>
-                <p className=" ml-1">{order.deliveredNumber}</p>
-              </div>
-            </div>
-          ) : (
-            <div className="inline-flex">
+          {order.orderItems.map((item)=>(
+            <li key={item.seller}> 
+              <h3>ร้าน : {item.seller}</h3>
+              {item.isDelivered? (
+                  <div className="col">
+                  <div className="inline-flex">
+                    <p className="text-bold">สถานะการจัดส่ง: </p>
+                    <p className=" ml-1">จัดส่งเรียบร้อย</p>
+                  </div>
+                  <div className="inline-flex">
+                    <p className="text-bold">วันเวลาการจัดส่ง: </p>
+                    <p className=" ml-1">{item.deliveredAt}</p>
+                  </div>
+                  <div className="inline-flex">
+                    <p className="text-bold">หมายเลขพัสดุ: </p>
+                    <p className=" ml-1">{item.deliveredNumber}</p>
+                  </div>
+                </div>
+              ):(
+                <div className="inline-flex">
               <p className="text-bold">สถานะการจัดส่ง: </p>
-              <p className=" ml-1">{order.isDelivered ? "จัดส่งเรียบร้อย" : "ยังไม่จัดส่ง"}</p>
+              <p className=" ml-1">ยังไม่จัดส่ง</p>
             </div>
-          )}
+              )}
+            </li>
+          ))}
+        
         </div>
         <div className="order-page-section__address p-3 my-2">
           ที่อยู่ในการจัดส่ง

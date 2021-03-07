@@ -25,7 +25,7 @@ productRouter.get(
         : sortBy === "highest"
         ? { price: -1 }
         : {};
-
+  
     const products = await Product.find({
       ...nameFilter,
       ...categoryFilter,

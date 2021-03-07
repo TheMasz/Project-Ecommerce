@@ -70,7 +70,7 @@ orderRouter.get(
   "/mine/order",
   isAuth,
   expressAsyncHandler(async (req, res) => {
-    const orders = await Order.find({ user: req.user._id });
+    const orders = await Order.find({ user: req.user._id }).sort({createdAt:-1});
     res.send(orders);
   })
 );
@@ -160,6 +160,7 @@ orderRouter.get(
       isPaid: order.isPaid,
       paymentMethod: order.paymentMethod,
       ...order.shippingAddress,
+      orderId: order._id,
     };
 
     res.send(obj);
@@ -206,11 +207,19 @@ orderRouter.put(
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const orderId = req.params.id;
+    const seller = req.user._id;
     const order = await Order.findById(orderId);
     if (order) {
-      order.deliveredId = req.body.deliveryNumber;
-      order.isDelivered = true;
-      order.deliveredAt = req.body.date;
+      const orderFilter = await order.orderItems.find(
+        (a) => a.seller == seller
+      );
+      const orderFilter2 = await order.orderItems.map((a) => a);
+      orderFilter.isDelivered = true;
+      orderFilter.deliveredNumber = req.body.deliveredNumber;
+      orderFilter.deliveredAt = req.body.date;
+      order.orderItems =  orderFilter2;
+      console.log("orderFilter1 :", orderFilter);
+      console.log("orderFilter2 :", orderFilter2);
       const updatedOrder = await order.save();
       res.status(201).send({ message: "Order Delivered" });
     } else {
@@ -221,7 +230,6 @@ orderRouter.put(
 
 orderRouter.put(
   "/ispaid/:id",
-
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
