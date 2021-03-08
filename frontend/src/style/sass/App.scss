@@ -145,6 +145,16 @@ a {
 .text-bold {
   font-weight: bolder;
 }
+.logo{
+  display: inline-flex;
+  align-items: center;
+  color: #e38a17;
+  img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+}
 .inline-flex{
   display: inline-flex;
 }

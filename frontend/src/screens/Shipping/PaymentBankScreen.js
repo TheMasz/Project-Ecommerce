@@ -15,9 +15,6 @@ export default function PaymentBankScreen(props) {
   const [date, setDate] = useState();
   const [img, setImg] = useState();
 
-  // if (order.paymentImg) {
-  //   props.history.push(`/order/${orderId}`);
-  // }
   const submitHandler = (e) => {
     e.preventDefault();
     const data = new FormData();

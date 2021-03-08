@@ -1665,10 +1665,21 @@ a {
   font-weight: bolder; }
 
 /* line 148, ../sass/App.scss */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  color: #e38a17; }
+  /* line 152, ../sass/App.scss */
+  .logo img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px; }
+
+/* line 158, ../sass/App.scss */
 .inline-flex {
   display: inline-flex; }
 
-/* line 151, ../sass/App.scss */
+/* line 161, ../sass/App.scss */
 .row {
   display: flex;
   flex-direction: row;
@@ -1676,105 +1687,105 @@ a {
   align-items: center;
   flex-wrap: wrap; }
 
-/* line 158, ../sass/App.scss */
+/* line 168, ../sass/App.scss */
 .col {
   display: flex;
   flex-direction: column; }
 
-/* line 162, ../sass/App.scss */
+/* line 172, ../sass/App.scss */
 .col-1 {
   flex: 1 1 25rem; }
 
-/* line 165, ../sass/App.scss */
+/* line 175, ../sass/App.scss */
 .col-2 {
   flex: 2 1 50rem; }
 
-/* line 168, ../sass/App.scss */
+/* line 178, ../sass/App.scss */
 .d-flex {
   display: flex; }
 
-/* line 171, ../sass/App.scss */
+/* line 181, ../sass/App.scss */
 .flex-column {
   flex-direction: column; }
 
-/* line 174, ../sass/App.scss */
+/* line 184, ../sass/App.scss */
 .flex-end {
   justify-content: flex-end; }
 
-/* line 177, ../sass/App.scss */
+/* line 187, ../sass/App.scss */
 .flex-start {
   justify-content: flex-start; }
 
-/* line 180, ../sass/App.scss */
+/* line 190, ../sass/App.scss */
 .align-center {
   align-items: center; }
 
-/* line 183, ../sass/App.scss */
+/* line 193, ../sass/App.scss */
 .align-start {
   align-items: flex-start; }
 
-/* line 186, ../sass/App.scss */
+/* line 196, ../sass/App.scss */
 .space-evenly {
   justify-content: space-evenly; }
 
-/* line 189, ../sass/App.scss */
+/* line 199, ../sass/App.scss */
 .no-wrap {
   flex-wrap: nowrap; }
 
-/* line 192, ../sass/App.scss */
+/* line 202, ../sass/App.scss */
 .center {
   justify-content: center; }
 
-/* line 196, ../sass/App.scss */
+/* line 206, ../sass/App.scss */
 img.medium {
   width: 50%; }
 
-/* line 199, ../sass/App.scss */
+/* line 209, ../sass/App.scss */
 .container {
   position: relative;
   margin: 0 auto;
   min-height: 100vh; }
 
-/* line 204, ../sass/App.scss */
+/* line 214, ../sass/App.scss */
 .alert {
   padding: 1rem;
   border: 0.1rem solid transparent;
   border: 0.5rem;
   margin: 10px 0; }
 
-/* line 210, ../sass/App.scss */
+/* line 220, ../sass/App.scss */
 .error {
   color: #a02020; }
 
-/* line 213, ../sass/App.scss */
+/* line 223, ../sass/App.scss */
 .success {
   color: #20a020; }
 
-/* line 216, ../sass/App.scss */
+/* line 226, ../sass/App.scss */
 .loading {
   color: #007ff4; }
 
-/* line 219, ../sass/App.scss */
+/* line 229, ../sass/App.scss */
 .alert-loading {
   color: #007ff4;
   background-color: #e6efff; }
 
-/* line 223, ../sass/App.scss */
+/* line 233, ../sass/App.scss */
 .alert-success {
   color: #20a020;
   background-color: #def8d6; }
 
-/* line 227, ../sass/App.scss */
+/* line 237, ../sass/App.scss */
 .alert-info {
   color: #2020a0;
   background-color: #e0e0ff; }
 
-/* line 231, ../sass/App.scss */
+/* line 241, ../sass/App.scss */
 .alert-danger {
   color: #a02020;
   background-color: #ffe0e0e0; }
 
-/* line 235, ../sass/App.scss */
+/* line 245, ../sass/App.scss */
 button.edit {
   color: #007ff4;
   background-color: #e6efff;
@@ -1782,7 +1793,7 @@ button.edit {
   width: 50%;
   border-radius: 5px; }
 
-/* line 242, ../sass/App.scss */
+/* line 252, ../sass/App.scss */
 button.delete {
   color: #a02020;
   background-color: #ffe0e0e0;
@@ -1790,7 +1801,7 @@ button.delete {
   width: 50%;
   border-radius: 5px; }
 
-/* line 249, ../sass/App.scss */
+/* line 259, ../sass/App.scss */
 .badge {
   background-color: #f02020;
   color: white;
@@ -1799,41 +1810,41 @@ button.delete {
   font-size: 1.4rem;
   margin-left: 0.2rem; }
 
-/* line 257, ../sass/App.scss */
+/* line 267, ../sass/App.scss */
 button {
   outline: none;
   border: none;
   background-color: inherit; }
 
-/* line 262, ../sass/App.scss */
+/* line 272, ../sass/App.scss */
 .bg-white {
   background-color: white;
   box-shadow: 0 0 8px 0 lightgray;
   border-radius: 10px; }
 
-/* line 267, ../sass/App.scss */
+/* line 277, ../sass/App.scss */
 .pointer {
   cursor: pointer; }
 
-/* line 270, ../sass/App.scss */
+/* line 280, ../sass/App.scss */
 .text-overflow {
   overflow: hidden;
   text-overflow: ellipsis; }
 
-/* line 274, ../sass/App.scss */
+/* line 284, ../sass/App.scss */
 .wrapper-btn {
   text-align: center; }
-  /* line 276, ../sass/App.scss */
+  /* line 286, ../sass/App.scss */
   .wrapper-btn .btn_seeMore {
     border: 1px solid lightgray;
     padding: 10px 20px;
     border-radius: 3px;
     color: #404040; }
-  /* line 284, ../sass/App.scss */
+  /* line 294, ../sass/App.scss */
   .wrapper-btn .btn_seeMore:hover {
     background-color: lightgray; }
 
-/* line 288, ../sass/App.scss */
+/* line 298, ../sass/App.scss */
 .avatar {
   width: 30px;
   height: 30px;
@@ -1843,7 +1854,7 @@ button {
   background-position: center !important;
   background-repeat: no-repeat !important; }
 
-/* line 297, ../sass/App.scss */
+/* line 307, ../sass/App.scss */
 .searchbar {
   display: flex;
   flex-direction: row;
@@ -1852,28 +1863,28 @@ button {
   padding: 3px;
   border-radius: 3px;
   box-shadow: 0 0 2px 0 lightgray; }
-  /* line 305, ../sass/App.scss */
+  /* line 315, ../sass/App.scss */
   .searchbar .searchbar-main {
     flex: 1;
     background-color: white; }
-    /* line 309, ../sass/App.scss */
+    /* line 319, ../sass/App.scss */
     .searchbar .searchbar-main input {
       outline: none;
       border: none;
       height: 100%;
       width: 100%; }
-  /* line 316, ../sass/App.scss */
+  /* line 326, ../sass/App.scss */
   .searchbar button {
     background: #007ff4;
     color: white;
     padding: 4px;
     border-radius: 3px; }
 
-/* line 323, ../sass/App.scss */
+/* line 333, ../sass/App.scss */
 .date-picker {
   width: 240px;
   margin-top: 10px; }
-  /* line 326, ../sass/App.scss */
+  /* line 336, ../sass/App.scss */
   .date-picker .date-picker__input {
     border: 1px solid #e5e5e5;
     border-radius: 4px;
@@ -1895,7 +1906,7 @@ button {
     -webkit-box-sizing: border-box;
     box-sizing: border-box; }
 
-/* line 348, ../sass/App.scss */
+/* line 358, ../sass/App.scss */
 .daterange-picker-panel {
   position: absolute;
   z-index: 100;
@@ -1903,7 +1914,7 @@ button {
   transform-origin: right bottom;
   top: 60px;
   left: 300px; }
-  /* line 356, ../sass/App.scss */
+  /* line 366, ../sass/App.scss */
   .daterange-picker-panel .daterange-picker-panel__body {
     display: flex;
     background: white;
@@ -1911,23 +1922,23 @@ button {
     box-shadow: 0 0 4px 0 lightgray; }
 
 @media (min-width: 576px) {
-  /* line 366, ../sass/App.scss */
+  /* line 376, ../sass/App.scss */
   .container {
     max-width: 100%; } }
 @media (min-width: 768px) {
-  /* line 372, ../sass/App.scss */
+  /* line 382, ../sass/App.scss */
   .container {
     max-width: 720px; } }
 @media (min-width: 992px) {
-  /* line 378, ../sass/App.scss */
+  /* line 388, ../sass/App.scss */
   .container {
     max-width: 960px; } }
 @media (min-width: 1200px) {
-  /* line 384, ../sass/App.scss */
+  /* line 394, ../sass/App.scss */
   .container {
     max-width: 1280px; } }
 @media (max-width: 1200px) {
-  /* line 391, ../sass/App.scss */
+  /* line 401, ../sass/App.scss */
   .wrapper-products {
     justify-content: center !important; } }
 

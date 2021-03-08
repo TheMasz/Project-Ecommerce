@@ -89,7 +89,7 @@ export default function HomeScreen() {
               ))}
             </div>
 
-            <div className="wrapper-btn">
+            <div className="wrapper-btn p-3">
               <Link to="/product/pageNumber/2" className="btn_seeMore">
                 ดูเพิ่มเติม
               </Link>

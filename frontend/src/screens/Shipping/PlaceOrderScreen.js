@@ -90,12 +90,12 @@ export default function PlaceOrderScreen(props) {
             <div className="py-2">
               <p className="py-1">
                 ราคารวมสินค้า:{" "}
-                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท
+                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} THB
               </p>
               <p className="py-1">
                 ค่าจัดส่ง: {cart.paymentMethod.shippingPrice}
               </p>
-              <p className="py-1">ราคารวมทั้งหมด: {(cart.totalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท</p>
+              <p className="py-1">ราคารวมทั้งหมด: {(cart.totalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} THB</p>
               <button
                 className="primary block py-1"
                 disabled={cart.cartItems.length === 0}

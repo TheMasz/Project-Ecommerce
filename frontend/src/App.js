@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Link, Redirect, Route } from "react-router-dom";
+import { BrowserRouter, Link, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,6 @@ import SellerScreen from "./screens/Seller/SellerScreen";
 
 import NewProduct from "./screens/Seller/AddProducts/NewProduct";
 import CategoryScreen from "./screens/CategoryScreen";
-import CategoriesScreen from "./screens/Seller/AddProducts/CategoriesScreen";
 import MyProductsScreen from "./screens/Seller/AddProducts/MyProductsScreen";
 import EditProduct from "./screens/Seller/AddProducts/EditProduct";
 import SearchBox from "./components/SearchBox";
@@ -33,7 +32,6 @@ import DashboardScreen from "./screens/Admin/DashboardScreen";
 import ProductsScreen from "./screens/Admin/ProductsScreen";
 import UsersScreen from "./screens/Admin/UsersScreen";
 import OrdersScreen from "./screens/Admin/OrdersScreen";
-import Footer from "./components/Footer";
 import BillScreen from "./screens/Seller/BillScreen";
 
 function App() {
@@ -77,8 +75,8 @@ function App() {
       <header className={`${isSticky ? "sticky" : ""} `}>
         <div className="nav-main row no-wrap">
           <div className="row no-wrap">
-            <Link to="/" className="text-title text-bold">
-              Logo
+            <Link to="/" className="text-title text-bold logo">
+           <img src="/assets/icons/shopping-bag.svg" alt="shopping-bag"/>  <span>Invoker</span> 
             </Link>
           </div>
           <ul className="links row no-wrap">
@@ -203,11 +201,6 @@ function App() {
         <Route path="/payments" component={PaymentScreen} exact />
         <Route path="/shipping" component={AddressScreen} exact />
         <Route path="/seller" component={SellerScreen} exact />
-        <Route
-          path="/portal/product/categories"
-          component={CategoriesScreen}
-          exact
-        />
         <Route path="/bill/:id" component={BillScreen}  />
         <Route path="/portal/product/new" component={NewProduct} exact />
         <Route path="/portal/sell/orders" component={SellOrdersList} exact />

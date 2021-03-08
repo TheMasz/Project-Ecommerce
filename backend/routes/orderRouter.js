@@ -218,8 +218,6 @@ orderRouter.put(
       orderFilter.deliveredNumber = req.body.deliveredNumber;
       orderFilter.deliveredAt = req.body.date;
       order.orderItems =  orderFilter2;
-      console.log("orderFilter1 :", orderFilter);
-      console.log("orderFilter2 :", orderFilter2);
       const updatedOrder = await order.save();
       res.status(201).send({ message: "Order Delivered" });
     } else {

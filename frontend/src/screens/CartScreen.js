@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
-import { userInfo } from "../actions/userActions";
-import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { CART_EMPTY } from "../constants/cartContansts";
 
@@ -13,7 +11,7 @@ export default function CartScreen(props) {
   const qty = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
-
+    
   const cart = useSelector((state) => state.cart);
   const { cartItems, cartItemsGroup } = cart;
   const infoUser = useSelector((state) => state.userInfo);

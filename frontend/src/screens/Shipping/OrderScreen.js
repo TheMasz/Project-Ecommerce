@@ -86,10 +86,10 @@ export default function OrderScreen(props) {
                           </div>
 
                           <div className="cart-page-section__price">
-                            ${result.price} x {result.qty} = $
+                            {result.price} x {result.qty} =
                             {(result.price * result.qty)
                               .toFixed(2)
-                              .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                              .replace(/\d(?=(\d{3})+\.)/g, "$&,") } THB
                           </div>
                         </div>
                       </li>
@@ -107,12 +107,12 @@ export default function OrderScreen(props) {
           </div>
           <div className="d-flex flex-end ">
             <div className="py-2">
-              <p className="py-1">ค่าจัดส่ง: {order.shippingPrice}</p>
+              <p className="py-1">ค่าจัดส่ง: {order.shippingPrice} THB</p>
               <p className="py-1">
                 ราคารวมสินค้า:{" "}
                 {order.totalPrice
                   .toFixed(2)
-                  .replace(/\d(?=(\d{3})+\.)/g, "$&,")}
+                  .replace(/\d(?=(\d{3})+\.)/g, "$&,")} THB
               </p>
             </div>
           </div>
