@@ -26,9 +26,19 @@
       font-size: 16px;
       
       .isPaid-status {
-        padding: 10px;
-        width: 110px;
+        padding: 5px;
+        width: 100%;
         border-radius: 5px;
+      }
+      .isDelivered-status {
+        padding: 5px;
+        width: 100%;
+        border-radius: 5px;
+      }
+      .buttons{
+        display: flex;
+        flex-direction: column;
+      
       }
     }
   }

@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser, updateUser, userInfo, userList } from "../../actions/userActions";
+import {
+  deleteUser,
+  updateUser,
+  userInfo,
+  userList,
+} from "../../actions/userActions";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
-import { USER_DELETE_RESET, USER_UPDATE_RESET } from "../../constants/userConstants";
+import PaginationTable from "../../components/PaginationTable";
+import {
+  USER_DELETE_RESET,
+  USER_UPDATE_RESET,
+} from "../../constants/userConstants";
 
 export default function UsersScreen() {
   const dispatch = useDispatch();
@@ -16,7 +25,7 @@ export default function UsersScreen() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const [search, setSearch] = useState('');
   const {
     loading: loadingDelete,
     error: errorDelete,
@@ -34,20 +43,33 @@ export default function UsersScreen() {
     success: successUpdate,
   } = userUpdate;
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  let currentPosts;
+  if (!LoadingUser) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    currentPosts = users.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
-    dispatch(userList());
+    dispatch(userList({}));
     if (successDelete) {
       dispatch({ type: USER_DELETE_RESET });
     }
-    if(successUpdate){
-      dispatch({type: USER_UPDATE_RESET})
+    if (successUpdate) {
+      dispatch({ type: USER_UPDATE_RESET });
     }
     if (user) {
       setName(user.name);
       setEmail(user.email);
       setPassword(user.password);
     }
-  }, [dispatch, successDelete, successUpdate ,user]);
+  }, [dispatch, successDelete, successUpdate, user]);
   const CfdeleteHandler = (userId) => {
     setModalDL(true);
     dispatch(userInfo(userId));
@@ -68,6 +90,9 @@ export default function UsersScreen() {
     data.append("password", password);
     dispatch(updateUser(userId, data));
   };
+  const SearchName = () => {
+    dispatch(userList({search}));
+  }
   return (
     <div className="container">
       {LoadingUser ? (
@@ -89,9 +114,25 @@ export default function UsersScreen() {
           ) : (
             ""
           )}
+      <div className="searchbar mt-4">
+        <div className="searchbar-main">
+          <input
+            type="text"
+            id="search"
+            name="search"
+            placeholder="ระบุชื่อผู้ใช้ที่ต้องการค้นหา"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <button type="button" onClick={SearchName}>
+          <i className="fa fa-search"></i>
+        </button>
+      </div>
           <table className="table-section">
             <thead className="table-section__header">
               <tr>
+                <th>User ID</th>
                 <th>ขื่อ</th>
                 <th>อีเมล</th>
                 <th>รหัสผ่าน</th>
@@ -100,8 +141,9 @@ export default function UsersScreen() {
               </tr>
             </thead>
             <tbody className="table-section__body">
-              {users.map((user) => (
+              {currentPosts.map((user) => (
                 <tr key={user._id}>
+                  <td>{user._id}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.password}</td>
@@ -126,6 +168,11 @@ export default function UsersScreen() {
               ))}
             </tbody>
           </table>
+          <PaginationTable
+            postsPerPage={postsPerPage}
+            totalPosts={users.length}
+            paginate={paginate}
+          />
         </div>
       )}
       {isModalDL && (

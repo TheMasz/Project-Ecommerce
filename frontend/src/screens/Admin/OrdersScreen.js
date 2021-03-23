@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   detailsOrder,
   listOrderAdmin,
@@ -7,9 +8,11 @@ import {
 } from "../../actions/orderActions";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
+import PaginationTable from "../../components/PaginationTable";
 import { ORDER_ISPAID_RESET } from "../../constants/orderConstants";
 
 export default function OrdersScreen() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [isModal, setModal] = useState(false);
   const orderAdminList = useSelector((state) => state.orderAdminList);
@@ -27,12 +30,34 @@ export default function OrdersScreen() {
     success: successIsPaid,
   } = isPaid;
 
+  const [picker, setPicker] = useState(false);
+  const [pickerPrev, setPickerPrev] = useState("");
+  const [pickerNext, setPickerNext] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  let currentPosts;
+  if (!LoadingOrders) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    currentPosts = orders.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   useEffect(() => {
-    dispatch(listOrderAdmin());
+    dispatch(
+      listOrderAdmin({
+        pickerPrev: pickerPrev ? pickerPrev : "",
+        pickerNext: pickerNext ? pickerNext : "",
+      })
+    );
     if (successIsPaid) {
       dispatch({ type: ORDER_ISPAID_RESET });
     }
-  }, [dispatch, successIsPaid]);
+  }, [dispatch, successIsPaid, pickerPrev, pickerNext]);
   const CfPaidHandler = (orderId) => {
     setModal(true);
     dispatch(detailsOrder(orderId));
@@ -41,6 +66,19 @@ export default function OrdersScreen() {
     dispatch(paidOrder(orderId));
     setModal(false);
   };
+  const reloadHandler = () => {
+    history.go(0);
+  };
+  const pickerHandler = () => {
+    setPicker(!picker);
+  };
+  const pickerPrevHandler = (e) => {
+    setPickerPrev(e);
+  };
+  const pickerNextHandler = (e) => {
+    setPickerNext(e);
+  };
+
   return (
     <div className="container">
       {LoadingOrders ? (
@@ -49,9 +87,34 @@ export default function OrdersScreen() {
         <MessageBox variant="danger">{errorOders}</MessageBox>
       ) : (
         <div className="table-list-section">
+          <div className="row mt-4">
+            <div className="title">คำสั่งซื้อ</div>
+            <button type="button" onClick={reloadHandler}>
+              <i class="fa fa-refresh"></i>
+            </button>
+          </div>
+          <div className="date-picker" onClick={pickerHandler}>
+            <div className="date-picker__input">
+              <div className="date-selector__prefix">
+                <i className="fa fa-calendar"></i>
+              </div>
+              <div className="date-selector__inner">
+                {pickerPrev ? pickerPrev : "ตั้งแต่ "}-
+                {pickerNext ? pickerNext : " ถึง"}
+              </div>
+              <div className="date-selector__suffix">
+                <i className={`fa fa-chevron-${picker ? "left" : "right"}`}></i>
+              </div>
+            </div>
+          </div>
+          {pickerPrev > pickerNext && (
+            <MessageBox variant="danger">กรุณาระบุวันที่ให้ถูกต้อง</MessageBox>
+          )}
+
           <table className="table-section">
             <thead className="table-section__header">
               <tr>
+              <th>Order ID</th>
                 <th>สินค้าทั้งหมด</th>
                 <th>วันเวลาที่สั่งซื้อ</th>
                 <th>ราคารวม</th>
@@ -62,22 +125,25 @@ export default function OrdersScreen() {
               </tr>
             </thead>
             <tbody className="table-section__body">
-              {orders.map((order) => (
+              {currentPosts.map((order) => (
                 <tr key={order._id}>
+                  <td>{order._id}</td>
                   <td>
                     {order.orderItems.map((item) => (
                       <div key={item.seller}>
                         <div>{item.seller}</div>
                         <ul>
                           {item.products.map((result) => (
-                            <li>{result.name}</li>
+                            <li>
+                              {result.name} x {result.qty}
+                            </li>
                           ))}
                         </ul>
                       </div>
                     ))}
                   </td>
                   <td>{order.createdAt}</td>
-                  <td>{order.totalPrice} บาท</td>
+                  <td>{(order.totalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท</td>
                   <td>{order.paymentMethod}</td>
                   <td>
                     <div
@@ -112,9 +178,24 @@ export default function OrdersScreen() {
                 </tr>
               ))}
             </tbody>
+         
           </table>
+          <PaginationTable
+              postsPerPage={postsPerPage}
+              totalPosts={orders.length}
+              paginate={paginate}
+            />
+          {orders.length === 0 && (
+            <div className="no-data">
+              <i className="fa fa-2x fa-calendar-o"></i>
+              <div className="order-list-section__content py-1">
+                ไม่พบคำสั่งซื้อ
+              </div>
+            </div>
+          )}
         </div>
       )}
+
       {isModal ? (
         <div className="modal">
           <div className="modal__mask" style={{ zIndex: 1000008 }}>
@@ -187,6 +268,25 @@ export default function OrdersScreen() {
       ) : (
         ""
       )}
+      {picker ? (
+        <div className="daterange-picker-panel">
+          <div className="daterange-picker-panel__body">
+            <div className="daterange-picker-panel__body-left">
+              <input
+                type="date"
+                onChange={(e) => pickerPrevHandler(e.target.value)}
+              />
+            </div>
+            <span> --- </span>
+            <div className="daterange-picker-panel__body-right">
+              <input
+                type="date"
+                onChange={(e) => pickerNextHandler(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

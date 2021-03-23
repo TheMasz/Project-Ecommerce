@@ -20,8 +20,8 @@ export default function DashboardScreen() {
 
   useEffect(() => {
     dispatch(listProduct({}));
-    dispatch(listOrderAdmin());
-    dispatch(userList());
+    dispatch(listOrderAdmin({}));
+    dispatch(userList({}));
   }, [dispatch]);
 
   return (

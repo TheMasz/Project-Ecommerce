@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct } from "../../actions/addProductActions";
+import { deleteProduct, listCategories } from "../../actions/addProductActions";
 import { detailsProduct, listProduct } from "../../actions/productActions";
 import LoadingBox from "../../components/LoadingBox";
 import MessageBox from "../../components/MessageBox";
+import PaginationTable from "../../components/PaginationTable";
 import { PRODUCT_DELETE_RESET } from "../../constants/addProductContants";
 
 export default function ProductsScreen() {
   const dispatch = useDispatch();
-
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   const productDelete = useSelector((state) => state.productDelete);
@@ -23,31 +23,52 @@ export default function ProductsScreen() {
     error: errorDetails,
     product: productDetail,
   } = productDetails;
+  const categoriesList = useSelector((state) => state.categories);
+  const {
+    loading: CateogoryLoading,
+    error: CategoryError,
+    categories,
+  } = categoriesList;
+
   const [isModal, setModal] = useState(false);
+  const [category, setCategory] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(18);
+
+  let currentPosts;
+  if (!loading) {
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    dispatch(listProduct({}));
+    dispatch(listProduct({   category: category ? category : ""}));
+    dispatch(listCategories());
     if (successDelete) {
-        dispatch({ type: PRODUCT_DELETE_RESET });
-      }
-  }, [dispatch,successDelete]);
- const CfdeleteHandler = (productId) => {
+      dispatch({ type: PRODUCT_DELETE_RESET });
+    }
+  }, [dispatch, successDelete, category]);
+  const CfdeleteHandler = (productId) => {
     setModal(true);
     dispatch(detailsProduct(productId));
   };
-  const deleteHandler = (productId) =>{
+  const deleteHandler = (productId) => {
     setModal(false);
     dispatch(deleteProduct(productId));
-  }
+  };
   return (
     <div className="container">
-      {loading ? (
+      {loading || CateogoryLoading ? (
         <LoadingBox />
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div className="table-list-section">
-             {successDelete ? (
+          {successDelete ? (
             <MessageBox variant="success">Delete Succested</MessageBox>
           ) : errorDelete ? (
             <MessageBox variant="danger">{errorDelete}</MessageBox>
@@ -56,6 +77,20 @@ export default function ProductsScreen() {
           ) : (
             ""
           )}
+          <div className="select-wrap_inner-large mt-4">
+            <select
+              className="input-wrap_select"
+              onChange={(e) => setCategory(e.target.value)} 
+              value={category}
+            >
+              <option value="" selected disabled hidden>
+                กรุณาเลือกหมวดหมู่
+              </option>
+              {categories.map((category) => (
+                <option value={category.name}>{category.name}</option>
+              ))}
+            </select>
+          </div>
           <table className="table-section">
             <thead className="table-section__header">
               <tr>
@@ -67,14 +102,23 @@ export default function ProductsScreen() {
               </tr>
             </thead>
             <tbody className="table-section__body">
-              {products.map((product) => (
+              {currentPosts.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
                   <td>{product.category}</td>
-                  <td>{product.price} บาท</td>
                   <td>
-                    <button type="button" className="delete w-100" onClick={()=>CfdeleteHandler(product._id)}>
+                    {product.price
+                      .toFixed(2)
+                      .replace(/\d(?=(\d{3})+\.)/g, "$&,")}{" "}
+                    บาท
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      className="delete w-100"
+                      onClick={() => CfdeleteHandler(product._id)}
+                    >
                       ลบ
                     </button>
                   </td>
@@ -82,9 +126,22 @@ export default function ProductsScreen() {
               ))}
             </tbody>
           </table>
+          <PaginationTable
+            postsPerPage={postsPerPage}
+            totalPosts={products.length}
+            paginate={paginate}
+          />
+           {products.length === 0 && (
+            <div className="no-data">
+              <i className="fa fa-2x fa-calendar-o"></i>
+              <div className="order-list-section__content py-1">
+                ไม่พบรายการสินค้า
+              </div>
+            </div>
+          )}
         </div>
       )}
-         {isModal ? (
+      {isModal ? (
         <div className="modal">
           <div className="modal__mask" style={{ zIndex: 1000008 }}>
             <div className="modal__container">
@@ -127,7 +184,11 @@ export default function ProductsScreen() {
                           >
                             ยกเลิก
                           </button>
-                          <button type="button" className="primary" onClick={e=>deleteHandler(productDetail._id)}>
+                          <button
+                            type="button"
+                            className="primary"
+                            onClick={(e) => deleteHandler(productDetail._id)}
+                          >
                             ยืนยัน
                           </button>
                         </div>
@@ -142,6 +203,7 @@ export default function ProductsScreen() {
       ) : (
         ""
       )}
+
     </div>
   );
 }

@@ -1,3 +1,4 @@
+/* line 1, ../sass/Loading.scss */
 .loadingBox {
   position: fixed;
   left: 0;
@@ -12,6 +13,6 @@
   flex-direction: column;
   justify-content: center;
   transition: all ease-in-out 0.2s;
-  z-index: 100; }
+  z-index: 999; }
 
 /*# sourceMappingURL=Loading.css.map */

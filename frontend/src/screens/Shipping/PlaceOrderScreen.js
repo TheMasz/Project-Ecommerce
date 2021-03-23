@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createOrder } from "../../actions/orderActions";
@@ -13,6 +13,7 @@ export default function PlaceOrderScreen(props) {
   if (!cart.paymentMethod) {
     props.history.push("/payment");
   }
+
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
   const toPrice = (num) => Number(num.toFixed(2));
@@ -23,6 +24,7 @@ export default function PlaceOrderScreen(props) {
   const placeOrderHandler = () => {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItemsGroup }));
   };
+
   useEffect(() => {
     if (success) {
       props.history.push(`/order/${order._id}`);
@@ -39,7 +41,7 @@ export default function PlaceOrderScreen(props) {
             <strong>{cart.shippingAddress.fullName}</strong> {"  "}
             {cart.shippingAddress.address} {cart.shippingAddress.country}
             {"  "}
-            {cart.shippingAddress.postalCode}
+            {cart.shippingAddress.postalCode} {"  "} {cart.shippingAddress.tel}
           </p>
         </div>
         <div className="order-page-section__order p-3 my-2">
@@ -66,8 +68,8 @@ export default function PlaceOrderScreen(props) {
                         </div>
 
                         <div className="cart-page-section__price">
-                          ${result.price} x {result.qty} = $
-                          {result.price * result.qty}
+                          {(result.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} x {result.qty} = {' '}
+                          {(result.price * result.qty).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} THB
                         </div>
                       </div>
                     </li>
@@ -88,12 +90,12 @@ export default function PlaceOrderScreen(props) {
             <div className="py-2">
               <p className="py-1">
                 ราคารวมสินค้า:{" "}
-                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                {cart.cartItems.reduce((a, c) => a + c.price * c.qty, 0).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} THB
               </p>
               <p className="py-1">
                 ค่าจัดส่ง: {cart.paymentMethod.shippingPrice}
               </p>
-              <p className="py-1">ราคารวมสินค้า: {cart.totalPrice}</p>
+              <p className="py-1">ราคารวมทั้งหมด: {(cart.totalPrice).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} THB</p>
               <button
                 className="primary block py-1"
                 disabled={cart.cartItems.length === 0}

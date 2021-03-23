@@ -11,27 +11,27 @@ export default function CartScreen(props) {
   const qty = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
-
+    
   const cart = useSelector((state) => state.cart);
   const { cartItems, cartItemsGroup } = cart;
+  const infoUser = useSelector((state) => state.userInfo);
+  const { loading: sellerLoading, user } = infoUser;
 
   useEffect(() => {
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
-
-  }, [dispatch, productId, qty,cartItems]);
+  }, [dispatch, productId, qty, cartItems, user]);
   const checkoutHandler = () => {
     props.history.push("/signin?redirect=shipping");
   };
   const removeFromCartHandler = (id, seller) => {
     dispatch(removeFromCart(id, seller));
-    if(cartItems.length === 1){
-      dispatch({type:CART_EMPTY})
+    if (cartItems.length === 1) {
+      dispatch({ type: CART_EMPTY });
       localStorage.setItem("cartItemsGroup", JSON.stringify([]));
     }
   };
-
   return (
     <div className="container py-5">
       {cartItems.length === 0 ? (
@@ -51,11 +51,13 @@ export default function CartScreen(props) {
               <ul>
                 {cartItemsGroup.map((item) => (
                   <div key={item.seller}>
-                    <div className="cart-page-section__header">{item.products[0]?item.seller:''}</div>
+                    <div className="cart-page-section__header">
+                      {item.products[0] ? item.seller : ""}
+                    </div>
                     <div className="cart-page-section__body">
                       {item.products.map((result) => (
                         <li key={result.product}>
-                          <div className="cart-page-section__item row space-evenly py-3">
+                          <div className="cart-page-section__item py-3">
                             <div
                               className="cart-page-section__image image__content"
                               style={{
@@ -70,6 +72,7 @@ export default function CartScreen(props) {
                             </div>
                             <div className="cart-page-section__qty ">
                               <select
+                                className="input-wrap_select"
                                 value={result.qty}
                                 onChange={(e) =>
                                   dispatch(
@@ -89,8 +92,12 @@ export default function CartScreen(props) {
                                 )}
                               </select>
                             </div>
+
                             <div className="cart-page-section__price">
-                              {item.price}
+                              {(result.price * result.qty)
+                                .toFixed(2)
+                                .replace(/\d(?=(\d{3})+\.)/g, "$&,")}{" "}
+                              บาท
                             </div>
                             <div className="cart-page-section__actions">
                               <button
@@ -117,8 +124,12 @@ export default function CartScreen(props) {
           <div className="cart-page-checkout mt-4 p-3 bg-white">
             <div className="cart-page-checkout__section row">
               <h2>
-                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
-                {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) :
+                {cartItems
+                  .reduce((a, c) => a + c.price * c.qty, 0)
+                  .toFixed(2)
+                  .replace(/\d(?=(\d{3})+\.)/g, "$&,")}{" "}
+                THB
               </h2>
               <button
                 type="button"

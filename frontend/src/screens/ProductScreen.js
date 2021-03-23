@@ -90,7 +90,7 @@ export default function ProductScreen(props) {
             <div className="col-2 center">
               <div className="p-2">
                 <h1>{product.name}</h1>
-                <h1 className="price py-1">{product.price} ฿</h1>
+                <h1 className="price py-1">{(product.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} บาท</h1>
                 <p className="text-description">{product.description}</p>
                 <div>
                   <p className="text-bold text-title py-1">Status:</p>

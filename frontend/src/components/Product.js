@@ -25,7 +25,7 @@ export default function Product(props) {
         </Link>
         <div className="line"></div>
         <div className="row p-2">
-          <p className="price">{product.price} ฿</p>
+          <p className="price">{(product.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')} ฿</p>
           <button
             type="button"
             onClick={addToCartHandler}

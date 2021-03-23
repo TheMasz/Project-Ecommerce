@@ -24,10 +24,12 @@ import {
 import {
   orderAdminListReducer,
   orderCreateReducer,
+  orderDeliveredReducer,
   orderDetailsReducer,
   orderIsPaidReducer,
   orderMineListReducer,
   orderPayReducer,
+  orderSellDetailsReducer,
   orderSellListReducer,
 } from "./reducers/orderReducers";
 import { uploadReducer } from "./reducers/uploadReducers";
@@ -68,9 +70,11 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderMineList: orderMineListReducer,
   orderSellerList: orderSellListReducer,
+  orderSellerDetails: orderSellDetailsReducer,
   orderAdminList: orderAdminListReducer,
   orderPay: orderPayReducer,
   orderIsPaid: orderIsPaidReducer,
+  orderDelivered: orderDeliveredReducer,
   upload: uploadReducer,
   productCreate: productCreateReducer,
   productUpdate: productUpdateReducer,

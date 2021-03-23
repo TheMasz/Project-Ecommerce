@@ -200,6 +200,8 @@ export default function NewProduct(props) {
                     type="number"
                     className="input-wrap_input"
                     onChange={(e) => setPrice(e.target.value)}
+                    min="1"
+                    max="1000000"
                   />
                 </div>
               </div>
