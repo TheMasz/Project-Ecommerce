@@ -12,6 +12,8 @@ dotenv.config();
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
 app.use(upload());
 
 app.use(express.json());
@@ -41,6 +43,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
   res.send("server ready");
 });
 
