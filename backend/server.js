@@ -13,7 +13,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.static(path.join( 'frontend/build')));
+app.use(express.static(path.join( '../frontend/build')));
 
 app.use(upload());
 
@@ -44,8 +44,8 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join('/frontend/build/index.html'));
-  res.send("server ready");
+  res.sendFile(path.join('../frontend/build/index.html'));
+ 
 });
 
 const port = process.env.PORT || 5000;
