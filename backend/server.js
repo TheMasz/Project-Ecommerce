@@ -7,6 +7,7 @@ import userRouter from "./routes/userRouter.js";
 import categoryRouter from "./routes/categoriesRouter.js";
 import orderRouter from "./routes/orderRouter.js";
 import uploadRouter from "./routes/uploadRouter.js";
+import path from 'path';
 
 dotenv.config();
 
