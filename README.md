@@ -1,2 +1,2 @@
 # Project-Ecommerce
-user admin 123456
+Administator = admin 123456
