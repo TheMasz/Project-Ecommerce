@@ -1,3 +1,3 @@
 # Project-Ecommerce
-Administator = admin 123456
+Administator = admin@example 123456
 User = user@example.com 12345678
