@@ -1,3 +1,8 @@
 # Project-Ecommerce
-Administator = admin@example.com 123456
-User = user@example.com 12345678
+Fuctions:
+  -Authenfication system
+  -Seller management system
+  -Admin management system
+  -Payment system
+  -Responsive support
+  -Build with React Framework, MongoDB
