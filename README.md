@@ -1,8 +1,8 @@
 # Project-Ecommerce
 Fuctions:
--Authenfication system
--Seller management system
--Admin management system
--Payment system
--Responsive support
--Build with React Framework, MongoDB
+1.Authenfication system
+2.Seller management system
+3.Admin management system
+4.Payment system
+5.Responsive support
+6.Build with React Framework, MongoDB
