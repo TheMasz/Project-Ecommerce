@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const uri =
-  "mongodb+srv://TheMasz:T7hTTCcJECDZAu1U@db.ca2ih.mongodb.net/E_Commerce?retryWrites=true&w=majority";
+  `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@db.ca2ih.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority&appName=${process.env.APPNAME}`;
 mongoose
   .connect(uri, {
     useNewUrlParser: true,
