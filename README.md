@@ -1,5 +1,5 @@
 # Project-Ecommerce
-This project is an advanced e-commerce website developed for learning purposes. It allows users not only to buy products but also to sell them, similar to platforms like Shopee. The project includes a comprehensive authentication system, seller management, and admin management. The checkout process uses a simulator for payment processing, such as adding a picture of mobile payment.<br><br>
+This project is an advanced e-commerce website developed for learning purposes. It allows users not only to buy products but also to sell them, similar to platforms like Shopee. The project includes a comprehensive authentication system, seller management, and admin management. The checkout process uses a simulator for payment processing, such as adding a picture of mobile payment using React and Redux for the frontend, ExpressJS for the backend, and SCSS for styling..<br><br>
 **Features**
 - Authentication System: User registration and login.
 - Seller Management System: Users can register as sellers, manage their products, and view sales
